@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-PHARM-018",
+  "title": "Medication Reconciliation on Patient Admission",
+  "content": "A complete medication reconciliation must be performed for every patient within 4 hours of admission using the HIS Pharmacy Module. The admitting nurse or pharmacist must compile a Best Possible Medication History (BPMH) by interviewing the patient and/or caregiver and cross-referencing with previous HIS records, referral documents, and any medications the patient brought to hospital. The BPMH must be reviewed by the treating physician, who will reconcile current home medications with new inpatient orders, documenting any changes, continuations, or substitutions with clinical rationale. High-alert medications (anticoagulants, insulin, concentrated electrolytes) require a second pharmacist verification before any order is processed. Reconciliation must be repeated at each care transition: transfer between wards, change in attending physician, and at discharge.",
+  "department": "Pharmacy",
+  "status": "approved",
+  "version": "v1.3",
+  "effective_date": "2024-04-15",
+  "review_due_date": "2026-04-15",
+  "owner": "Chief Pharmacist",
+  "visible_to_roles": [
+    "Pharmacy",
+    "Nursing",
+    "Case Management",
+    "Discharge Operations"
+  ],
+  "category": "pharmacy"
+}

@@ -1,0 +1,37 @@
+{
+  "workflow_id": "WF-FRONT-BED-ALLOC-01",
+  "workflow_name": "Patient Bed Allocation Request",
+  "department": "Front Office",
+  "owner_team": "Admissions Desk",
+  "escalation_team": "Bed Manager",
+  "governing_article": "SOP-FRONT-008",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Verify the physician's bed request form in HIS, confirming the required bed type (General, Semi-Private, Private, ICU, ICCU, NICU, HDU) and clinical priority. Cross-check the patient's insurance coverage or payment category to confirm eligibility for the requested bed class.",
+      "required_fields": [
+        "patient_mrn",
+        "bed_type",
+        "referring_physician_id"
+      ],
+      "system_used": "HIS Bed Management Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "Check real-time bed availability in the HIS Bed Management Module for the requested type. If the requested type is unavailable, offer the next available class or add the patient to the waitlist. Notify the patient or family of the wait time.",
+      "required_fields": [
+        "ward_number"
+      ],
+      "system_used": "HIS Bed Management Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "Assign the bed in HIS, print the bed assignment slip, and escort or direct the patient to the ward. Update the bed status to 'Occupied' in HIS within 15 minutes of the patient reaching the ward. Notify the receiving ward nurse of the incoming patient.",
+      "required_fields": [],
+      "system_used": "HIS Bed Management Module",
+      "is_approval_gate": false
+    }
+  ]
+}

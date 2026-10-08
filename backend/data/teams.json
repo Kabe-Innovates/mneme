@@ -1,0 +1,110 @@
+[
+  {
+    "team_id": "TEAM-Billing-Supervisor",
+    "name": "Billing Supervisor",
+    "department": "Billing & Cash",
+    "contact_extension": "4102",
+    "escalation_sla": "4 business hours",
+    "email": "billing.supervisor@mneme-hospital.org",
+    "handles": ["billing_correction", "billing_queries", "refund_processing"]
+  },
+  {
+    "team_id": "TEAM-TPA-Escalation-Manager",
+    "name": "TPA Escalation Manager",
+    "department": "Insurance & TPA",
+    "contact_extension": "4201",
+    "escalation_sla": "2 hours",
+    "email": "tpa.escalation@mneme-hospital.org",
+    "handles": ["insurance_denial", "tpa_dispute", "cashless_authorization"]
+  },
+  {
+    "team_id": "TEAM-IT-Emergency-Response",
+    "name": "IT Emergency Response",
+    "department": "IT & HIS Support",
+    "contact_extension": "4400",
+    "escalation_sla": "15 minutes",
+    "email": "it.emergency@mneme-hospital.org",
+    "handles": ["his_downtime", "cybersecurity_incident", "critical_system_failure"]
+  },
+  {
+    "team_id": "TEAM-Quality-Patient-Safety",
+    "name": "Quality & Patient Safety",
+    "department": "Quality & Accreditation",
+    "contact_extension": "4501",
+    "escalation_sla": "30 minutes",
+    "email": "quality.safety@mneme-hospital.org",
+    "handles": ["patient_safety_incident", "incident_report", "near_miss", "accreditation_query"]
+  },
+  {
+    "team_id": "TEAM-Legal-Compliance",
+    "name": "Legal & Compliance",
+    "department": "Legal & Compliance",
+    "contact_extension": "4601",
+    "escalation_sla": "1 hour",
+    "email": "legal.compliance@mneme-hospital.org",
+    "handles": ["medical_records_subpoena", "court_order", "regulatory_inquiry"]
+  },
+  {
+    "team_id": "TEAM-Biomedical-Engineering",
+    "name": "Biomedical Engineering",
+    "department": "Biomedical Engineering",
+    "contact_extension": "4450",
+    "escalation_sla": "30 minutes for critical equipment; 4 hours for non-critical",
+    "email": "biomedical@mneme-hospital.org",
+    "handles": ["equipment_failure", "equipment_pm", "calibration_request"]
+  },
+  {
+    "team_id": "TEAM-Pharmacy-Head",
+    "name": "Pharmacy Head",
+    "department": "Pharmacy",
+    "contact_extension": "4700",
+    "escalation_sla": "1 hour",
+    "email": "pharmacy.head@mneme-hospital.org",
+    "handles": ["pharmacy_stockout", "controlled_substance_discrepancy", "formulary_management"]
+  },
+  {
+    "team_id": "TEAM-Laboratory-Supervisor",
+    "name": "Laboratory Supervisor",
+    "department": "Laboratory",
+    "contact_extension": "4801",
+    "escalation_sla": "30 minutes",
+    "email": "lab.supervisor@mneme-hospital.org",
+    "handles": ["lab_specimen_issue", "critical_value_escalation", "lab_equipment_failure"]
+  },
+  {
+    "team_id": "TEAM-Bed-Manager",
+    "name": "Bed Manager",
+    "department": "Operations Management",
+    "contact_extension": "4101",
+    "escalation_sla": "30 minutes",
+    "email": "bed.manager@mneme-hospital.org",
+    "handles": ["bed_shortage", "transfer_request_icu", "ward_capacity_management"]
+  },
+  {
+    "team_id": "TEAM-Emergency-Director",
+    "name": "Emergency Director",
+    "department": "Emergency",
+    "contact_extension": "4901",
+    "escalation_sla": "immediate",
+    "email": "emergency.director@mneme-hospital.org",
+    "handles": ["mass_casualty", "code_blue", "disaster_response"]
+  },
+  {
+    "team_id": "TEAM-Finance-Director",
+    "name": "Finance Director",
+    "department": "Billing & Cash",
+    "contact_extension": "4003",
+    "escalation_sla": "4 hours",
+    "email": "finance.director@mneme-hospital.org",
+    "handles": ["financial_waiver_request", "procurement_high_value", "insurance_denial_appeal"]
+  },
+  {
+    "team_id": "TEAM-Data-Protection-Officer",
+    "name": "Data Protection Officer",
+    "department": "Legal & Compliance",
+    "contact_extension": "4602",
+    "escalation_sla": "1 hour",
+    "email": "dpo@mneme-hospital.org",
+    "handles": ["privacy_breach", "data_subject_request", "regulatory_reporting"]
+  }
+]

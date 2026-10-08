@@ -1,0 +1,62 @@
+[
+  {
+    "report_id": "RPT-EQUIP-01",
+    "title": "Monthly Equipment Reliability and PM Compliance Report",
+    "frequency": "monthly",
+    "department": "Biomedical Engineering",
+    "produced_by_system": "HIS Asset Management Module",
+    "owner": "Chief Biomedical Engineer",
+    "description": "Tracks PM completion rates, equipment downtime events, calibration compliance, and out-of-service asset counts. Submitted to the Quality Committee on the 5th of each month.",
+    "governing_article": "SOP-BIO-002"
+  },
+  {
+    "report_id": "RPT-INFECT-01",
+    "title": "Monthly Healthcare-Associated Infection Surveillance Report",
+    "frequency": "monthly",
+    "department": "Quality & Accreditation",
+    "produced_by_system": "HIS Quality Module",
+    "owner": "Quality & Patient Safety Officer",
+    "description": "Reports HAI rates by type (CLABSI, CAUTI, SSI, VAP) by ward, benchmarked against NABH targets. Triggers corrective action if rates exceed thresholds.",
+    "governing_article": "SOP-QA-008"
+  },
+  {
+    "report_id": "RPT-QA-01",
+    "title": "Quarterly Clinical Audit and Quality Metrics Summary",
+    "frequency": "quarterly",
+    "department": "Quality & Accreditation",
+    "produced_by_system": "HIS Quality Module",
+    "owner": "Quality & Patient Safety Officer",
+    "description": "Aggregates results from all departmental clinical audits, incident trends, non-conformances, and corrective action completion rates. Presented to the Board of Governors.",
+    "governing_article": "SOP-QA-008"
+  },
+  {
+    "report_id": "RPT-PHARM-01",
+    "title": "Monthly Pharmacy Drug Utilization and Stock Report",
+    "frequency": "monthly",
+    "department": "Pharmacy",
+    "produced_by_system": "Pharmacy Management System",
+    "owner": "Chief Pharmacist",
+    "description": "Tracks drug consumption patterns, high-cost drug utilization, near-expiry stock, controlled substance reconciliation, and stock-out incidents. Submitted to the Drug & Therapeutics Committee.",
+    "governing_article": "SOP-PHARM-005"
+  },
+  {
+    "report_id": "RPT-BILL-01",
+    "title": "Monthly Billing Reconciliation and Revenue Report",
+    "frequency": "monthly",
+    "department": "Billing & Cash",
+    "produced_by_system": "HIS Billing Module",
+    "owner": "Finance Controller",
+    "description": "Reconciles billed revenue against collected payments, insurance claims outstanding, waivers granted, and billing correction activity. Reviewed by the Finance Committee on the 10th of each month.",
+    "governing_article": "SOP-BILL-022"
+  },
+  {
+    "report_id": "RPT-BED-01",
+    "title": "Daily Bed Occupancy and Availability Report",
+    "frequency": "daily",
+    "department": "Operations Management",
+    "produced_by_system": "HIS Bed Management Module",
+    "owner": "Operations Manager",
+    "description": "Real-time and end-of-day snapshot of bed occupancy by ward, type, and speciality. Used for daily bed management meetings and capacity planning. Sent to department heads and senior management at 7 AM and 7 PM.",
+    "governing_article": "SOP-FRONT-008"
+  }
+]

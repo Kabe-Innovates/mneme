@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-EMRG-007",
+  "title": "Mass Casualty Incident (MCI) Activation and Response Plan",
+  "content": "A Mass Casualty Incident is declared when the number and/or severity of casualties exceeds the Emergency Department's routine capacity. MCI activation is authorized by the Emergency Department Head, Medical Superintendent, or the most senior physician on duty; activation triggers the hospital-wide MCI Plan. The Medical Director must notify all on-call staff and request cancellation of all elective procedures; available beds must be freed within 30 minutes of activation. The SMART (Simple Triage and Rapid Treatment) triage system is used during MCIs to categorize patients: Immediate (Red), Delayed (Yellow), Minimal (Green), Expectant (Black). Dedicated MCI command posts must be established at the ED entrance and hospital command center; media communication is handled exclusively by the designated Public Relations Officer. Deactivation of the MCI Plan is authorized only by the Medical Superintendent after confirming all casualties have been stabilized or transferred. A post-event debrief and documentation review must occur within 48 hours of MCI deactivation.",
+  "department": "Emergency",
+  "status": "approved",
+  "version": "v1.5",
+  "effective_date": "2024-03-01",
+  "review_due_date": "2026-03-01",
+  "owner": "Emergency Department Head",
+  "visible_to_roles": [
+    "Emergency",
+    "Operations Management",
+    "Nursing",
+    "ALL"
+  ],
+  "category": "mass_casualty"
+}

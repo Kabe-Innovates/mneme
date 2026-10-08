@@ -198,5 +198,55 @@
     "is_required": false,
     "is_sensitive": true,
     "description": "Employee ID of the supervisor or manager approving the request. Required for billing corrections, waiver requests, and elevated access provisioning."
+  },
+  {
+    "field_name": "incident_type",
+    "label": "Incident Type",
+    "field_type": "enum",
+    "allowed_values": ["patient_fall", "medication_error", "equipment_failure", "healthcare_associated_infection", "near_miss", "surgical_complication", "other"],
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Category of the reported incident or near-miss as defined in the hospital's Incident Classification Framework."
+  },
+  {
+    "field_name": "specimen_type",
+    "label": "Specimen Type",
+    "field_type": "enum",
+    "allowed_values": ["blood", "urine", "tissue_biopsy", "CSF", "swab", "sputum", "stool", "wound_drainage"],
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Type of biological specimen being submitted for laboratory analysis."
+  },
+  {
+    "field_name": "ward_name",
+    "label": "Ward Name",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Name of the hospital ward (e.g., ICU Ward A, General Ward 3B, Emergency Department)."
+  },
+  {
+    "field_name": "consent_type",
+    "label": "Consent Type",
+    "field_type": "enum",
+    "allowed_values": ["surgical", "anesthesia", "blood_transfusion", "invasive_procedure", "clinical_research", "general_treatment"],
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Category of informed consent being obtained from the patient or authorized representative."
+  },
+  {
+    "field_name": "procurement_amount",
+    "label": "Procurement Amount (USD)",
+    "field_type": "currency",
+    "allowed_values": null,
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Total value in USD of the procurement request or purchase order being submitted."
   }
 ]

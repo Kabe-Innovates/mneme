@@ -1,0 +1,41 @@
+{
+  "workflow_id": "WF-MR-CONSENT-01",
+  "workflow_name": "Patient Informed Consent Collection",
+  "department": "Medical Records",
+  "owner_team": "Nursing Staff",
+  "escalation_team": "Medical Records Supervisor",
+  "governing_article": "SOP-MR-016",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Identify the correct consent form for the planned procedure from the HIS Forms Library (e.g., FORM-CONSENT-SUR-01 for surgical procedures, FORM-CONSENT-BT-01 for blood transfusions). Confirm the correct form version is current; outdated versions must not be used.",
+      "required_fields": [
+        "patient_mrn",
+        "consent_type"
+      ],
+      "system_used": "HIS Forms Library",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "The treating physician or designated clinical staff must explain the procedure, risks, benefits, and alternatives to the patient in their preferred language. If the patient requires an interpreter, arrange one before proceeding. Do not obtain consent in a language the patient does not understand.",
+      "required_fields": [],
+      "system_used": "HIS Clinical Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "The patient (or legal representative for incapacitated patients) signs the consent form in the presence of the physician and a nurse witness. Both the physician and witness must sign with their staff IDs. For emergency situations where signed consent cannot be obtained, document the clinical justification and two-witness verbal consent.",
+      "required_fields": [],
+      "system_used": "HIS Clinical Module",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 4,
+      "description": "Scan the signed consent form and upload it to the patient's HIS record immediately. The procedure must not commence until the consent document is confirmed in the system. The paper original must be filed in the patient's physical medical record folder.",
+      "required_fields": [],
+      "system_used": "HIS Medical Records Module",
+      "is_approval_gate": false
+    }
+  ]
+}

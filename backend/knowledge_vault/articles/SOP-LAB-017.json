@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-LAB-017",
+  "title": "Blood Transfusion Request and Pre-Transfusion Testing",
+  "content": "Blood and blood product transfusion requests must be submitted via the HIS Laboratory Module with the patient's MRN, blood group, cross-match sample, clinical indication, and urgency level. Pre-transfusion testing (group and screen, crossmatch) is mandatory before any non-emergency transfusion; for life-threatening emergencies, O-negative uncrossmatched blood may be issued on verbal physician authorization with written documentation to follow within 15 minutes. The blood bank will prepare and issue units within 45 minutes for urgent requests and 2 hours for routine requests. Transfusion must be administered within 30 minutes of unit issue; units returned to the blood bank after this window will be discarded. Any suspected transfusion reaction (fever, chills, hypotension, rash) must trigger immediate transfusion stoppage, notification to the on-call physician, and a transfusion reaction report filed in HIS within 1 hour.",
+  "department": "Laboratory",
+  "status": "approved",
+  "version": "v1.5",
+  "effective_date": "2024-05-20",
+  "review_due_date": "2026-05-20",
+  "owner": "Laboratory Manager",
+  "visible_to_roles": [
+    "Laboratory",
+    "Nursing",
+    "Case Management",
+    "Operations Management"
+  ],
+  "category": "laboratory"
+}

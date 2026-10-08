@@ -1,0 +1,44 @@
+{
+  "workflow_id": "WF-IT-ACCESS-01",
+  "workflow_name": "New Staff IT Access Provisioning",
+  "department": "IT & HIS Support",
+  "owner_team": "IT Help Desk",
+  "escalation_team": "IT Manager",
+  "governing_article": "SOP-IT-011",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Department HOD submits Form IT-ACC-01 via the HIS IT Request Module at least 48 hours before the new staff member's start date. The form must include: employee ID, role, department, required systems, and start date.",
+      "required_fields": [
+        "staff_id",
+        "department_code",
+        "reason_for_request"
+      ],
+      "system_used": "HIS IT Request Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "IT Administration verifies the request against the RBAC access matrix for the employee's role. Confirm access levels are appropriate \u2014 no over-provisioning. If the role requires elevated privileges, IT Manager approval is required before proceeding.",
+      "required_fields": [
+        "approver_id"
+      ],
+      "system_used": "IT RBAC System",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 3,
+      "description": "Provision HIS login credentials, hospital email account, and role-specific module access within 24 hours. Generate a temporary password and communicate it securely to the employee via their personal email or department HOD.",
+      "required_fields": [],
+      "system_used": "HIS Admin Console",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 4,
+      "description": "Confirm the employee has logged in and changed their temporary password within 48 hours. Log the provisioning event in the IT Audit System with timestamps. Notify IT Manager if password change is not completed within the deadline.",
+      "required_fields": [],
+      "system_used": "IT Audit System",
+      "is_approval_gate": false
+    }
+  ]
+}

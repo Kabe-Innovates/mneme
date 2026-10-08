@@ -1,0 +1,74 @@
+[
+  {
+    "system_id": "SYS-HIS-Billing-Module",
+    "name": "HIS Billing Module",
+    "vendor": "MedTech Solutions",
+    "login_url": "https://his.hospital.local/billing",
+    "description": "Handles all patient billing, charge capture, itemized bill generation, correction requests, financial waivers, refund processing, and audit trail management.",
+    "department": "Billing & Cash",
+    "support_contact": "medtech-support@medtech.solutions"
+  },
+  {
+    "system_id": "SYS-HIS-Insurance-Module",
+    "name": "HIS Insurance Module",
+    "vendor": "MedTech Solutions",
+    "login_url": "https://his.hospital.local/insurance",
+    "description": "Manages patient insurance policy verification, coverage checks, pre-authorization tracking, cashless treatment authorization, and insurance claim status monitoring.",
+    "department": "Insurance & TPA",
+    "support_contact": "medtech-support@medtech.solutions"
+  },
+  {
+    "system_id": "SYS-HIS-Clinical-Module",
+    "name": "HIS Clinical Module",
+    "vendor": "MedTech Solutions",
+    "login_url": "https://his.hospital.local/clinical",
+    "description": "Core clinical documentation system covering admissions, physician orders, nursing notes, discharge summaries, consent forms, and patient care plans.",
+    "department": "Case Management",
+    "support_contact": "medtech-support@medtech.solutions"
+  },
+  {
+    "system_id": "SYS-HIS-Radiology-Module",
+    "name": "HIS Radiology Module",
+    "vendor": "MedTech Solutions",
+    "login_url": "https://his.hospital.local/radiology",
+    "description": "Manages radiology study scheduling, report generation and tracking, DICOM image storage linkage, and turnaround time monitoring.",
+    "department": "Radiology Operations",
+    "support_contact": "medtech-support@medtech.solutions"
+  },
+  {
+    "system_id": "SYS-TPA-Portal",
+    "name": "TPA Submission Portal",
+    "vendor": "InsurConnect Pro",
+    "login_url": "https://portal.insurconnect.in/hospital-login",
+    "description": "External web portal for submitting pre-authorization requests, uploading insurance claim packages, monitoring claim status, and receiving TPA adjudication decisions.",
+    "department": "Insurance & TPA",
+    "support_contact": "support@insurconnect.in"
+  },
+  {
+    "system_id": "SYS-CMMS",
+    "name": "Computerized Maintenance Management System",
+    "vendor": "MaintenancePro Systems",
+    "login_url": "https://cmms.hospital.local",
+    "description": "Tracks all facility and biomedical equipment maintenance, PM work orders, repair requests, spare parts inventory, and vendor service contracts. Produces the Monthly Equipment Reliability Report.",
+    "department": "Biomedical Engineering",
+    "support_contact": "support@maintenancepro.io"
+  },
+  {
+    "system_id": "SYS-Pharmacy-Management",
+    "name": "Pharmacy Management System",
+    "vendor": "PharmNet Healthcare IT",
+    "login_url": "https://his.hospital.local/pharmacy",
+    "description": "Manages prescription dispensing, drug inventory and stock levels, controlled substance register, medication reconciliation workflows, and pharmacy stock-out alerts.",
+    "department": "Pharmacy",
+    "support_contact": "support@pharmnet.health"
+  },
+  {
+    "system_id": "SYS-Laboratory-Information",
+    "name": "Laboratory Information System (LIS)",
+    "vendor": "LabCore Diagnostics",
+    "login_url": "https://his.hospital.local/laboratory",
+    "description": "Manages lab test orders, specimen tracking, result entry and verification, critical value alerting, specimen rejection notices, and turnaround time reporting.",
+    "department": "Laboratory",
+    "support_contact": "support@labcore.diagnostics"
+  }
+]

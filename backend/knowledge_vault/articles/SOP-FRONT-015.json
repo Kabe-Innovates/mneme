@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-FRONT-015",
+  "title": "OPD Appointment Scheduling Policy",
+  "content": "OPD appointments must be scheduled through the HIS OPD Module or the patient-facing appointment portal; walk-in patients are accommodated only if slots are available after portal bookings are filled. Each OPD slot is 15 minutes; complex consultations or second opinions may be booked as double slots with prior physician consent. Appointment reminders are automatically sent via SMS 24 hours before the scheduled time. Cancellations by the patient must be made at least 2 hours before the appointment to free the slot for another patient; repeated no-shows (3 or more) must be flagged to the Front Office Manager. Urgent referrals from Emergency or ward physicians receive priority scheduling within the same day.",
+  "department": "Front Office",
+  "status": "approved",
+  "version": "v2.1",
+  "effective_date": "2024-01-05",
+  "review_due_date": "2026-01-05",
+  "owner": "Front Office Manager",
+  "visible_to_roles": [
+    "Front Office",
+    "Case Management",
+    "ALL"
+  ],
+  "category": "scheduling"
+}

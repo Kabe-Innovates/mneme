@@ -118,5 +118,101 @@
     "expected_outcome": "ROUTE",
     "expected_intent": "financial_waiver_request",
     "notes": "40% waiver exceeds 25% threshold, triggers routing to Finance Director per RR-011. Should explain the approval chain and what documentation is needed."
+  },
+  {
+    "request_id": "REQ-016",
+    "request_text": "Our pharmacy just ran out of IV piperacillin-tazobactam and there are three ICU patients currently on it. What's the protocol?",
+    "initiator_role": "Pharmacy",
+    "expected_outcome": "GUIDE",
+    "expected_intent": "workflow_guidance",
+    "notes": "Should trigger WF-PHARM-STOCKOUT-01. High urgency — ICU patients affected. Will ask for drug details and guide through emergency procurement and physician notification steps."
+  },
+  {
+    "request_id": "REQ-017",
+    "request_text": "The lab has rejected a blood culture specimen from Ward 3B. The label was printed an hour ago and the patient's name is on it. What do I need to do?",
+    "initiator_role": "Laboratory",
+    "expected_outcome": "GUIDE",
+    "expected_intent": "workflow_guidance",
+    "notes": "Should trigger WF-LAB-SPECIMEN-REJ-01. Likely rejection reason: exceeded transport time or temperature deviation. Guide through re-collection procedure."
+  },
+  {
+    "request_id": "REQ-018",
+    "request_text": "A patient fell out of bed in Ward 3A last night. The nurse says they were assessed and no injury was found, but I'm not sure what we need to document.",
+    "initiator_role": "Nursing",
+    "expected_outcome": "GUIDE",
+    "expected_intent": "workflow_guidance",
+    "notes": "Should trigger WF-QA-INCIDENT-01. A patient fall is a reportable incident. Need to document incident type (patient_fall), severity (Minor), ward name, and guide through the HIS Quality Module reporting steps."
+  },
+  {
+    "request_id": "REQ-019",
+    "request_text": "We have a fire alarm going off in the Radiology wing. Nobody can see any smoke but the alarm is ringing. What should staff do?",
+    "initiator_role": "Facility & Maintenance",
+    "expected_outcome": "ANSWER",
+    "expected_intent": "knowledge_question",
+    "notes": "Should cite SOP-FAC-001 and describe RACE protocol: Rescue, Alarm, Confine, Extinguish. Staff should treat every alarm as real until the Fire Department confirms otherwise."
+  },
+  {
+    "request_id": "REQ-020",
+    "request_text": "How do nurses do their shift handover here? We have a locum nurse starting today who has never worked in this hospital.",
+    "initiator_role": "Nursing",
+    "expected_outcome": "ANSWER",
+    "expected_intent": "knowledge_question",
+    "notes": "Should cite SOP-NURS-001. Describe SBAR bedside handover: Situation, Background, Assessment, Recommendation. Include 15-minute overlap rule and HIS Nursing Notes documentation."
+  },
+  {
+    "request_id": "REQ-021",
+    "request_text": "What should we do if a patient tells the doctor they don't want to stay in hospital anymore and want to leave? We're worried about their safety.",
+    "initiator_role": "Discharge Operations",
+    "expected_outcome": "ANSWER",
+    "expected_intent": "knowledge_question",
+    "notes": "Should cite SOP-DIS-013. AMA discharge procedure: notify physician and case manager, explain risks, offer alternatives, get AMA form signed (or document refusal), settle bill. Escalate if patient leaves without notification."
+  },
+  {
+    "request_id": "REQ-022",
+    "request_text": "The HIS has been down for 20 minutes and we don't know when it will come back. The Emergency Department is seeing patients and the pharmacy needs to dispense medications.",
+    "initiator_role": "IT & HIS Support",
+    "expected_outcome": "GUIDE",
+    "expected_intent": "workflow_guidance",
+    "notes": "Should trigger WF-IT-DOWNTIME-01. Critical situation. Guide through: broadcast downtime alert, activate paper forms, IT escalation to IT Manager within 30 min, hourly status updates."
+  },
+  {
+    "request_id": "REQ-023",
+    "request_text": "A patient's family wants to view a CCTV recording from the corridor near our ward. They think a staff member mistreated the patient.",
+    "initiator_role": "Operations Management",
+    "expected_outcome": "ROUTE",
+    "expected_intent": "privacy_breach",
+    "notes": "CCTV access involves patient and staff privacy. Should route to Data Protection Officer (RR-015) and potentially Legal & Compliance. This is not a self-service operational query."
+  },
+  {
+    "request_id": "REQ-024",
+    "request_text": "We need to move a patient from ICU Ward A to General Ward 3B because they've stabilized. The physician has already written the order. What's the process?",
+    "initiator_role": "Case Management",
+    "expected_outcome": "GUIDE",
+    "expected_intent": "workflow_guidance",
+    "notes": "Should trigger WF-CM-TRANSFER-01. ICU to general ward requires attending physician sign-off (already done per query). Guide through bed confirmation, SBAR handover, and HIS bed update within 15 min."
+  },
+  {
+    "request_id": "REQ-025",
+    "request_text": "I need to buy a new ultrasound machine for the Radiology department. The estimated cost is $18,000. What's the procurement procedure?",
+    "initiator_role": "Radiology Operations",
+    "expected_outcome": "ROUTE",
+    "expected_intent": "procurement_high_value",
+    "notes": "Amount > $5,000 triggers routing to Finance Director per RR-022. Should explain that 3 competitive quotations are required and Finance Director must sign off."
+  },
+  {
+    "request_id": "REQ-026",
+    "request_text": "How often does a ventilator need to be serviced? We've had EQ-00101 in use since its last PM and I'm not sure if it's overdue.",
+    "initiator_role": "Biomedical Engineering",
+    "expected_outcome": "ANSWER",
+    "expected_intent": "knowledge_question",
+    "notes": "Should cite SOP-BIO-010. Life-support equipment (ventilators) requires PM every 3 months. Should recommend checking the HIS Asset Management Module for the specific PM due date of EQ-00101."
+  },
+  {
+    "request_id": "REQ-027",
+    "request_text": "A patient is telling me they are having a reaction to the blood they just received — they have a rash and their blood pressure is dropping. What should we do?",
+    "initiator_role": "Nursing",
+    "expected_outcome": "REFUSE",
+    "expected_intent": "clinical_advice",
+    "notes": "Transfusion reaction management involves immediate clinical decision-making (stop transfusion, administer adrenaline/antihistamines). This is strictly clinical and must be refused. System should immediately direct them to call a physician and activate emergency response."
   }
 ]

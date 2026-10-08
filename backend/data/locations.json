@@ -1,0 +1,102 @@
+[
+  {
+    "location_id": "LOC-ICU-A",
+    "name": "ICU Ward A",
+    "building": "Main Hospital",
+    "floor": "2",
+    "department": "Nursing",
+    "bed_count": 12,
+    "room_type": "critical_care",
+    "phone_extension": "4201"
+  },
+  {
+    "location_id": "LOC-ICU-B",
+    "name": "ICU Ward B",
+    "building": "Main Hospital",
+    "floor": "2",
+    "department": "Nursing",
+    "bed_count": 10,
+    "room_type": "critical_care",
+    "phone_extension": "4202"
+  },
+  {
+    "location_id": "LOC-WARD-3A",
+    "name": "General Ward 3A",
+    "building": "Main Hospital",
+    "floor": "3",
+    "department": "Nursing",
+    "bed_count": 30,
+    "room_type": "general",
+    "phone_extension": "4301"
+  },
+  {
+    "location_id": "LOC-WARD-3B",
+    "name": "General Ward 3B",
+    "building": "Main Hospital",
+    "floor": "3",
+    "department": "Nursing",
+    "bed_count": 28,
+    "room_type": "general",
+    "phone_extension": "4302"
+  },
+  {
+    "location_id": "LOC-ED",
+    "name": "Emergency Department",
+    "building": "Main Hospital",
+    "floor": "G",
+    "department": "Emergency",
+    "bed_count": 20,
+    "room_type": "emergency",
+    "phone_extension": "4900"
+  },
+  {
+    "location_id": "LOC-RAD",
+    "name": "Radiology Suite",
+    "building": "Diagnostic Block",
+    "floor": "1",
+    "department": "Radiology Operations",
+    "bed_count": 0,
+    "room_type": "diagnostic",
+    "phone_extension": "4500"
+  },
+  {
+    "location_id": "LOC-OT",
+    "name": "Operating Theater Complex",
+    "building": "Surgical Block",
+    "floor": "1",
+    "department": "Facility & Maintenance",
+    "bed_count": 0,
+    "room_type": "surgical",
+    "phone_extension": "4600"
+  },
+  {
+    "location_id": "LOC-PHARM",
+    "name": "Main Pharmacy Dispensary",
+    "building": "Main Hospital",
+    "floor": "G",
+    "department": "Pharmacy",
+    "bed_count": 0,
+    "room_type": "dispensary",
+    "phone_extension": "4700"
+  },
+  {
+    "location_id": "LOC-LAB",
+    "name": "Central Laboratory",
+    "building": "Diagnostic Block",
+    "floor": "G",
+    "department": "Laboratory",
+    "bed_count": 0,
+    "room_type": "laboratory",
+    "phone_extension": "4800"
+  },
+  {
+    "location_id": "LOC-MR",
+    "name": "Medical Records Archive",
+    "building": "Administrative Block",
+    "floor": "1",
+    "department": "Medical Records",
+    "bed_count": 0,
+    "room_type": "administrative",
+    "phone_extension": "4100"
+  }
+]

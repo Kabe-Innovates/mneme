@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-RAD-012",
+  "title": "Radiology Report Turnaround Time Standards",
+  "content": "Radiology reports must be finalized and uploaded to the HIS within defined turnaround times: Emergency/stat studies within 1 hour, urgent studies within 4 hours, and routine outpatient studies within 24 hours of scan completion. Preliminary reports may be provided verbally or via HIS messaging for emergency cases, but the formal signed report must follow within the stated timeframe. Any delay beyond these standards must be flagged to the Head of Radiology with documented justification. Referring physicians must be notified immediately of any critical or unexpected findings regardless of the study's priority level. Radiology reports must be reviewed and countersigned by a board-certified Radiologist before being marked final in the system.",
+  "department": "Radiology Operations",
+  "status": "approved",
+  "version": "v2.2",
+  "effective_date": "2024-03-10",
+  "review_due_date": "2026-03-10",
+  "owner": "Head of Radiology",
+  "visible_to_roles": [
+    "Radiology Operations",
+    "Case Management",
+    "Nursing",
+    "Front Office"
+  ],
+  "category": "radiology"
+}

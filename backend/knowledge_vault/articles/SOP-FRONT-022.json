@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-FRONT-022",
+  "title": "Emergency Patient Arrival and Triage Handoff to Ward",
+  "content": "Patients arriving at the Emergency Department are triaged using the 5-level Emergency Severity Index (ESI); Level 1 and 2 patients receive immediate care and Level 3\u20135 are managed per waiting room capacity. When an Emergency patient requires inpatient admission, the Emergency Physician must place the admission order in HIS with bed type, clinical priority, and isolation requirements. The Front Office Admissions Desk must confirm bed availability and allocate within 30 minutes of the admission order for Level 1\u20132 patients and 60 minutes for Level 3. The Emergency nurse must complete a clinical handover using the SBAR format to the receiving ward nurse before physically transferring the patient; handover must be documented in HIS. All accompanying documents (emergency notes, test results, medications administered) must be transferred with the patient.",
+  "department": "Front Office",
+  "status": "approved",
+  "version": "v1.6",
+  "effective_date": "2024-05-15",
+  "review_due_date": "2026-05-15",
+  "owner": "Front Office Manager",
+  "visible_to_roles": [
+    "Front Office",
+    "Case Management",
+    "Nursing",
+    "Operations Management"
+  ],
+  "category": "emergency_admission"
+}

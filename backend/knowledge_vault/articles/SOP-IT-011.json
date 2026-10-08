@@ -1,0 +1,16 @@
+{
+  "article_id": "SOP-IT-011",
+  "title": "IT Access Provisioning for New Hospital Staff",
+  "content": "New staff IT access must be requested by the department HOD using Form IT-ACC-01 submitted to the IT Help Desk at least 48 hours before the staff member's start date. Access levels are mapped to the employee's role as defined in the Role-Based Access Control (RBAC) matrix maintained by IT Administration. The IT team will provision HIS login credentials, email account, and role-specific module access within 24 hours of receiving a complete request. Temporary passwords must be changed upon first login; failure to do so within 48 hours triggers an automatic account lock. All access provisioning events are logged in the IT Audit System and reviewed monthly.",
+  "department": "IT & HIS Support",
+  "status": "approved",
+  "version": "v1.6",
+  "effective_date": "2024-05-01",
+  "review_due_date": "2024-08-31",
+  "owner": "IT Manager",
+  "visible_to_roles": [
+    "IT & HIS Support",
+    "Operations Management"
+  ],
+  "category": "it_access"
+}

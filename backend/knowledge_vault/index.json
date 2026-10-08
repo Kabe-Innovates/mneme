@@ -1,0 +1,635 @@
+{
+  "last_updated": "2026-10-08T21:50:33Z",
+  "items": {
+    "SOP-TPA-014": {
+      "type": "article",
+      "title": "MRI Pre-Authorization Procedure for Insured Patients",
+      "department": "Insurance & TPA",
+      "status": "approved",
+      "version": "v2.1",
+      "content_hash": "95c65ad8acf3",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-06-01"
+    },
+    "SOP-DIS-007": {
+      "type": "article",
+      "title": "Discharge Summary Documentation Standards",
+      "department": "Discharge Operations",
+      "status": "approved",
+      "version": "v3.0",
+      "content_hash": "6c78002245c4",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-03-15"
+    },
+    "SOP-BILL-022": {
+      "type": "article",
+      "title": "Billing Correction Policy for Amounts Over $500",
+      "department": "Billing & Cash",
+      "status": "approved",
+      "version": "v1.4",
+      "content_hash": "c534241f894a",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2024-06-30"
+    },
+    "SOP-FRONT-003": {
+      "type": "article",
+      "title": "ICU Visitor Policy",
+      "department": "Front Office",
+      "status": "approved",
+      "version": "v2.0",
+      "content_hash": "0054b88c2dbc",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-02-01"
+    },
+    "SOP-MR-009": {
+      "type": "article",
+      "title": "Medical Records Release to Patient or Authorized Representative",
+      "department": "Medical Records",
+      "status": "approved",
+      "version": "v2.3",
+      "content_hash": "8968f617634d",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-04-01"
+    },
+    "SOP-IT-011": {
+      "type": "article",
+      "title": "IT Access Provisioning for New Hospital Staff",
+      "department": "IT & HIS Support",
+      "status": "approved",
+      "version": "v1.6",
+      "content_hash": "51f5346f608d",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2024-08-31"
+    },
+    "SOP-PHARM-005": {
+      "type": "article",
+      "title": "Pharmacy Stock-Out Emergency Protocol",
+      "department": "Pharmacy",
+      "status": "approved",
+      "version": "v1.2",
+      "content_hash": "5f1d7648a0de",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-01-15"
+    },
+    "SOP-FRONT-008": {
+      "type": "article",
+      "title": "Patient Bed Allocation Procedure",
+      "department": "Front Office",
+      "status": "approved",
+      "version": "v2.2",
+      "content_hash": "5e5d3f3467ca",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-03-01"
+    },
+    "SOP-RAD-006": {
+      "type": "article",
+      "title": "CT Scan Scheduling and Intravenous Contrast Protocol",
+      "department": "Radiology Operations",
+      "status": "approved",
+      "version": "v2.0",
+      "content_hash": "26adcdc3b74b",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-02-15"
+    },
+    "SOP-LAB-004": {
+      "type": "article",
+      "title": "Specimen Collection Guidelines for Laboratory Tests",
+      "department": "Laboratory",
+      "status": "approved",
+      "version": "v1.8",
+      "content_hash": "4012eaf1a1b1",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-01-20"
+    },
+    "SOP-BIO-002": {
+      "type": "article",
+      "title": "Biomedical Equipment Downtime Reporting Procedure",
+      "department": "Biomedical Engineering",
+      "status": "approved",
+      "version": "v1.5",
+      "content_hash": "8dfdbb21c4e9",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2024-09-30"
+    },
+    "SOP-TPA-021": {
+      "type": "article",
+      "title": "Insurance Claim Submission Procedure to TPA",
+      "department": "Insurance & TPA",
+      "status": "approved",
+      "version": "v2.4",
+      "content_hash": "d7677faa2b4c",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-05-01"
+    },
+    "SOP-CM-013": {
+      "type": "article",
+      "title": "Patient Transfer Between Hospital Wards",
+      "department": "Case Management",
+      "status": "approved",
+      "version": "v1.9",
+      "content_hash": "6be301f6947c",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-03-20"
+    },
+    "SOP-FRONT-015": {
+      "type": "article",
+      "title": "OPD Appointment Scheduling Policy",
+      "department": "Front Office",
+      "status": "approved",
+      "version": "v2.1",
+      "content_hash": "9d1407764aec",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-01-05"
+    },
+    "SOP-QA-001": {
+      "type": "article",
+      "title": "Incident Reporting and Near-Miss Documentation",
+      "department": "Quality & Accreditation",
+      "status": "approved",
+      "version": "v3.1",
+      "content_hash": "a0386bcf33b3",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-02-20"
+    },
+    "SOP-BILL-031": {
+      "type": "article",
+      "title": "Financial Assistance and Patient Waiver Application",
+      "department": "Billing & Cash",
+      "status": "approved",
+      "version": "v1.3",
+      "content_hash": "731afd47e74f",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-06-15"
+    },
+    "SOP-RAD-012": {
+      "type": "article",
+      "title": "Radiology Report Turnaround Time Standards",
+      "department": "Radiology Operations",
+      "status": "approved",
+      "version": "v2.2",
+      "content_hash": "0af63b7c3bef",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-03-10"
+    },
+    "SOP-IT-019": {
+      "type": "article",
+      "title": "HIS Downtime Contingency Procedure",
+      "department": "IT & HIS Support",
+      "status": "approved",
+      "version": "v2.0",
+      "content_hash": "f188f98c4a1e",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-04-25"
+    },
+    "SOP-MR-016": {
+      "type": "article",
+      "title": "Patient Consent Form Requirements",
+      "department": "Medical Records",
+      "status": "approved",
+      "version": "v1.7",
+      "content_hash": "8b5b6c074f05",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-01-30"
+    },
+    "SOP-BIO-010": {
+      "type": "article",
+      "title": "Biomedical Equipment Preventive Maintenance Schedule",
+      "department": "Biomedical Engineering",
+      "status": "approved",
+      "version": "v2.1",
+      "content_hash": "8c7f1456fd67",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-02-28"
+    },
+    "SOP-PHARM-012": {
+      "type": "article",
+      "title": "Controlled Substance Dispensing and Double-Check Protocol",
+      "department": "Pharmacy",
+      "status": "approved",
+      "version": "v2.0",
+      "content_hash": "588702648e62",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-03-01"
+    },
+    "SOP-PHARM-018": {
+      "type": "article",
+      "title": "Medication Reconciliation on Patient Admission",
+      "department": "Pharmacy",
+      "status": "approved",
+      "version": "v1.3",
+      "content_hash": "5b9193290306",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-04-15"
+    },
+    "SOP-LAB-011": {
+      "type": "article",
+      "title": "Critical Value Reporting Protocol",
+      "department": "Laboratory",
+      "status": "approved",
+      "version": "v2.0",
+      "content_hash": "d0603a92f1d1",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-02-10"
+    },
+    "SOP-LAB-017": {
+      "type": "article",
+      "title": "Blood Transfusion Request and Pre-Transfusion Testing",
+      "department": "Laboratory",
+      "status": "approved",
+      "version": "v1.5",
+      "content_hash": "63c90f709b39",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-05-20"
+    },
+    "SOP-CM-020": {
+      "type": "article",
+      "title": "Discharge Planning and Multidisciplinary Case Review",
+      "department": "Case Management",
+      "status": "approved",
+      "version": "v2.0",
+      "content_hash": "51a535fa7c2c",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-03-10"
+    },
+    "SOP-CM-025": {
+      "type": "article",
+      "title": "Social Work Referral and Patient Support Services",
+      "department": "Case Management",
+      "status": "approved",
+      "version": "v1.4",
+      "content_hash": "6d0350d1c57c",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-06-10"
+    },
+    "SOP-QA-008": {
+      "type": "article",
+      "title": "Clinical Audit Procedure and Reporting",
+      "department": "Quality & Accreditation",
+      "status": "approved",
+      "version": "v2.2",
+      "content_hash": "3b0de0d76e84",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-01-25"
+    },
+    "SOP-QA-015": {
+      "type": "article",
+      "title": "NABH Accreditation Compliance Standards and Readiness",
+      "department": "Quality & Accreditation",
+      "status": "approved",
+      "version": "v1.8",
+      "content_hash": "f87d64e23db3",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-04-01"
+    },
+    "SOP-DIS-013": {
+      "type": "article",
+      "title": "Against Medical Advice (AMA) Discharge Procedure",
+      "department": "Discharge Operations",
+      "status": "approved",
+      "version": "v1.5",
+      "content_hash": "8c4821bd6960",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-02-25"
+    },
+    "SOP-DIS-019": {
+      "type": "article",
+      "title": "Death Certification and Mortuary Release Procedure",
+      "department": "Discharge Operations",
+      "status": "approved",
+      "version": "v2.0",
+      "content_hash": "4d6f18d6933e",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-03-05"
+    },
+    "SOP-FRONT-022": {
+      "type": "article",
+      "title": "Emergency Patient Arrival and Triage Handoff to Ward",
+      "department": "Front Office",
+      "status": "approved",
+      "version": "v1.6",
+      "content_hash": "3e66d930988f",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-05-15"
+    },
+    "SOP-FRONT-027": {
+      "type": "article",
+      "title": "Outpatient and Inpatient Patient Registration Process",
+      "department": "Front Office",
+      "status": "approved",
+      "version": "v3.0",
+      "content_hash": "edfa9cd7d7ac",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-01-10"
+    },
+    "SOP-MR-024": {
+      "type": "article",
+      "title": "Medical Record Amendment and Correction Policy",
+      "department": "Medical Records",
+      "status": "approved",
+      "version": "v1.4",
+      "content_hash": "5ab132a93f10",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-06-20"
+    },
+    "SOP-TPA-028": {
+      "type": "article",
+      "title": "Cashless Treatment Authorization and Pre-Admission Process",
+      "department": "Insurance & TPA",
+      "status": "approved",
+      "version": "v2.0",
+      "content_hash": "6dad5777619e",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-04-20"
+    },
+    "SOP-BILL-038": {
+      "type": "article",
+      "title": "Patient Refund Processing Policy",
+      "department": "Billing & Cash",
+      "status": "approved",
+      "version": "v1.1",
+      "content_hash": "b07a7edc293c",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-07-01"
+    },
+    "SOP-RAD-018": {
+      "type": "article",
+      "title": "Contrast Reaction Management and Emergency Response",
+      "department": "Radiology Operations",
+      "status": "approved",
+      "version": "v1.7",
+      "content_hash": "c82fded1caee",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-02-28"
+    },
+    "SOP-IT-025": {
+      "type": "article",
+      "title": "Cybersecurity Incident Response Procedure",
+      "department": "IT & HIS Support",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "9bd67be8edbb",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-07-10"
+    },
+    "SOP-BIO-016": {
+      "type": "article",
+      "title": "Medical Equipment Calibration and Certification Standards",
+      "department": "Biomedical Engineering",
+      "status": "approved",
+      "version": "v1.3",
+      "content_hash": "621abd784cd3",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-03-20"
+    },
+    "SOP-FAC-001": {
+      "type": "article",
+      "title": "Fire Safety Protocol and Emergency Evacuation Procedure",
+      "department": "Facility & Maintenance",
+      "status": "approved",
+      "version": "v3.0",
+      "content_hash": "84900fca5e4f",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-01-20"
+    },
+    "SOP-FAC-007": {
+      "type": "article",
+      "title": "Biomedical Waste Management and Segregation Procedure",
+      "department": "Facility & Maintenance",
+      "status": "approved",
+      "version": "v2.5",
+      "content_hash": "d48113b379b5",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-02-10"
+    },
+    "SOP-FAC-013": {
+      "type": "article",
+      "title": "HVAC System Maintenance and Air Quality Management",
+      "department": "Facility & Maintenance",
+      "status": "approved",
+      "version": "v1.6",
+      "content_hash": "52432a4dd879",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-03-25"
+    },
+    "SOP-NURS-001": {
+      "type": "article",
+      "title": "Nursing Shift Handover Protocol (SBAR)",
+      "department": "Nursing",
+      "status": "approved",
+      "version": "v2.3",
+      "content_hash": "408de8f872d1",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-01-15"
+    },
+    "SOP-NURS-008": {
+      "type": "article",
+      "title": "Medication Administration Safety Standards",
+      "department": "Nursing",
+      "status": "approved",
+      "version": "v3.1",
+      "content_hash": "8ff756cef3a5",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-02-05"
+    },
+    "SOP-NURS-015": {
+      "type": "article",
+      "title": "Patient Fall Prevention and Post-Fall Assessment",
+      "department": "Nursing",
+      "status": "approved",
+      "version": "v2.0",
+      "content_hash": "279ca0da0888",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-04-05"
+    },
+    "SOP-SC-001": {
+      "type": "article",
+      "title": "Procurement Request and Purchase Order Procedure",
+      "department": "Supply Chain",
+      "status": "approved",
+      "version": "v1.5",
+      "content_hash": "6b43f86dc6f5",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-05-05"
+    },
+    "SOP-SC-008": {
+      "type": "article",
+      "title": "Inventory Reorder and Stock Management Policy",
+      "department": "Supply Chain",
+      "status": "approved",
+      "version": "v2.0",
+      "content_hash": "c5234df48490",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-06-05"
+    },
+    "SOP-EMRG-001": {
+      "type": "article",
+      "title": "Emergency Department Triage Protocol (ESI 5-Level)",
+      "department": "Emergency",
+      "status": "approved",
+      "version": "v2.1",
+      "content_hash": "80e0da33ba10",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-01-25"
+    },
+    "SOP-EMRG-007": {
+      "type": "article",
+      "title": "Mass Casualty Incident (MCI) Activation and Response Plan",
+      "department": "Emergency",
+      "status": "approved",
+      "version": "v1.5",
+      "content_hash": "f4992e9d0767",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": "2026-03-01"
+    },
+    "WF-TPA-MRI-AUTH-01": {
+      "type": "workflow",
+      "title": "MRI Pre-Authorization for Insured Patient",
+      "department": "Insurance & TPA",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "7f61909f7c49",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-DIS-DISCHARGE-01": {
+      "type": "workflow",
+      "title": "Patient Discharge Process",
+      "department": "Discharge Operations",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "c2907be0c920",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-BILL-CORRECTION-01": {
+      "type": "workflow",
+      "title": "Billing Correction Request (>$500)",
+      "department": "Billing & Cash",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "009ab1f5ee13",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-FRONT-BED-ALLOC-01": {
+      "type": "workflow",
+      "title": "Patient Bed Allocation Request",
+      "department": "Front Office",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "b84051dbbf7f",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-MR-RECORDS-REL-01": {
+      "type": "workflow",
+      "title": "Medical Records Release to Patient",
+      "department": "Medical Records",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "7db90e5a9f72",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-IT-ACCESS-01": {
+      "type": "workflow",
+      "title": "New Staff IT Access Provisioning",
+      "department": "IT & HIS Support",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "e7118e81ba26",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-TPA-CLAIM-01": {
+      "type": "workflow",
+      "title": "Insurance Claim Submission to TPA",
+      "department": "Insurance & TPA",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "6be45fd2c3af",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-BIO-DOWNTIME-01": {
+      "type": "workflow",
+      "title": "Biomedical Equipment Downtime Report",
+      "department": "Biomedical Engineering",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "32a8348e3a00",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-PHARM-STOCKOUT-01": {
+      "type": "workflow",
+      "title": "Critical Drug Stock-Out Escalation",
+      "department": "Pharmacy",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "b88cc8edb267",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-LAB-SPECIMEN-REJ-01": {
+      "type": "workflow",
+      "title": "Lab Specimen Rejection and Re-Collection",
+      "department": "Laboratory",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "fc6b75af381a",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-QA-INCIDENT-01": {
+      "type": "workflow",
+      "title": "Patient Safety Incident Reporting and Review",
+      "department": "Quality & Accreditation",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "8a2a37eee8bd",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-MR-CONSENT-01": {
+      "type": "workflow",
+      "title": "Patient Informed Consent Collection",
+      "department": "Medical Records",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "cb8468583d8c",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-BIO-PM-01": {
+      "type": "workflow",
+      "title": "Biomedical Equipment Preventive Maintenance",
+      "department": "Biomedical Engineering",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "b5cc4c88bf98",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-IT-DOWNTIME-01": {
+      "type": "workflow",
+      "title": "HIS System Downtime Contingency",
+      "department": "IT & HIS Support",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "7322217d9265",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    },
+    "WF-CM-TRANSFER-01": {
+      "type": "workflow",
+      "title": "Intra-Hospital Patient Ward Transfer",
+      "department": "Case Management",
+      "status": "approved",
+      "version": "v1.0",
+      "content_hash": "1ff439c6c580",
+      "indexed_at": "2026-10-08T21:50:33Z",
+      "review_due_date": ""
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "workflow_id": "WF-IT-DOWNTIME-01",
+  "workflow_name": "HIS System Downtime Contingency",
+  "department": "IT & HIS Support",
+  "owner_team": "IT Emergency Response",
+  "escalation_team": "IT Manager",
+  "governing_article": "SOP-IT-019",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Upon detecting HIS downtime, the IT Helpdesk must immediately broadcast an alert to all department heads via the hospital PA system, group messaging, and the IT incident management system. Clearly state: the time of onset, affected systems, and estimated resolution time if known.",
+      "required_fields": [
+        "reason_for_request"
+      ],
+      "system_used": "IT Incident Management System",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "All clinical and operational departments must activate downtime procedures: retrieve physical downtime folders from each nursing station and department desk. Begin recording all registrations, orders, medication administrations, lab results, and billing on the pre-printed paper forms.",
+      "required_fields": [],
+      "system_used": "Paper Downtime Forms",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "IT must work to restore system access, providing status updates every 60 minutes until resolution. Activate failover or backup systems if available. Escalate to IT Manager within 30 minutes of onset for unplanned outages; planned maintenance must have pre-approval 48 hours in advance.",
+      "required_fields": [],
+      "system_used": "IT Incident Management System",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 4,
+      "description": "Once HIS is restored, all downtime records must be entered into HIS within 2 hours by the responsible department staff. IT must verify data integrity for all critical systems (medication orders, lab results, billing transactions) before issuing the 'System Restored' notification. Conduct a post-incident review within 48 hours.",
+      "required_fields": [],
+      "system_used": "HIS Admin Console",
+      "is_approval_gate": false
+    }
+  ]
+}

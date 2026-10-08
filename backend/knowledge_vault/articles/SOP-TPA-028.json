@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-TPA-028",
+  "title": "Cashless Treatment Authorization and Pre-Admission Process",
+  "content": "Cashless treatment is available for patients with empanelled insurance policies. The patient or family must present the insurance card and a valid photo ID at the TPA Desk on or before admission. The TPA Desk verifies policy validity, sum insured balance, and pre-existing condition exclusions via the insurer's portal before providing a cashless authorization letter. Initial authorization must be obtained before elective procedures; emergency cashless treatment may proceed on verbal insurer authorization if written confirmation is expected within 2 hours. Enhancement requests (for additional treatment costs beyond the initial authorization amount) must be submitted to the TPA as soon as the treating physician identifies the need, with updated clinical notes and revised cost estimate. Cashless authorization does not guarantee full payment; patients must be counselled on any co-payment, non-covered items, or room-rent differences at the time of authorization.",
+  "department": "Insurance & TPA",
+  "status": "approved",
+  "version": "v2.0",
+  "effective_date": "2024-04-20",
+  "review_due_date": "2026-04-20",
+  "owner": "TPA Desk Manager",
+  "visible_to_roles": [
+    "Insurance & TPA",
+    "Front Office",
+    "Billing & Cash",
+    "Discharge Operations"
+  ],
+  "category": "insurance"
+}

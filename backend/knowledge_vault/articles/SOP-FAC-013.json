@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-FAC-013",
+  "title": "HVAC System Maintenance and Air Quality Management",
+  "content": "The hospital's HVAC (Heating, Ventilation, and Air Conditioning) systems must maintain indoor air quality standards critical for patient safety, particularly in Operating Theatres (positive pressure, HEPA-filtered, 20+ air changes/hour), ICUs (positive pressure, 12+ air changes/hour), and Isolation Rooms (negative pressure for infectious patients). Filter replacements must follow the manufacturer's schedule: pre-filters monthly, HEPA filters every 6 months or earlier if differential pressure exceeds threshold. Air quality validation tests (particulate counts, microbial sampling) must be performed every 3 months in critical areas (OT, ICU, sterile processing). Any HVAC failure in a critical area must be escalated to the Facility Manager within 15 minutes and a contingency plan activated to maintain sterility; elective procedures must be suspended until air quality is re-validated. Annual comprehensive HVAC maintenance must be conducted during scheduled low-activity periods with at least 2 weeks' advance notice to all departments.",
+  "department": "Facility & Maintenance",
+  "status": "approved",
+  "version": "v1.6",
+  "effective_date": "2024-03-25",
+  "review_due_date": "2026-03-25",
+  "owner": "Facility Manager",
+  "visible_to_roles": [
+    "Facility & Maintenance",
+    "Operations Management",
+    "Quality & Accreditation"
+  ],
+  "category": "hvac"
+}

@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-EMRG-001",
+  "title": "Emergency Department Triage Protocol (ESI 5-Level)",
+  "content": "All patients presenting to the Emergency Department must be triaged by a registered nurse within 3 minutes of arrival using the Emergency Severity Index (ESI) 5-level system. ESI 1 (Immediate): life-threatening conditions requiring resuscitation \u2014 patient brought directly to resuscitation bay, physician notified immediately. ESI 2 (Emergent): high-risk situation or severe pain \u2014 seen within 10 minutes. ESI 3 (Urgent): two or more resources anticipated \u2014 seen within 30 minutes. ESI 4 (Less Urgent): one resource anticipated \u2014 seen within 60 minutes. ESI 5 (Non-Urgent): no resources anticipated \u2014 seen within 120 minutes. Triage assessment must be documented in the HIS Emergency Module immediately. Pediatric patients, pregnant women, and patients with altered consciousness must be triaged at ESI 2 or higher pending full assessment. Patients who deteriorate while waiting must be re-triaged immediately; nursing staff must reassess all ESI 3\u20135 patients every 30 minutes. The Charge Nurse must alert the Emergency Physician of ambulance arrivals pre-hospital.",
+  "department": "Emergency",
+  "status": "approved",
+  "version": "v2.1",
+  "effective_date": "2024-01-25",
+  "review_due_date": "2026-01-25",
+  "owner": "Emergency Department Head",
+  "visible_to_roles": [
+    "Emergency",
+    "Front Office",
+    "Nursing",
+    "Operations Management"
+  ],
+  "category": "emergency_triage"
+}

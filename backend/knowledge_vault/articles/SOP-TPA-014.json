@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-TPA-014",
+  "title": "MRI Pre-Authorization Procedure for Insured Patients",
+  "content": "All insured patients requiring MRI investigations must obtain pre-authorization from their TPA (Third Party Administrator) before the scan is performed, except in life-threatening emergencies. The front office or TPA desk must verify the patient's active insurance policy via the HIS Insurance Module and confirm MRI diagnostics are covered under the plan. A pre-authorization request must be submitted through the insurer's TPA portal with the referring physician's name, diagnosis code (ICD-10), procedure code, and scheduled date. Authorization turnaround is typically 2\u20134 hours for routine cases and must be received in writing (email or portal acknowledgment) before scheduling the scan. If authorization is rejected, the TPA escalation team must be notified immediately and the patient must be counselled on out-of-pocket options.",
+  "department": "Insurance & TPA",
+  "status": "approved",
+  "version": "v2.1",
+  "effective_date": "2024-06-01",
+  "review_due_date": "2026-06-01",
+  "owner": "TPA Desk Manager",
+  "visible_to_roles": [
+    "Insurance & TPA",
+    "Radiology Operations",
+    "Front Office",
+    "Case Management"
+  ],
+  "category": "insurance"
+}

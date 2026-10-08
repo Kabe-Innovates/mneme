@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-NURS-015",
+  "title": "Patient Fall Prevention and Post-Fall Assessment",
+  "content": "All inpatients must be assessed for fall risk within 4 hours of admission using the Morse Fall Scale (MFS) in the HIS Nursing Module; patients scoring \u226545 are High Risk and require immediate preventive interventions. High-risk patients must have a yellow FALL RISK wristband applied, bed alarms activated, call bell within reach, and a bed in the lowest position. Non-slip footwear, adequate lighting, and clear pathways must be maintained at all times; high-risk patients should not be left in the bathroom or shower without supervision. Fall prevention education must be provided to the patient and family within 24 hours of high-risk identification and documented in HIS. If a patient falls, do not move the patient; call for immediate nursing assistance and notify the physician within 10 minutes. A post-fall assessment must be completed within 30 minutes covering injury assessment, vital signs, neurological status, and circumstances of the fall. The fall must be reported in the HIS Quality Module within 1 hour as an incident; the quality team will review contributing factors and update fall risk protocols quarterly based on incident trends.",
+  "department": "Nursing",
+  "status": "approved",
+  "version": "v2.0",
+  "effective_date": "2024-04-05",
+  "review_due_date": "2026-04-05",
+  "owner": "Nursing Superintendent",
+  "visible_to_roles": [
+    "Nursing",
+    "Case Management",
+    "Quality & Accreditation",
+    "Operations Management"
+  ],
+  "category": "patient_safety"
+}

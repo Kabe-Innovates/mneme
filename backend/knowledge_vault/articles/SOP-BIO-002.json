@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-BIO-002",
+  "title": "Biomedical Equipment Downtime Reporting Procedure",
+  "content": "Any failure or malfunction of critical biomedical equipment (ventilators, infusion pumps, ECG machines, imaging systems) must be reported to the Biomedical Engineering Department immediately via the HIS Asset Management Module or the Biomedical Help Desk (ext. 4400). The reporting staff must provide: equipment ID, location (ward/room), nature of fault, time of failure, and whether a patient was affected. Biomedical Engineering must acknowledge the report within 15 minutes and dispatch a technician within 30 minutes for life-critical equipment. A substitute device must be arranged by the ward/department head while repairs are underway. All equipment downtime events must be logged and included in the monthly Equipment Reliability Report.",
+  "department": "Biomedical Engineering",
+  "status": "approved",
+  "version": "v1.5",
+  "effective_date": "2024-04-10",
+  "review_due_date": "2024-09-30",
+  "owner": "Chief Biomedical Engineer",
+  "visible_to_roles": [
+    "Biomedical Engineering",
+    "Nursing",
+    "Operations Management",
+    "IT & HIS Support"
+  ],
+  "category": "equipment"
+}

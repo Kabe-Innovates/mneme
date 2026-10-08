@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-NURS-008",
+  "title": "Medication Administration Safety Standards",
+  "content": "Medication administration must follow the 10 Rights: Right Patient, Right Drug, Right Dose, Right Route, Right Time, Right Documentation, Right Reason, Right Response, Right Expiry, Right Form. Patient identity must be verified using two identifiers (MRN wristband and patient-stated name) before every medication administration; verbal verification alone is insufficient. High-alert medications (insulin, anticoagulants, concentrated electrolytes, chemotherapy agents, opioids) require independent double-check by a second registered nurse before administration; both nurses must sign the Medication Administration Record (MAR). Medications must be administered within 30 minutes before or after the scheduled time; deviations must be documented with reason. Any medication error or near-miss must be reported in the HIS Quality Module within 1 hour of discovery, regardless of whether patient harm occurred. Nurses must NOT administer medications from unlabeled syringes or containers; prepared but unlabeled medications must be discarded.",
+  "department": "Nursing",
+  "status": "approved",
+  "version": "v3.1",
+  "effective_date": "2024-02-05",
+  "review_due_date": "2026-02-05",
+  "owner": "Nursing Superintendent",
+  "visible_to_roles": [
+    "Nursing",
+    "Pharmacy",
+    "Quality & Accreditation"
+  ],
+  "category": "nursing"
+}

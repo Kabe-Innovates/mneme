@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-IT-025",
+  "title": "Cybersecurity Incident Response Procedure",
+  "content": "Any suspected or confirmed cybersecurity incident (ransomware, unauthorized access, data breach, phishing attack) must be reported immediately to the IT Security team and the Data Protection Officer by the staff member who discovers it; do not attempt to resolve the incident independently. The IT Security team must assess and classify the incident within 30 minutes: Low (minimal impact, no PHI involved), Medium (operational disruption or potential PHI access), High (confirmed PHI breach, system compromise, or ransomware). High-severity incidents trigger the Cyber Incident Response Plan: isolate affected systems, notify the CIO, activate backup systems, and notify the Data Protection Officer for regulatory assessment within 1 hour. External reporting to the Data Protection Authority must occur within 72 hours of confirming a reportable personal data breach under applicable privacy regulations. All cybersecurity incidents must be documented with timestamps, actions taken, and resolution in the IT Incident Register; a post-incident review must be completed within 2 weeks.",
+  "department": "IT & HIS Support",
+  "status": "approved",
+  "version": "v1.0",
+  "effective_date": "2024-07-10",
+  "review_due_date": "2026-07-10",
+  "owner": "IT Manager",
+  "visible_to_roles": [
+    "IT & HIS Support",
+    "Operations Management",
+    "Quality & Accreditation"
+  ],
+  "category": "cybersecurity"
+}

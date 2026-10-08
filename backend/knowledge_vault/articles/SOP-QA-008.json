@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-QA-008",
+  "title": "Clinical Audit Procedure and Reporting",
+  "content": "Clinical audits are systematic reviews of clinical practice against defined standards and must be conducted quarterly by each department. The Quality & Accreditation team will publish the annual audit calendar by December 31st for the following year, identifying audit topics, lead departments, and submission deadlines. Each department must conduct at least two clinical audits per year using the standardized audit tool in the HIS Quality Module. Audit results must be presented at the monthly departmental quality meeting and submitted to the Quality Committee within 10 days of completion. Non-conformances identified in audits must have documented corrective action plans with assigned owners and target dates; progress is tracked in the HIS at quarterly intervals. Re-audits are mandatory within 6 months of a major non-conformance to verify that corrective actions have been effective.",
+  "department": "Quality & Accreditation",
+  "status": "approved",
+  "version": "v2.2",
+  "effective_date": "2024-01-25",
+  "review_due_date": "2026-01-25",
+  "owner": "Quality & Patient Safety Officer",
+  "visible_to_roles": [
+    "Quality & Accreditation",
+    "Operations Management",
+    "ALL"
+  ],
+  "category": "quality_audit"
+}

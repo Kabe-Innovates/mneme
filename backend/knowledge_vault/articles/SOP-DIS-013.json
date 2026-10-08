@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-DIS-013",
+  "title": "Against Medical Advice (AMA) Discharge Procedure",
+  "content": "When a patient wishes to leave the hospital contrary to the treating physician's recommendation, the nurse or front desk must immediately notify the attending physician and Case Manager. The physician must document the risks of leaving, attempt to address the patient's concerns, and offer alternatives. If the patient persists, they must sign the AMA Discharge Form (Form DIS-AMA-01) witnessed by the physician and a nurse; if the patient refuses to sign, the refusal itself must be documented and witnessed. The final bill must be generated and settled before the patient leaves; unpaid balances at AMA discharge are escalated to the Billing Supervisor. The AMA event must be reported in the HIS Quality Module as a clinical risk event. Patients who leave without any notification (LWBS \u2014 Left Without Being Seen) must be documented in the HIS as a security and quality event within 30 minutes of discovery.",
+  "department": "Discharge Operations",
+  "status": "approved",
+  "version": "v1.5",
+  "effective_date": "2024-02-25",
+  "review_due_date": "2026-02-25",
+  "owner": "Discharge Operations Manager",
+  "visible_to_roles": [
+    "Discharge Operations",
+    "Case Management",
+    "Operations Management",
+    "Medical Records"
+  ],
+  "category": "discharge"
+}

@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-RAD-018",
+  "title": "Contrast Reaction Management and Emergency Response",
+  "content": "All patients receiving iodinated or gadolinium-based contrast agents must be monitored for adverse reactions for a minimum of 30 minutes post-administration. The Radiology Technologist must have immediate access to the contrast reaction emergency kit (containing adrenaline, antihistamines, corticosteroids, IV fluids, and oxygen) at every contrast examination station. Adverse reactions are classified as mild (nausea, urticaria, flushing \u2014 managed with observation and antihistamines), moderate (bronchospasm, hypotension \u2014 requires physician involvement and IV treatment), and severe/anaphylactic (laryngeal edema, cardiac arrest \u2014 requires Code Blue activation). Any moderate or severe reaction must trigger immediate notification of the Radiology Attending and Emergency Medicine team, with Code Blue activated for severe reactions. Post-reaction, a written report must be filed in HIS within 1 hour, the patient's allergy record updated, and the event reported to the Pharmacy and Drug Reaction Committee within 24 hours.",
+  "department": "Radiology Operations",
+  "status": "approved",
+  "version": "v1.7",
+  "effective_date": "2024-02-28",
+  "review_due_date": "2026-02-28",
+  "owner": "Head of Radiology",
+  "visible_to_roles": [
+    "Radiology Operations",
+    "Nursing",
+    "Case Management",
+    "Operations Management"
+  ],
+  "category": "radiology"
+}

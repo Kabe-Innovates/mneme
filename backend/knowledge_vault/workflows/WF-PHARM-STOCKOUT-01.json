@@ -1,0 +1,40 @@
+{
+  "workflow_id": "WF-PHARM-STOCKOUT-01",
+  "workflow_name": "Critical Drug Stock-Out Escalation",
+  "department": "Pharmacy",
+  "owner_team": "Pharmacy In-Charge",
+  "escalation_team": "Pharmacy Head",
+  "governing_article": "SOP-PHARM-005",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Confirm the stock-out by checking the HIS Pharmacy Module inventory for the drug name, current stock level, and last dispensed date. Verify that no other pharmacy store in the hospital holds available stock. Document the drug name, strength, and quantity required in the Pharmacy Incident Register.",
+      "required_fields": [
+        "reason_for_request"
+      ],
+      "system_used": "Pharmacy Management System",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "Immediately notify the treating physician and the ward nursing station of the stock-out. Provide a realistic estimated resupply timeline. Simultaneously raise an emergency procurement request in the HIS Pharmacy Module and contact at least two approved alternative suppliers from the approved vendor list.",
+      "required_fields": [],
+      "system_used": "Pharmacy Management System",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "If the drug cannot be sourced from any vendor within 4 hours, escalate to the Pharmacy Head and simultaneously notify the Medical Superintendent to determine if a therapeutic substitution is clinically appropriate. The physician must document the substitution decision in the patient's HIS record.",
+      "required_fields": [],
+      "system_used": "HIS Clinical Module",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 4,
+      "description": "Once the drug is procured and received, verify quantity, expiry date, and batch number against the purchase order. Update the HIS Pharmacy inventory, close the incident in the Pharmacy Incident Register, and submit a root-cause analysis to Pharmacy Management within 48 hours.",
+      "required_fields": [],
+      "system_used": "Pharmacy Management System",
+      "is_approval_gate": false
+    }
+  ]
+}

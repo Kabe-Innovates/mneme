@@ -1,0 +1,49 @@
+{
+  "workflow_id": "WF-MR-RECORDS-REL-01",
+  "workflow_name": "Medical Records Release to Patient",
+  "department": "Medical Records",
+  "owner_team": "Medical Records Supervisor",
+  "escalation_team": "Legal & Compliance",
+  "governing_article": "SOP-MR-009",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Receive the patient's request either in person at the Medical Records counter or via the HIS Patient Portal. Verify the patient's identity using two forms of ID (government photo ID + hospital ID or appointment card). Check that Form MR-REQ-01 is fully completed.",
+      "required_fields": [
+        "patient_mrn",
+        "patient_name",
+        "reason_for_request"
+      ],
+      "system_used": "HIS Medical Records Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "If the request is from an authorized representative (not the patient), verify the notarized authorization letter or legal power of attorney. For subpoenas or court orders, immediately escalate to the Legal & Compliance department before proceeding.",
+      "required_fields": [],
+      "system_used": "HIS Medical Records Module",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 3,
+      "description": "Retrieve the requested records from the HIS Archive. For urgent requests (24-hour turnaround), ensure HOD approval is documented in the system. Verify all requested documents are present and complete before packaging.",
+      "required_fields": [],
+      "system_used": "HIS Archive Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 4,
+      "description": "Prepare physical copies (printed, collated, sealed) or provide digital access via the patient portal. Collect the document processing fee as per the hospital's fee schedule before releasing records.",
+      "required_fields": [],
+      "system_used": "HIS Patient Portal",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 5,
+      "description": "Log the release in the Medical Records Disclosure Register: requestor name, ID, relationship to patient, purpose, date, documents provided, and processing staff's ID. Retain a copy of the patient's authorization form with the register entry.",
+      "required_fields": [],
+      "system_used": "HIS Medical Records Module",
+      "is_approval_gate": false
+    }
+  ]
+}

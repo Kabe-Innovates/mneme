@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-BIO-016",
+  "title": "Medical Equipment Calibration and Certification Standards",
+  "content": "All measurement-critical biomedical equipment (infusion pumps, patient monitors, ventilators, pulse oximeters, weighing scales) must be calibrated at the frequency specified in the hospital's Calibration Schedule maintained in the HIS Asset Management Module. Calibration must be performed by a certified biomedical technician or accredited external service provider using traceable reference standards; calibration certificates must be uploaded to HIS within 24 hours of completion. Equipment that fails calibration must be immediately taken out of service, tagged with a clear 'DO NOT USE' sticker, and a substitute arranged; failed calibration events must be reported to the Quality team as a near-miss within 2 hours. All calibration records are subject to inspection during NABH accreditation surveys. Equipment that has not been calibrated within the due period is considered out-of-service for accreditation purposes; the Chief Biomedical Engineer must report any overdue calibrations to the Quality Committee monthly.",
+  "department": "Biomedical Engineering",
+  "status": "approved",
+  "version": "v1.3",
+  "effective_date": "2024-03-20",
+  "review_due_date": "2026-03-20",
+  "owner": "Chief Biomedical Engineer",
+  "visible_to_roles": [
+    "Biomedical Engineering",
+    "Operations Management",
+    "Quality & Accreditation"
+  ],
+  "category": "equipment"
+}

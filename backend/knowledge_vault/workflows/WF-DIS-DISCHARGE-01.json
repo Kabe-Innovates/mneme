@@ -1,0 +1,60 @@
+{
+  "workflow_id": "WF-DIS-DISCHARGE-01",
+  "workflow_name": "Patient Discharge Process",
+  "department": "Discharge Operations",
+  "owner_team": "Discharge Coordinator",
+  "escalation_team": "Operations Manager",
+  "governing_article": "SOP-DIS-007",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Confirm the treating physician has entered the discharge order in HIS and the discharge summary is complete (diagnoses coded, medications listed, follow-up instructions included). Flag incomplete summaries to the Medical Superintendent within 24 hours.",
+      "required_fields": [
+        "patient_mrn",
+        "discharge_date"
+      ],
+      "system_used": "HIS Clinical Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "Generate the final itemized bill through the HIS Billing Module. Verify all charges are accurate, apply any approved waivers or insurance adjustments, and present the final bill to the patient or guardian for review.",
+      "required_fields": [
+        "billing_amount"
+      ],
+      "system_used": "HIS Billing Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "If the patient is insured, submit the discharge claim package to the TPA desk for processing. The TPA desk must confirm claim submission before the patient is cleared for discharge unless payment is settled out-of-pocket.",
+      "required_fields": [
+        "insurance_provider",
+        "policy_number"
+      ],
+      "system_used": "TPA Portal",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 4,
+      "description": "Collect payment (cash, card, or insurance clearance letter). Issue the official receipt from the HIS Cashier Module. Ensure zero balance before proceeding.",
+      "required_fields": [],
+      "system_used": "HIS Cashier Module",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 5,
+      "description": "Prepare the discharge package for the patient: printed discharge summary, medication list, follow-up appointment card, and diet/activity instructions. Provide digital copies via the patient portal if registered.",
+      "required_fields": [],
+      "system_used": "HIS Patient Portal",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 6,
+      "description": "Update the patient's bed status to 'Discharged' in the HIS Bed Management Module. Notify housekeeping to prepare the bed for the next patient. Archive the patient record and close the encounter in HIS.",
+      "required_fields": [],
+      "system_used": "HIS Bed Management Module",
+      "is_approval_gate": false
+    }
+  ]
+}

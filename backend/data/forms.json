@@ -1,0 +1,122 @@
+[
+  {
+    "form_id": "FORM-MR-REQ-01",
+    "title": "Medical Records Release Request",
+    "code": "MR-REQ-01",
+    "department": "Medical Records",
+    "description": "Request form for patients or authorized representatives to obtain copies of medical records. Requires photo ID verification and states the purpose of release.",
+    "fields": ["patient_mrn", "patient_name", "reason_for_request"],
+    "governing_article": "SOP-MR-009",
+    "download_path": "/forms/MR-REQ-01.pdf"
+  },
+  {
+    "form_id": "FORM-IT-ACC-01",
+    "title": "IT System Access Request Form",
+    "code": "IT-ACC-01",
+    "department": "IT & HIS Support",
+    "description": "Submitted by department HODs to request HIS access, email accounts, and system permissions for new or existing staff members. Must be submitted 48 hours before the staff start date.",
+    "fields": ["staff_id", "department_code", "reason_for_request", "approver_id"],
+    "governing_article": "SOP-IT-011",
+    "download_path": "/forms/IT-ACC-01.pdf"
+  },
+  {
+    "form_id": "FORM-FIN-WAV-01",
+    "title": "Patient Financial Assistance and Waiver Application",
+    "code": "FIN-WAV-01",
+    "department": "Billing & Cash",
+    "description": "Application form for patients requesting financial assistance or billing waiver. Requires income documentation and patient MRN. Waivers above 25% require escalated approval.",
+    "fields": ["patient_mrn", "patient_name", "billing_amount", "waiver_percentage", "reason_for_request"],
+    "governing_article": "SOP-BILL-031",
+    "download_path": "/forms/FIN-WAV-01.pdf"
+  },
+  {
+    "form_id": "FORM-DIS-CHK-01",
+    "title": "Patient Discharge Checklist",
+    "code": "DIS-CHK-01",
+    "department": "Discharge Operations",
+    "description": "Checklist completed by the discharge coordinator verifying all discharge requirements: physician summary complete, bill settled, medications dispensed, follow-up booked, patient education given.",
+    "fields": ["patient_mrn", "discharge_date", "billing_amount"],
+    "governing_article": "SOP-DIS-007",
+    "download_path": "/forms/DIS-CHK-01.pdf"
+  },
+  {
+    "form_id": "FORM-INS-PRE-01",
+    "title": "Insurance Pre-Authorization Request Form",
+    "code": "INS-PRE-01",
+    "department": "Insurance & TPA",
+    "description": "Pre-authorization request submitted to TPA for planned procedures. Includes patient demographics, insurance details, diagnosis/procedure codes, and physician's clinical justification.",
+    "fields": ["patient_mrn", "insurance_provider", "policy_number", "diagnosis_code", "procedure_code", "scheduled_date", "referring_physician_id"],
+    "governing_article": "SOP-TPA-014",
+    "download_path": "/forms/INS-PRE-01.pdf"
+  },
+  {
+    "form_id": "FORM-CONSENT-SUR-01",
+    "title": "Surgical and Invasive Procedure Consent Form",
+    "code": "CONSENT-SUR-01",
+    "department": "Medical Records",
+    "description": "Informed consent form for surgical procedures and invasive diagnostic interventions. Includes procedure description, risks, benefits, alternatives, and patient acknowledgment. Must be completed before procedure commencement.",
+    "fields": ["patient_mrn", "patient_name", "consent_type"],
+    "governing_article": "SOP-MR-016",
+    "download_path": "/forms/CONSENT-SUR-01.pdf"
+  },
+  {
+    "form_id": "FORM-QA-INC-01",
+    "title": "Incident and Near-Miss Report Form",
+    "code": "QA-INC-01",
+    "department": "Quality & Accreditation",
+    "description": "Completed by staff within 2 hours of any adverse event, near-miss, or safety incident. Captures event details, persons involved, immediate actions taken, and initial severity assessment.",
+    "fields": ["patient_mrn", "incident_type", "incident_severity", "ward_name", "reason_for_request"],
+    "governing_article": "SOP-QA-001",
+    "download_path": "/forms/QA-INC-01.pdf"
+  },
+  {
+    "form_id": "FORM-BIO-PM-01",
+    "title": "Equipment Preventive Maintenance Work Order",
+    "code": "BIO-PM-01",
+    "department": "Biomedical Engineering",
+    "description": "Work order for scheduled preventive maintenance of biomedical equipment. Records: equipment ID, location, PM tasks performed, test results, calibration status, and next PM due date.",
+    "fields": ["equipment_id", "ward_name"],
+    "governing_article": "SOP-BIO-010",
+    "download_path": "/forms/BIO-PM-01.pdf"
+  },
+  {
+    "form_id": "FORM-CM-XFER-01",
+    "title": "Patient Ward Transfer Request Form",
+    "code": "CM-XFER-01",
+    "department": "Case Management",
+    "description": "Initiated by the attending physician to request intra-hospital ward transfer. Includes clinical justification, destination ward, patient condition, and isolation requirements.",
+    "fields": ["patient_mrn", "ward_name", "bed_type", "reason_for_request"],
+    "governing_article": "SOP-CM-013",
+    "download_path": "/forms/CM-XFER-01.pdf"
+  },
+  {
+    "form_id": "FORM-LAB-REJ-01",
+    "title": "Laboratory Specimen Rejection Notice",
+    "code": "LAB-REJ-01",
+    "department": "Laboratory",
+    "description": "Issued by the laboratory when a specimen is rejected for analysis. Documents the rejection reason, re-collection instructions, and revised turnaround time.",
+    "fields": ["patient_mrn", "specimen_type", "reason_for_request"],
+    "governing_article": "SOP-LAB-004",
+    "download_path": "/forms/LAB-REJ-01.pdf"
+  },
+  {
+    "form_id": "FORM-PHARM-STOCK-01",
+    "title": "Emergency Drug Stock-Out Notification Form",
+    "code": "PHARM-STOCK-01",
+    "department": "Pharmacy",
+    "description": "Raised by the Pharmacy In-Charge upon confirming a critical drug stock-out. Notifies treating physicians, ward nursing staff, and Supply Chain of the shortage and documents emergency procurement steps taken.",
+    "fields": ["reason_for_request"],
+    "governing_article": "SOP-PHARM-005",
+    "download_path": "/forms/PHARM-STOCK-01.pdf"
+  },
+  {
+    "form_id": "FORM-EMRG-TRIAGE-01",
+    "title": "Emergency Department Triage Assessment Form",
+    "code": "EMRG-TRIAGE-01",
+    "department": "Emergency",
+    "description": "Completed by the triage nurse for every Emergency Department patient within 3 minutes of arrival. Captures chief complaint, ESI level, vital signs, allergy status, and triage nurse's name.",
+    "fields": ["patient_mrn", "patient_name", "ward_name"],
+    "governing_article": "SOP-EMRG-001",
+    "download_path": "/forms/EMRG-TRIAGE-01.pdf"
+  }
+]

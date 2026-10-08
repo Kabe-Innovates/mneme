@@ -133,5 +133,77 @@
     "priority": "CRITICAL",
     "escalation_target": "CEO Office",
     "reason": "Suspected or confirmed PHI/PII privacy breaches require immediate Data Protection Officer involvement and may have legal/regulatory reporting obligations under HIPAA."
+  },
+  {
+    "rule_id": "RR-016",
+    "issue_type": "pharmacy_stockout",
+    "conditions": "any",
+    "target_team": "Pharmacy Head",
+    "priority": "URGENT",
+    "escalation_target": "Medical Superintendent",
+    "reason": "Critical drug stock-outs require immediate Pharmacy Head escalation to activate emergency procurement or therapeutic substitution protocols per SOP-PHARM-005."
+  },
+  {
+    "rule_id": "RR-017",
+    "issue_type": "lab_specimen_issue",
+    "conditions": "any",
+    "target_team": "Laboratory Supervisor",
+    "priority": "ROUTINE",
+    "escalation_target": "Laboratory Manager",
+    "reason": "Specimen rejection and re-collection must be coordinated through the Laboratory Supervisor to ensure proper re-collection guidance and updated turnaround estimates."
+  },
+  {
+    "rule_id": "RR-018",
+    "issue_type": "equipment_failure",
+    "conditions": "is_life_critical = false",
+    "target_team": "Biomedical Engineering",
+    "priority": "ROUTINE",
+    "escalation_target": "Chief Biomedical Engineer",
+    "reason": "Non-life-critical equipment failures are routed to Biomedical Engineering for scheduling of repair; substitute equipment should be arranged in the interim per SOP-BIO-002."
+  },
+  {
+    "rule_id": "RR-019",
+    "issue_type": "incident_report",
+    "conditions": "any",
+    "target_team": "Quality & Patient Safety",
+    "priority": "URGENT",
+    "escalation_target": "Medical Superintendent",
+    "reason": "All reported incidents and near-misses must be reviewed by the Quality & Patient Safety team within 2 hours per SOP-QA-001 to initiate root cause analysis and corrective action."
+  },
+  {
+    "rule_id": "RR-020",
+    "issue_type": "bed_shortage",
+    "conditions": "any",
+    "target_team": "Bed Manager",
+    "priority": "ROUTINE",
+    "escalation_target": "Operations Manager",
+    "reason": "Bed shortage situations require the Bed Manager to coordinate between wards for reallocation; Operations Manager is involved if multi-department escalation is needed."
+  },
+  {
+    "rule_id": "RR-021",
+    "issue_type": "mass_casualty",
+    "conditions": "any",
+    "target_team": "Emergency Director",
+    "priority": "CRITICAL",
+    "escalation_target": "Medical Superintendent",
+    "reason": "Mass Casualty Incident activation requires Emergency Director authority to mobilize hospital-wide MCI response per SOP-EMRG-007; normal operational workflows are suspended."
+  },
+  {
+    "rule_id": "RR-022",
+    "issue_type": "procurement_high_value",
+    "conditions": "procurement_amount > 5000",
+    "target_team": "Finance Director",
+    "priority": "URGENT",
+    "escalation_target": "CEO Office",
+    "reason": "Procurement requests above $5,000 require Finance Director approval and competitive quotation per SOP-SC-001 to ensure financial governance and vendor transparency."
+  },
+  {
+    "rule_id": "RR-023",
+    "issue_type": "adverse_drug_reaction",
+    "conditions": "any",
+    "target_team": "REFUSE_CLINICAL",
+    "priority": "CRITICAL",
+    "escalation_target": "Medical Staff",
+    "reason": "Adverse drug reactions and drug interactions involve clinical assessment and treatment decisions that must be handled exclusively by the treating physician or clinical pharmacist — outside the scope of this operational assistant."
   }
 ]

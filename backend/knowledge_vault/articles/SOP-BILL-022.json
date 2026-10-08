@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-BILL-022",
+  "title": "Billing Correction Policy for Amounts Over $500",
+  "content": "Billing corrections involving amounts greater than $500 require supervisor approval before any adjustment is applied to the patient account. The billing staff must raise a correction request in the HIS Billing Module with a detailed justification, the original charge code, corrected amount, and supporting documentation (e.g., service order, physician note). The Billing Supervisor must review and approve or reject within 4 business hours. Approved corrections must be countersigned by the Finance Controller if the amount exceeds $2,000. All corrections are logged in the immutable audit trail and are subject to quarterly review by the Internal Audit team. Corrections below $500 may be processed directly by senior billing staff without escalation.",
+  "department": "Billing & Cash",
+  "status": "approved",
+  "version": "v1.4",
+  "effective_date": "2024-01-10",
+  "review_due_date": "2024-06-30",
+  "owner": "Finance Controller",
+  "visible_to_roles": [
+    "Billing & Cash",
+    "Front Office",
+    "Discharge Operations"
+  ],
+  "category": "billing"
+}

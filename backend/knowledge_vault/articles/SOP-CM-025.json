@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-CM-025",
+  "title": "Social Work Referral and Patient Support Services",
+  "content": "Social work referrals must be initiated by the Case Manager, treating physician, or nursing staff when a patient's social circumstances may affect health outcomes or discharge safety. Referral criteria include: financial inability to pay for treatment, lack of caregiver or support at home, child or elder safeguarding concerns, domestic violence indicators, substance misuse, or chronic homelessness. The Medical Social Worker must assess the referred patient within 4 hours of a CRITICAL referral and within 24 hours for routine referrals, documenting the assessment in the patient's HIS record. Intervention options include: connecting patients to government welfare schemes, arranging NGO support, coordinating with community health workers, and facilitating direct admission to rehabilitation or palliative care facilities. All referral outcomes and interventions must be documented in the Care Coordination Log.",
+  "department": "Case Management",
+  "status": "approved",
+  "version": "v1.4",
+  "effective_date": "2024-06-10",
+  "review_due_date": "2026-06-10",
+  "owner": "Case Management Supervisor",
+  "visible_to_roles": [
+    "Case Management",
+    "Nursing",
+    "Front Office",
+    "Operations Management"
+  ],
+  "category": "social_work"
+}

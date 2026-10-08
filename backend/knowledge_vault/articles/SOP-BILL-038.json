@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-BILL-038",
+  "title": "Patient Refund Processing Policy",
+  "content": "Refund requests arise when a patient has overpaid, a planned procedure was not performed, or an insurance payout reduced the patient's liability. All refund requests must be submitted in writing (Form FIN-REF-01) to the Billing Department with the patient's MRN, original receipt number, and reason for refund. Refunds up to $200 may be processed by the Billing Desk within 24 hours after verification of overpayment; amounts between $200\u2013$1,000 require Billing Supervisor approval within 48 hours; amounts exceeding $1,000 require Finance Controller sign-off within 72 hours. Refunds for insured patients require confirmation from the TPA desk that no insurance reclaim is in progress before processing. Refund disbursement must be via the same payment method as the original transaction (card refund for card payments, bank transfer for NEFT/RTGS); cash refunds above $100 require dual-staff authorization. All refunds are recorded in the HIS Billing Module's refund register and reported to Finance monthly.",
+  "department": "Billing & Cash",
+  "status": "approved",
+  "version": "v1.1",
+  "effective_date": "2024-07-01",
+  "review_due_date": "2026-07-01",
+  "owner": "Finance Controller",
+  "visible_to_roles": [
+    "Billing & Cash",
+    "Front Office",
+    "Insurance & TPA"
+  ],
+  "category": "billing"
+}

@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-LAB-004",
+  "title": "Specimen Collection Guidelines for Laboratory Tests",
+  "content": "All laboratory specimens must be collected using the correct labelled vacutainer or container as specified in the Lab Test Reference Guide available on the HIS Laboratory Module. Specimen labels must include: patient MRN, full name, date and time of collection, and the ordering physician's ID. Blood specimens must be collected by a trained phlebotomist or registered nurse; collections by unauthorized personnel are not permitted. Specimens must be transported to the laboratory within the time limits specified per test type (e.g., blood gas analysis within 15 minutes, routine blood within 2 hours). Mislabeled, hemolyzed, or improperly stored specimens will be rejected; the requesting department must be notified within 30 minutes of rejection.",
+  "department": "Laboratory",
+  "status": "approved",
+  "version": "v1.8",
+  "effective_date": "2024-01-20",
+  "review_due_date": "2026-01-20",
+  "owner": "Laboratory Manager",
+  "visible_to_roles": [
+    "Laboratory",
+    "Nursing",
+    "Case Management",
+    "Front Office"
+  ],
+  "category": "laboratory"
+}

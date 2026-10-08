@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-DIS-007",
+  "title": "Discharge Summary Documentation Standards",
+  "content": "A discharge summary must be completed by the treating physician within 24 hours of patient discharge and uploaded to the HIS under the patient's encounter record. The summary must include: primary and secondary diagnoses (ICD-10 coded), procedures performed, medications prescribed at discharge, follow-up instructions, and the patient's condition at discharge. The discharge coordinator must verify the summary is complete and signed before issuing the final discharge bill. All discharge documents must be provided to the patient in both physical and digital formats via the patient portal. Incomplete discharge summaries must be flagged to the Medical Superintendent's office within 48 hours.",
+  "department": "Discharge Operations",
+  "status": "approved",
+  "version": "v3.0",
+  "effective_date": "2024-03-15",
+  "review_due_date": "2026-03-15",
+  "owner": "Discharge Operations Manager",
+  "visible_to_roles": [
+    "Discharge Operations",
+    "Case Management",
+    "Billing & Cash",
+    "Medical Records"
+  ],
+  "category": "discharge"
+}

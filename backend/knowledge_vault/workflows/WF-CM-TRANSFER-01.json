@@ -1,0 +1,44 @@
+{
+  "workflow_id": "WF-CM-TRANSFER-01",
+  "workflow_name": "Intra-Hospital Patient Ward Transfer",
+  "department": "Case Management",
+  "owner_team": "Case Manager",
+  "escalation_team": "Operations Manager",
+  "governing_article": "SOP-CM-013",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "The attending physician enters the transfer order in the HIS Clinical Module, specifying: the clinical reason for transfer, destination ward, patient's current condition, and any isolation or monitoring requirements. Transfer orders must not be executed based on verbal instructions alone.",
+      "required_fields": [
+        "patient_mrn",
+        "ward_name",
+        "reason_for_request"
+      ],
+      "system_used": "HIS Clinical Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "The Case Manager confirms bed availability in the destination ward via the HIS Bed Management Module. Contact the receiving ward charge nurse to confirm readiness for the patient. If ICU transfer is involved, ensure attending physician sign-off is documented in HIS before proceeding.",
+      "required_fields": [
+        "bed_type"
+      ],
+      "system_used": "HIS Bed Management Module",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 3,
+      "description": "The transferring nurse conducts a formal clinical handover to the receiving nurse using the SBAR framework: Situation (why transferring), Background (diagnosis, history), Assessment (current status), Recommendation (care plan). Document the handover in the patient's HIS Nursing Notes.",
+      "required_fields": [],
+      "system_used": "HIS Clinical Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 4,
+      "description": "Transfer the patient physically with all essential items: medications, IV infusions, patient belongings, and physical medical record folder. Upon arrival at the destination ward, update the patient's bed status and location in the HIS Bed Management Module within 15 minutes.",
+      "required_fields": [],
+      "system_used": "HIS Bed Management Module",
+      "is_approval_gate": false
+    }
+  ]
+}

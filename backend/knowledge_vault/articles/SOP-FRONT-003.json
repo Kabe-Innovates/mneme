@@ -1,0 +1,15 @@
+{
+  "article_id": "SOP-FRONT-003",
+  "title": "ICU Visitor Policy",
+  "content": "ICU visitation is restricted to two immediate family members per patient per visit to prevent infection and minimize patient disturbance. Visiting hours are 10:00\u201311:00 AM and 5:00\u20136:00 PM only; exceptions require written approval from the ICU Attending Physician. All visitors must sign the visitor register at the ICU nursing station, wear provided PPE (gown and gloves), and sanitize hands before entry. Children under 12 years of age are not permitted in the ICU under any circumstances. Visitors showing symptoms of respiratory illness, fever, or active infection must be denied entry and directed to the hospital's General OPD.",
+  "department": "Front Office",
+  "status": "approved",
+  "version": "v2.0",
+  "effective_date": "2024-02-01",
+  "review_due_date": "2026-02-01",
+  "owner": "Nursing Superintendent",
+  "visible_to_roles": [
+    "ALL"
+  ],
+  "category": "visitor_policy"
+}

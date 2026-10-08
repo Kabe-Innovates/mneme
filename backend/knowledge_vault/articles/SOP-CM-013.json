@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-CM-013",
+  "title": "Patient Transfer Between Hospital Wards",
+  "content": "Intra-hospital patient transfers require a transfer request entered in the HIS by the attending physician with the reason for transfer, receiving ward, and patient's current clinical status. The receiving ward must confirm bed availability before the transfer is initiated; transfers cannot proceed without receiving ward confirmation. The transferring nurse must complete a clinical handover using the SBAR (Situation, Background, Assessment, Recommendation) format and document it in the patient's HIS record. All essential medications, patient belongings, and clinical files must accompany the patient. Transfers of ICU patients to general wards require attending physician sign-off and must be completed during daytime hours (7 AM\u20139 PM) except in emergencies.",
+  "department": "Case Management",
+  "status": "approved",
+  "version": "v1.9",
+  "effective_date": "2024-03-20",
+  "review_due_date": "2026-03-20",
+  "owner": "Case Management Supervisor",
+  "visible_to_roles": [
+    "Case Management",
+    "Nursing",
+    "Front Office",
+    "Discharge Operations"
+  ],
+  "category": "patient_transfer"
+}

@@ -1,0 +1,15 @@
+{
+  "article_id": "SOP-QA-001",
+  "title": "Incident Reporting and Near-Miss Documentation",
+  "content": "All adverse events, incidents, and near-misses must be reported within 2 hours of occurrence using the Incident Report Form in the HIS Quality Module or the physical form available at each nursing station. The report must include: date, time, location, persons involved, nature of the incident, immediate actions taken, and the reporter's identity. Sentinel events (unexpected patient death, serious injury) must trigger an immediate verbal report to the Quality & Patient Safety officer and Medical Superintendent. Near-miss events (no harm occurred but could have) are equally important and must be reported without fear of punitive action to encourage a safety culture. Root cause analysis must be completed within 72 hours for major incidents and presented to the Quality Committee monthly.",
+  "department": "Quality & Accreditation",
+  "status": "approved",
+  "version": "v3.1",
+  "effective_date": "2024-02-20",
+  "review_due_date": "2026-02-20",
+  "owner": "Quality & Patient Safety Officer",
+  "visible_to_roles": [
+    "ALL"
+  ],
+  "category": "incident_reporting"
+}

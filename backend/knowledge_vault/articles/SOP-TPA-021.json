@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-TPA-021",
+  "title": "Insurance Claim Submission Procedure to TPA",
+  "content": "Insurance claims for inpatient admissions must be submitted to the TPA within 24 hours of patient discharge using the claim form specific to the insurer. Required documents include: discharge summary, itemized bill, investigation reports, pre-authorization approval letter, and copies of all consent forms. Claims must be uploaded to the insurer's portal and a physical set sent by courier within the same business day. The TPA Desk must track claim status daily and escalate any claims pending beyond 5 business days to the TPA Escalation Manager. Partial approvals or rejections must be communicated to the Billing Department within 2 hours of receipt for patient counselling.",
+  "department": "Insurance & TPA",
+  "status": "approved",
+  "version": "v2.4",
+  "effective_date": "2024-05-01",
+  "review_due_date": "2026-05-01",
+  "owner": "TPA Desk Manager",
+  "visible_to_roles": [
+    "Insurance & TPA",
+    "Billing & Cash",
+    "Discharge Operations"
+  ],
+  "category": "insurance"
+}

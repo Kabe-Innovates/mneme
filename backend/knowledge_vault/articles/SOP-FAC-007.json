@@ -1,0 +1,15 @@
+{
+  "article_id": "SOP-FAC-007",
+  "title": "Biomedical Waste Management and Segregation Procedure",
+  "content": "All clinical waste generated in the hospital must be segregated at the point of generation according to the colour-coded bin system: Yellow bags for infectious/anatomical waste, Red bags for recyclable contaminated plastics, Blue/white boxes for sharps, Black bags for general non-hazardous waste. Sharps (needles, blades, lancets) must be deposited directly into puncture-proof yellow-lidded sharps containers immediately after use; resheathing of needles is strictly prohibited. Infectious waste bags must be filled to no more than 75% capacity, sealed securely, and collected by the housekeeping team every 4 hours or when 75% full, whichever is earlier. Collection, storage, transport, and disposal must comply with applicable biomedical waste regulations; the hospital's licensed common biomedical waste treatment facility contractor must collect waste daily. Staff handling biomedical waste must wear PPE (gloves, apron, mask, eye protection); annual training on waste segregation is mandatory for all clinical and housekeeping staff.",
+  "department": "Facility & Maintenance",
+  "status": "approved",
+  "version": "v2.5",
+  "effective_date": "2024-02-10",
+  "review_due_date": "2026-02-10",
+  "owner": "Facility Manager",
+  "visible_to_roles": [
+    "ALL"
+  ],
+  "category": "waste_management"
+}

@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-MR-009",
+  "title": "Medical Records Release to Patient or Authorized Representative",
+  "content": "Patients or their authorized legal representatives may request their medical records by submitting Form MR-REQ-01 at the Medical Records Department with valid government-issued photo ID. Records are typically provided within 5 working days of a verified request; urgent requests (e.g., second opinions, legal matters) are processed within 24 hours with HOD approval. Records must not be released to third parties without a signed patient authorization form or valid court order. Digital copies may be provided via the patient portal after identity verification. All record releases must be logged with the requestor's identity, date, purpose, and staff member who processed the request.",
+  "department": "Medical Records",
+  "status": "approved",
+  "version": "v2.3",
+  "effective_date": "2024-04-01",
+  "review_due_date": "2026-04-01",
+  "owner": "Medical Records Supervisor",
+  "visible_to_roles": [
+    "Medical Records",
+    "Case Management",
+    "Front Office"
+  ],
+  "category": "records"
+}

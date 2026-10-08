@@ -1,0 +1,35 @@
+{
+  "workflow_id": "WF-BIO-DOWNTIME-01",
+  "workflow_name": "Biomedical Equipment Downtime Report",
+  "department": "Biomedical Engineering",
+  "owner_team": "Biomedical Help Desk",
+  "escalation_team": "Chief Biomedical Engineer",
+  "governing_article": "SOP-BIO-002",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Report the equipment failure immediately via the HIS Asset Management Module or call the Biomedical Help Desk (ext. 4400). Provide: equipment ID, physical location (ward and room number), nature of the fault, time of failure, and whether a patient was affected at the time.",
+      "required_fields": [
+        "equipment_id",
+        "ward_number",
+        "reason_for_request"
+      ],
+      "system_used": "HIS Asset Management Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "Biomedical Engineering acknowledges within 15 minutes and dispatches a technician. The reporting department must arrange a substitute device from the central equipment store while the primary device is under repair. Document the substitute device ID in the downtime log.",
+      "required_fields": [],
+      "system_used": "HIS Asset Management Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "Once the device is repaired or replaced, the Biomedical technician closes the work order in HIS with the repair details, parts replaced, and test results confirming the device is safe for use. The ward head must sign off on the return-to-service form before the device is put back into clinical use.",
+      "required_fields": [],
+      "system_used": "HIS Asset Management Module",
+      "is_approval_gate": true
+    }
+  ]
+}

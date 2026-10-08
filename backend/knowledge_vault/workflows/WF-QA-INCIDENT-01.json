@@ -1,0 +1,51 @@
+{
+  "workflow_id": "WF-QA-INCIDENT-01",
+  "workflow_name": "Patient Safety Incident Reporting and Review",
+  "department": "Quality & Accreditation",
+  "owner_team": "Quality & Patient Safety Officer",
+  "escalation_team": "Medical Superintendent",
+  "governing_article": "SOP-QA-001",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "The staff member who witnessed or discovered the incident must complete the Incident Report Form (Form QA-INC-01) in the HIS Quality Module within 2 hours of the event. Include: date, time, location, persons involved, nature of the incident, immediate actions taken, and patient outcome. Do not delay reporting to investigate first.",
+      "required_fields": [
+        "patient_mrn",
+        "incident_type",
+        "incident_severity",
+        "ward_name",
+        "reason_for_request"
+      ],
+      "system_used": "HIS Quality Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "Department Supervisor reviews the incident report and adds their assessment within 4 hours. For sentinel events (unexpected death or serious injury), the Supervisor must immediately notify the Quality & Patient Safety Officer and Medical Superintendent verbally \u2014 do not wait for the written report.",
+      "required_fields": [],
+      "system_used": "HIS Quality Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "Quality & Patient Safety Officer assesses the incident for severity level (Minor, Moderate, Major, Sentinel) and determines if a Root Cause Analysis (RCA) is required. Major and Sentinel events always require RCA; Minor and Moderate events require at least a concise review with documented findings.",
+      "required_fields": [],
+      "system_used": "HIS Quality Module",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 4,
+      "description": "For RCA-required events, convene the RCA team (department head, relevant clinical lead, Quality Officer) within 72 hours. Document contributing factors, root causes, and corrective action plan with assigned owners and target dates in the HIS Quality Module.",
+      "required_fields": [],
+      "system_used": "HIS Quality Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 5,
+      "description": "Present the RCA findings and corrective actions at the monthly Quality Committee meeting. Monitor implementation of corrective actions via the HIS Quality Module tracking dashboard. Submit aggregated incident data to the Medical Director quarterly for trending and systemic improvements.",
+      "required_fields": [],
+      "system_used": "HIS Quality Module",
+      "is_approval_gate": false
+    }
+  ]
+}

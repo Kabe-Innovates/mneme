@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-QA-015",
+  "title": "NABH Accreditation Compliance Standards and Readiness",
+  "content": "The hospital's NABH accreditation requires continuous compliance with all 10 NABH chapters covering patient care, medication management, infrastructure, HR, quality improvement, and safety. The Quality & Accreditation team is responsible for maintaining a NABH compliance tracker in the HIS Quality Module, updated monthly. Each department head is accountable for the NABH standards applicable to their department and must ensure staff training on relevant standards is completed within 30 days of onboarding and annually thereafter. Internal mock accreditation surveys must be conducted 6 months before each NABH renewal cycle; findings must be fully addressed before the external assessment. All NABH-required policies, procedures, and forms must be reviewed and re-approved annually; version-controlled copies must be available in the HIS Document Management System and at physical display points in each department.",
+  "department": "Quality & Accreditation",
+  "status": "approved",
+  "version": "v1.8",
+  "effective_date": "2024-04-01",
+  "review_due_date": "2026-04-01",
+  "owner": "Quality & Patient Safety Officer",
+  "visible_to_roles": [
+    "Quality & Accreditation",
+    "Operations Management",
+    "ALL"
+  ],
+  "category": "accreditation"
+}

@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-MR-024",
+  "title": "Medical Record Amendment and Correction Policy",
+  "content": "A medical record entry may only be amended by the original author (physician, nurse, or allied health staff) to correct a factual error; all amendments must be transparent, never obliterating the original entry. Amendments in the HIS are versioned automatically; the original entry is retained with a timestamp and the amended version shows the date, time, corrector's ID, and reason for amendment. Paper record corrections must be made by drawing a single line through the error, initialing, dating, and writing the correct entry; correction fluid (Wite-Out) is strictly prohibited. Requests for amendment from patients must be reviewed by the Medical Records Supervisor and the treating physician; unjustified changes must be refused with a written explanation to the patient. Mass or systematic record alterations require Medical Director approval and must be logged as a quality event in the HIS.",
+  "department": "Medical Records",
+  "status": "approved",
+  "version": "v1.4",
+  "effective_date": "2024-06-20",
+  "review_due_date": "2026-06-20",
+  "owner": "Medical Records Supervisor",
+  "visible_to_roles": [
+    "Medical Records",
+    "Operations Management",
+    "Legal & Compliance"
+  ],
+  "category": "records"
+}

@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-SC-001",
+  "title": "Procurement Request and Purchase Order Procedure",
+  "content": "All procurement requests must be submitted through the HIS Supply Chain Module by the requesting department head; verbal or informal procurement requests are not accepted. The request must include: item description, specifications, quantity, clinical or operational justification, required-by date, and budget code. Requests below $1,000 are approved by the Department Head; $1,000\u2013$5,000 require Supply Chain Manager approval; amounts above $5,000 require Finance Director sign-off and a minimum of three competitive quotations. Emergency procurement (for patient safety-critical items) may be verbally authorized by the Operations Manager and must be formally documented within 4 hours. All approved purchase orders must be issued on hospital letterhead or through the HIS; no verbal orders to vendors are permitted. Goods received must be inspected against the purchase order for quantity, specifications, and expiry dates before acceptance; discrepancies must be notified to the vendor and Supply Chain Manager within 24 hours.",
+  "department": "Supply Chain",
+  "status": "approved",
+  "version": "v1.5",
+  "effective_date": "2024-05-05",
+  "review_due_date": "2026-05-05",
+  "owner": "Supply Chain Manager",
+  "visible_to_roles": [
+    "Supply Chain",
+    "Operations Management",
+    "Facility & Maintenance",
+    "Biomedical Engineering"
+  ],
+  "category": "procurement"
+}

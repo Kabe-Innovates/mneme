@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-DIS-019",
+  "title": "Death Certification and Mortuary Release Procedure",
+  "content": "Death of a patient must be certified by the treating physician and documented in the HIS Clinical Module within 1 hour of the event. The Cause of Death Certificate must be completed using the correct ICD-10 cause and immediate/underlying cause fields; all deaths within 24 hours of admission or under anesthesia require Medical Superintendent review. The family must be notified of the death by the attending physician personally; a nursing staff member must provide emotional support and bereavement information. The body may be released to the family after: death certification, clearance of the final bill, and submission of the Mortuary Release Form (Form DIS-MORT-01) signed by a next-of-kin with valid ID. Cases of unnatural death, accidents, or medicolegal cases must be reported to the police before release; legal clearance is mandatory. Autopsy requests (hospital-initiated or family-requested) must be documented and handled per the Post-Mortem Policy.",
+  "department": "Discharge Operations",
+  "status": "approved",
+  "version": "v2.0",
+  "effective_date": "2024-03-05",
+  "review_due_date": "2026-03-05",
+  "owner": "Discharge Operations Manager",
+  "visible_to_roles": [
+    "Discharge Operations",
+    "Medical Records",
+    "Operations Management",
+    "Case Management"
+  ],
+  "category": "discharge"
+}

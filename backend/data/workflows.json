@@ -316,5 +316,278 @@
         "is_approval_gate": true
       }
     ]
+  },
+  {
+    "workflow_id": "WF-PHARM-STOCKOUT-01",
+    "workflow_name": "Critical Drug Stock-Out Escalation",
+    "department": "Pharmacy",
+    "owner_team": "Pharmacy In-Charge",
+    "escalation_team": "Pharmacy Head",
+    "governing_article": "SOP-PHARM-005",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Confirm the stock-out by checking the HIS Pharmacy Module inventory for the drug name, current stock level, and last dispensed date. Verify that no other pharmacy store in the hospital holds available stock. Document the drug name, strength, and quantity required in the Pharmacy Incident Register.",
+        "required_fields": ["reason_for_request"],
+        "system_used": "Pharmacy Management System",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "Immediately notify the treating physician and the ward nursing station of the stock-out. Provide a realistic estimated resupply timeline. Simultaneously raise an emergency procurement request in the HIS Pharmacy Module and contact at least two approved alternative suppliers from the approved vendor list.",
+        "required_fields": [],
+        "system_used": "Pharmacy Management System",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "If the drug cannot be sourced from any vendor within 4 hours, escalate to the Pharmacy Head and simultaneously notify the Medical Superintendent to determine if a therapeutic substitution is clinically appropriate. The physician must document the substitution decision in the patient's HIS record.",
+        "required_fields": [],
+        "system_used": "HIS Clinical Module",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 4,
+        "description": "Once the drug is procured and received, verify quantity, expiry date, and batch number against the purchase order. Update the HIS Pharmacy inventory, close the incident in the Pharmacy Incident Register, and submit a root-cause analysis to Pharmacy Management within 48 hours.",
+        "required_fields": [],
+        "system_used": "Pharmacy Management System",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-LAB-SPECIMEN-REJ-01",
+    "workflow_name": "Lab Specimen Rejection and Re-Collection",
+    "department": "Laboratory",
+    "owner_team": "Laboratory Technician",
+    "escalation_team": "Laboratory Supervisor",
+    "governing_article": "SOP-LAB-004",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Identify the reason for specimen rejection: mislabelling, hemolysis, clot in anticoagulated tube, incorrect container, inadequate volume, temperature deviation, or exceeded transport time. Log the rejection reason in the Laboratory Information System (LIS) with timestamp and specimen ID.",
+        "required_fields": ["patient_mrn", "specimen_type", "reason_for_request"],
+        "system_used": "Laboratory Information System",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "Notify the requesting department (ward or OPD) within 30 minutes of rejection. Provide specific instructions on correct specimen type, container colour, labelling format, volume required, and transport time limit for re-collection. Update the order status in HIS to 'Specimen Rejected — Re-collection Required'.",
+        "required_fields": [],
+        "system_used": "HIS Clinical Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "The ward nursing staff or phlebotomist must re-collect the specimen following the corrected procedure. A new label must be generated from HIS; previously printed labels must not be reused. For time-sensitive tests (blood gas, cultures), re-collection must happen within 30 minutes of notification.",
+        "required_fields": [],
+        "system_used": "HIS Clinical Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 4,
+        "description": "Process the re-collected specimen and update the order status in LIS. Communicate revised TAT to the requesting team. If the same patient has repeated specimen rejections (2 or more in one admission), escalate to the Laboratory Supervisor and report as a quality event in the HIS Quality Module.",
+        "required_fields": [],
+        "system_used": "Laboratory Information System",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-QA-INCIDENT-01",
+    "workflow_name": "Patient Safety Incident Reporting and Review",
+    "department": "Quality & Accreditation",
+    "owner_team": "Quality & Patient Safety Officer",
+    "escalation_team": "Medical Superintendent",
+    "governing_article": "SOP-QA-001",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "The staff member who witnessed or discovered the incident must complete the Incident Report Form (Form QA-INC-01) in the HIS Quality Module within 2 hours of the event. Include: date, time, location, persons involved, nature of the incident, immediate actions taken, and patient outcome. Do not delay reporting to investigate first.",
+        "required_fields": ["patient_mrn", "incident_type", "incident_severity", "ward_name", "reason_for_request"],
+        "system_used": "HIS Quality Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "Department Supervisor reviews the incident report and adds their assessment within 4 hours. For sentinel events (unexpected death or serious injury), the Supervisor must immediately notify the Quality & Patient Safety Officer and Medical Superintendent verbally — do not wait for the written report.",
+        "required_fields": [],
+        "system_used": "HIS Quality Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "Quality & Patient Safety Officer assesses the incident for severity level (Minor, Moderate, Major, Sentinel) and determines if a Root Cause Analysis (RCA) is required. Major and Sentinel events always require RCA; Minor and Moderate events require at least a concise review with documented findings.",
+        "required_fields": [],
+        "system_used": "HIS Quality Module",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 4,
+        "description": "For RCA-required events, convene the RCA team (department head, relevant clinical lead, Quality Officer) within 72 hours. Document contributing factors, root causes, and corrective action plan with assigned owners and target dates in the HIS Quality Module.",
+        "required_fields": [],
+        "system_used": "HIS Quality Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 5,
+        "description": "Present the RCA findings and corrective actions at the monthly Quality Committee meeting. Monitor implementation of corrective actions via the HIS Quality Module tracking dashboard. Submit aggregated incident data to the Medical Director quarterly for trending and systemic improvements.",
+        "required_fields": [],
+        "system_used": "HIS Quality Module",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-MR-CONSENT-01",
+    "workflow_name": "Patient Informed Consent Collection",
+    "department": "Medical Records",
+    "owner_team": "Nursing Staff",
+    "escalation_team": "Medical Records Supervisor",
+    "governing_article": "SOP-MR-016",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Identify the correct consent form for the planned procedure from the HIS Forms Library (e.g., FORM-CONSENT-SUR-01 for surgical procedures, FORM-CONSENT-BT-01 for blood transfusions). Confirm the correct form version is current; outdated versions must not be used.",
+        "required_fields": ["patient_mrn", "consent_type"],
+        "system_used": "HIS Forms Library",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "The treating physician or designated clinical staff must explain the procedure, risks, benefits, and alternatives to the patient in their preferred language. If the patient requires an interpreter, arrange one before proceeding. Do not obtain consent in a language the patient does not understand.",
+        "required_fields": [],
+        "system_used": "HIS Clinical Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "The patient (or legal representative for incapacitated patients) signs the consent form in the presence of the physician and a nurse witness. Both the physician and witness must sign with their staff IDs. For emergency situations where signed consent cannot be obtained, document the clinical justification and two-witness verbal consent.",
+        "required_fields": [],
+        "system_used": "HIS Clinical Module",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 4,
+        "description": "Scan the signed consent form and upload it to the patient's HIS record immediately. The procedure must not commence until the consent document is confirmed in the system. The paper original must be filed in the patient's physical medical record folder.",
+        "required_fields": [],
+        "system_used": "HIS Medical Records Module",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-BIO-PM-01",
+    "workflow_name": "Biomedical Equipment Preventive Maintenance",
+    "department": "Biomedical Engineering",
+    "owner_team": "Biomedical Engineering Team",
+    "escalation_team": "Chief Biomedical Engineer",
+    "governing_article": "SOP-BIO-010",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Retrieve the PM work order auto-generated by the HIS Asset Management Module 30 days before the due date. Confirm the equipment ID, location, last PM date, and the PM checklist specific to the equipment type. Coordinate with the ward or department for a scheduled downtime window to perform the maintenance without disrupting patient care.",
+        "required_fields": ["equipment_id", "ward_name"],
+        "system_used": "HIS Asset Management Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "Perform the preventive maintenance tasks as specified in the equipment's PM checklist: clean components, replace consumables (filters, batteries, sensors), lubricate moving parts, tighten electrical connections, and test all alarm and safety systems. Record all findings and readings in the PM work order.",
+        "required_fields": [],
+        "system_used": "HIS Asset Management Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "Run functional performance tests to confirm the equipment meets the manufacturer's performance specifications post-maintenance. If calibration is due, perform calibration using traceable standards and upload the calibration certificate to the HIS equipment file.",
+        "required_fields": [],
+        "system_used": "HIS Asset Management Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 4,
+        "description": "Close the PM work order in HIS with: technician's employee ID, PM completion date, test results, parts replaced, and next PM due date. The equipment's PM compliance status must update to 'Compliant' in the system. Print and attach the PM completion sticker to the equipment. Notify the ward head that the equipment is returned to service.",
+        "required_fields": [],
+        "system_used": "HIS Asset Management Module",
+        "is_approval_gate": true
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-IT-DOWNTIME-01",
+    "workflow_name": "HIS System Downtime Contingency",
+    "department": "IT & HIS Support",
+    "owner_team": "IT Emergency Response",
+    "escalation_team": "IT Manager",
+    "governing_article": "SOP-IT-019",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Upon detecting HIS downtime, the IT Helpdesk must immediately broadcast an alert to all department heads via the hospital PA system, group messaging, and the IT incident management system. Clearly state: the time of onset, affected systems, and estimated resolution time if known.",
+        "required_fields": ["reason_for_request"],
+        "system_used": "IT Incident Management System",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "All clinical and operational departments must activate downtime procedures: retrieve physical downtime folders from each nursing station and department desk. Begin recording all registrations, orders, medication administrations, lab results, and billing on the pre-printed paper forms.",
+        "required_fields": [],
+        "system_used": "Paper Downtime Forms",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "IT must work to restore system access, providing status updates every 60 minutes until resolution. Activate failover or backup systems if available. Escalate to IT Manager within 30 minutes of onset for unplanned outages; planned maintenance must have pre-approval 48 hours in advance.",
+        "required_fields": [],
+        "system_used": "IT Incident Management System",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 4,
+        "description": "Once HIS is restored, all downtime records must be entered into HIS within 2 hours by the responsible department staff. IT must verify data integrity for all critical systems (medication orders, lab results, billing transactions) before issuing the 'System Restored' notification. Conduct a post-incident review within 48 hours.",
+        "required_fields": [],
+        "system_used": "HIS Admin Console",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-CM-TRANSFER-01",
+    "workflow_name": "Intra-Hospital Patient Ward Transfer",
+    "department": "Case Management",
+    "owner_team": "Case Manager",
+    "escalation_team": "Operations Manager",
+    "governing_article": "SOP-CM-013",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "The attending physician enters the transfer order in the HIS Clinical Module, specifying: the clinical reason for transfer, destination ward, patient's current condition, and any isolation or monitoring requirements. Transfer orders must not be executed based on verbal instructions alone.",
+        "required_fields": ["patient_mrn", "ward_name", "reason_for_request"],
+        "system_used": "HIS Clinical Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "The Case Manager confirms bed availability in the destination ward via the HIS Bed Management Module. Contact the receiving ward charge nurse to confirm readiness for the patient. If ICU transfer is involved, ensure attending physician sign-off is documented in HIS before proceeding.",
+        "required_fields": ["bed_type"],
+        "system_used": "HIS Bed Management Module",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 3,
+        "description": "The transferring nurse conducts a formal clinical handover to the receiving nurse using the SBAR framework: Situation (why transferring), Background (diagnosis, history), Assessment (current status), Recommendation (care plan). Document the handover in the patient's HIS Nursing Notes.",
+        "required_fields": [],
+        "system_used": "HIS Clinical Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 4,
+        "description": "Transfer the patient physically with all essential items: medications, IV infusions, patient belongings, and physical medical record folder. Upon arrival at the destination ward, update the patient's bed status and location in the HIS Bed Management Module within 15 minutes.",
+        "required_fields": [],
+        "system_used": "HIS Bed Management Module",
+        "is_approval_gate": false
+      }
+    ]
   }
 ]

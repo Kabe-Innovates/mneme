@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-NURS-001",
+  "title": "Nursing Shift Handover Protocol (SBAR)",
+  "content": "Nursing shift handover must be conducted in person at the bedside for every patient using the SBAR (Situation, Background, Assessment, Recommendation) framework. Handover must begin no later than 15 minutes before shift end; incoming nurses must arrive on time to receive handover before outgoing nurses leave. The SBAR report for each patient must include: current vital signs, active problems and diagnoses, outstanding orders and pending results, medications administered during the shift including time of last PRN dose, IV access status and infusion rates, any deterioration events or escalations during the shift, and the care plan for the next 8 hours. Handover must be documented in the HIS Nursing Notes module within 30 minutes of shift commencement by the incoming nurse. Patients must be introduced to the incoming nurse during bedside handover; family members present may briefly observe unless the patient objects. All outstanding critical tasks must be personally handed over verbally \u2014 do not leave critical actions documented only in HIS without a verbal alert.",
+  "department": "Nursing",
+  "status": "approved",
+  "version": "v2.3",
+  "effective_date": "2024-01-15",
+  "review_due_date": "2026-01-15",
+  "owner": "Nursing Superintendent",
+  "visible_to_roles": [
+    "Nursing",
+    "Case Management",
+    "Operations Management"
+  ],
+  "category": "nursing"
+}

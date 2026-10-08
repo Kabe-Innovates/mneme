@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-PHARM-005",
+  "title": "Pharmacy Stock-Out Emergency Protocol",
+  "content": "When a critical drug is out of stock, the Pharmacy In-Charge must immediately notify the treating physician and nursing station, and simultaneously contact at least two approved alternative suppliers from the vendor list. An emergency procurement request must be raised in the HIS Pharmacy Module within 30 minutes of confirming stock-out. If the drug cannot be sourced within 4 hours, the case must be escalated to the Medical Superintendent for clinical decision-making regarding therapeutic substitution. All stock-out incidents must be documented in the Pharmacy Incident Register with time of discovery, drug name, quantity required, and resolution steps taken. A root-cause analysis must be submitted to Pharmacy Management within 48 hours.",
+  "department": "Pharmacy",
+  "status": "approved",
+  "version": "v1.2",
+  "effective_date": "2024-01-15",
+  "review_due_date": "2026-01-15",
+  "owner": "Chief Pharmacist",
+  "visible_to_roles": [
+    "Pharmacy",
+    "Case Management",
+    "Operations Management"
+  ],
+  "category": "pharmacy"
+}

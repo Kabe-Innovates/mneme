@@ -1,0 +1,15 @@
+{
+  "article_id": "SOP-IT-019",
+  "title": "HIS Downtime Contingency Procedure",
+  "content": "In the event of planned or unplanned HIS downtime, the IT Helpdesk must immediately notify all department heads via the hospital broadcast system and group message. All departments must switch to pre-printed downtime forms available in the Downtime Folder (physical, at each nursing station and front desk) within 5 minutes of notification. Patient registrations, medication orders, lab results, and billing transactions during downtime must be recorded on paper and entered into HIS within 2 hours of system restoration. Lab and Radiology must maintain physical logs of all tests ordered and results issued during downtime. IT must provide hourly status updates during unplanned outages; planned maintenance windows must be communicated at least 48 hours in advance.",
+  "department": "IT & HIS Support",
+  "status": "approved",
+  "version": "v2.0",
+  "effective_date": "2024-04-25",
+  "review_due_date": "2026-04-25",
+  "owner": "IT Manager",
+  "visible_to_roles": [
+    "ALL"
+  ],
+  "category": "it_downtime"
+}

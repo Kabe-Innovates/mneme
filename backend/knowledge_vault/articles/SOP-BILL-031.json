@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-BILL-031",
+  "title": "Financial Assistance and Patient Waiver Application",
+  "content": "Patients experiencing financial hardship may apply for a billing waiver by submitting Form FIN-WAV-01 with supporting income documentation to the Billing Department. Waivers of up to 25% may be approved by the Billing Supervisor; amounts between 25\u201350% require Finance Controller approval; waivers above 50% require the CEO's authorization. All waiver applications must be processed within 24 hours of receiving complete documentation. Approved waivers are applied directly to the patient's account and noted in the HIS Billing Module with the approver's employee ID. Waiver decisions must be communicated to the patient in writing and are final; re-applications require new documentation.",
+  "department": "Billing & Cash",
+  "status": "approved",
+  "version": "v1.3",
+  "effective_date": "2024-06-15",
+  "review_due_date": "2026-06-15",
+  "owner": "Finance Controller",
+  "visible_to_roles": [
+    "Billing & Cash",
+    "Front Office",
+    "Case Management"
+  ],
+  "category": "billing"
+}

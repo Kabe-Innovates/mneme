@@ -1,0 +1,44 @@
+{
+  "workflow_id": "WF-BILL-CORRECTION-01",
+  "workflow_name": "Billing Correction Request (>$500)",
+  "department": "Billing & Cash",
+  "owner_team": "Billing Supervisor",
+  "escalation_team": "Finance Controller",
+  "governing_article": "SOP-BILL-022",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "The billing staff must identify the incorrect charge and document the original charge code, the erroneous amount, and the correct amount. Collect supporting documentation such as the service order, physician note, or pharmacy dispensing record that justifies the correction.",
+      "required_fields": [
+        "patient_mrn",
+        "billing_amount",
+        "reason_for_request"
+      ],
+      "system_used": "HIS Billing Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "Raise a Billing Correction Request in the HIS Billing Module, attaching all supporting documents. The request will be automatically routed to the Billing Supervisor for amounts between $500 and $1,999, or to the Finance Controller for amounts $2,000 and above.",
+      "required_fields": [
+        "approver_id"
+      ],
+      "system_used": "HIS Billing Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "Billing Supervisor reviews the request within 4 business hours. If approved, the correction is applied in HIS. If rejected, the reason is documented and communicated to the requesting staff. Amounts over $2,000 require Finance Controller countersignature.",
+      "required_fields": [],
+      "system_used": "HIS Billing Module",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 4,
+      "description": "Once approved, apply the corrected charge in HIS and generate a revised bill for the patient. Notify the patient of the correction and issue a written explanation. Update the audit trail entry with the approver's employee ID.",
+      "required_fields": [],
+      "system_used": "HIS Billing Module",
+      "is_approval_gate": false
+    }
+  ]
+}

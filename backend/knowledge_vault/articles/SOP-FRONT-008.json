@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-FRONT-008",
+  "title": "Patient Bed Allocation Procedure",
+  "content": "Bed allocation is managed through the HIS Bed Management Module and must reflect real-time occupancy at all times. Admission requests are triaged by the Admissions Desk based on clinical priority: Emergency admissions take precedence, followed by planned surgical cases, and then elective admissions. Bed type allocation (General, Semi-Private, Private, ICU) must align with the physician's bed request form and patient's insurance coverage or payment category. Ward staff must update bed status in HIS within 15 minutes of patient transfer, discharge, or admission. Any bed disputes between departments must be escalated to the Bed Manager or on-call Operations Manager.",
+  "department": "Front Office",
+  "status": "approved",
+  "version": "v2.2",
+  "effective_date": "2024-03-01",
+  "review_due_date": "2026-03-01",
+  "owner": "Admissions Manager",
+  "visible_to_roles": [
+    "Front Office",
+    "Case Management",
+    "Discharge Operations",
+    "Operations Management"
+  ],
+  "category": "bed_management"
+}

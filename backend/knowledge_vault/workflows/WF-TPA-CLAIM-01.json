@@ -1,0 +1,45 @@
+{
+  "workflow_id": "WF-TPA-CLAIM-01",
+  "workflow_name": "Insurance Claim Submission to TPA",
+  "department": "Insurance & TPA",
+  "owner_team": "TPA Desk",
+  "escalation_team": "TPA Escalation Manager",
+  "governing_article": "SOP-TPA-021",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Compile the complete claim package within 24 hours of patient discharge: discharge summary (physician-signed), itemized bill, all investigation reports, pre-authorization approval letter, and signed consent forms. Use the insurer-specific claim form from the HIS Forms Library.",
+      "required_fields": [
+        "patient_mrn",
+        "insurance_provider",
+        "policy_number",
+        "discharge_date"
+      ],
+      "system_used": "HIS Forms Library",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "Upload the complete claim package to the insurer's TPA portal and record the portal submission reference number in the HIS. Simultaneously send a physical copy by courier; retain the courier tracking number.",
+      "required_fields": [],
+      "system_used": "TPA Portal",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "Track claim status on the TPA portal daily. Respond to any queries from the TPA within 24 hours. Escalate to the TPA Escalation Manager if the claim is pending for more than 5 business days without resolution.",
+      "required_fields": [
+        "portal_status"
+      ],
+      "system_used": "TPA Portal",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 4,
+      "description": "On receiving the settlement or rejection notice, update the HIS record. For partial approvals or rejections, notify the Billing Department within 2 hours and coordinate patient counselling on outstanding balances. Close the claim record in HIS.",
+      "required_fields": [],
+      "system_used": "HIS Billing Module",
+      "is_approval_gate": false
+    }
+  ]
+}

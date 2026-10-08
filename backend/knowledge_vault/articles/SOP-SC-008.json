@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-SC-008",
+  "title": "Inventory Reorder and Stock Management Policy",
+  "content": "Each department is responsible for maintaining minimum and maximum stock levels for all consumables and supplies, as defined in the department's Stock Management Plan filed with the Supply Chain team. HIS-generated low-stock alerts trigger automatic reorder notifications to the Supply Chain team when inventory falls below the reorder point (ROP); departments must NOT wait for stock-out before raising a request. The Supply Chain team must process standard reorder requests within 48 hours and communicate expected delivery timelines to the requesting department. All stock movements (receipts, issues, returns, disposals) must be recorded in HIS in real time; manual stock registers are not acceptable except during system downtime. Expired, damaged, or recalled stock must be quarantined immediately, tagged clearly, and reported to the Supply Chain Manager and Quality team for safe disposal within 24 hours. A full physical inventory count must be conducted quarterly; results must be reconciled with HIS within 5 business days and variances above 2% reported to the Finance Controller.",
+  "department": "Supply Chain",
+  "status": "approved",
+  "version": "v2.0",
+  "effective_date": "2024-06-05",
+  "review_due_date": "2026-06-05",
+  "owner": "Supply Chain Manager",
+  "visible_to_roles": [
+    "Supply Chain",
+    "Operations Management",
+    "Pharmacy",
+    "Laboratory"
+  ],
+  "category": "inventory"
+}

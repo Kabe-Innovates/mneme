@@ -1,0 +1,15 @@
+{
+  "article_id": "SOP-FAC-001",
+  "title": "Fire Safety Protocol and Emergency Evacuation Procedure",
+  "content": "Upon discovery of fire or smoke, the discovering person must activate the nearest fire alarm pull station and call the hospital emergency line (ext. 0) to report location and nature of the fire. The RACE protocol must be followed: Rescue any patient in immediate danger, Alarm activation, Confine the fire by closing all doors, and Extinguish using appropriate fire extinguisher only if safe to do so. All patient areas must be evacuated following the posted evacuation route to the designated assembly point; non-ambulatory patients are moved horizontally to the nearest fire-rated stairwell enclosure until vertical evacuation by the Fire Department. Staff must NOT use elevators during a fire evacuation. The Facility Manager must conduct a headcount at the assembly point and report to the incident commander within 10 minutes. Fire drills must be conducted at least twice per year per zone; all staff must receive fire safety training annually. Fire extinguishers must be inspected monthly; records must be maintained in the Fire Safety Register.",
+  "department": "Facility & Maintenance",
+  "status": "approved",
+  "version": "v3.0",
+  "effective_date": "2024-01-20",
+  "review_due_date": "2026-01-20",
+  "owner": "Facility Manager",
+  "visible_to_roles": [
+    "ALL"
+  ],
+  "category": "fire_safety"
+}

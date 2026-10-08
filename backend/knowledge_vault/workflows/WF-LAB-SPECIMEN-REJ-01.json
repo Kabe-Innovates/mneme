@@ -1,0 +1,42 @@
+{
+  "workflow_id": "WF-LAB-SPECIMEN-REJ-01",
+  "workflow_name": "Lab Specimen Rejection and Re-Collection",
+  "department": "Laboratory",
+  "owner_team": "Laboratory Technician",
+  "escalation_team": "Laboratory Supervisor",
+  "governing_article": "SOP-LAB-004",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Identify the reason for specimen rejection: mislabelling, hemolysis, clot in anticoagulated tube, incorrect container, inadequate volume, temperature deviation, or exceeded transport time. Log the rejection reason in the Laboratory Information System (LIS) with timestamp and specimen ID.",
+      "required_fields": [
+        "patient_mrn",
+        "specimen_type",
+        "reason_for_request"
+      ],
+      "system_used": "Laboratory Information System",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "Notify the requesting department (ward or OPD) within 30 minutes of rejection. Provide specific instructions on correct specimen type, container colour, labelling format, volume required, and transport time limit for re-collection. Update the order status in HIS to 'Specimen Rejected \u2014 Re-collection Required'.",
+      "required_fields": [],
+      "system_used": "HIS Clinical Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "The ward nursing staff or phlebotomist must re-collect the specimen following the corrected procedure. A new label must be generated from HIS; previously printed labels must not be reused. For time-sensitive tests (blood gas, cultures), re-collection must happen within 30 minutes of notification.",
+      "required_fields": [],
+      "system_used": "HIS Clinical Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 4,
+      "description": "Process the re-collected specimen and update the order status in LIS. Communicate revised TAT to the requesting team. If the same patient has repeated specimen rejections (2 or more in one admission), escalate to the Laboratory Supervisor and report as a quality event in the HIS Quality Module.",
+      "required_fields": [],
+      "system_used": "Laboratory Information System",
+      "is_approval_gate": false
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "workflow_id": "WF-TPA-MRI-AUTH-01",
+  "workflow_name": "MRI Pre-Authorization for Insured Patient",
+  "department": "Insurance & TPA",
+  "owner_team": "TPA Desk",
+  "escalation_team": "TPA Escalation Manager",
+  "governing_article": "SOP-TPA-014",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Verify that the patient's insurance policy is active and covers MRI diagnostics. Open the HIS Insurance Module, search by policy number, and confirm coverage status shows 'Active' and MRI is listed under covered procedures.",
+      "required_fields": [
+        "patient_mrn",
+        "insurance_provider",
+        "policy_number"
+      ],
+      "system_used": "HIS Insurance Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 2,
+      "description": "Obtain the exact procedure code and diagnosis code from the referring physician's order. The procedure code must match the TPA's approved code list; confirm the diagnosis code is ICD-10 formatted. Document the scheduled MRI date and the referring physician's ID.",
+      "required_fields": [
+        "diagnosis_code",
+        "procedure_code",
+        "referring_physician_id",
+        "scheduled_date"
+      ],
+      "system_used": "HIS Clinical Module",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 3,
+      "description": "Submit the pre-authorization request through the insurer's TPA portal using all collected details. Attach the physician's referral note and any prior investigation reports. Note the portal submission reference number in the HIS.",
+      "required_fields": [
+        "portal_status"
+      ],
+      "system_used": "TPA Portal",
+      "is_approval_gate": false
+    },
+    {
+      "step_number": 4,
+      "description": "Monitor the TPA portal for authorization status. Approval is expected within 2\u20134 hours. If rejected, immediately notify the TPA Escalation Manager and counsel the patient on out-of-pocket payment options before proceeding.",
+      "required_fields": [
+        "portal_status"
+      ],
+      "system_used": "TPA Portal",
+      "is_approval_gate": true
+    },
+    {
+      "step_number": 5,
+      "description": "Once authorization is received, update the HIS record with the authorization number and notify the Radiology scheduling desk to confirm the MRI slot. File the written authorization in the patient's physical and electronic record.",
+      "required_fields": [],
+      "system_used": "HIS Radiology Module",
+      "is_approval_gate": false
+    }
+  ]
+}

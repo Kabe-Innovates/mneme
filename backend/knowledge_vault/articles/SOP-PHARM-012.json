@@ -1,0 +1,17 @@
+{
+  "article_id": "SOP-PHARM-012",
+  "title": "Controlled Substance Dispensing and Double-Check Protocol",
+  "content": "All Schedule H1 and narcotic medications must be dispensed only on a valid physician's prescription bearing the prescriber's registration number, patient MRN, and diagnosis. Two pharmacists must independently verify the prescription, drug, dose, and quantity before dispensing \u2014 this double-check must be documented with both pharmacists' initials in the Controlled Substance Register. Controlled substances must be stored in a locked, double-key cabinet with access restricted to licensed pharmacists; the cabinet must be reconciled at every shift handover. Any discrepancy between dispensed quantity and register entry must be reported immediately to the Chief Pharmacist and Security within 15 minutes. Monthly audits of the Controlled Substance Register are mandatory and must be submitted to the Pharmacy Committee and the hospital's Drug & Therapeutics Committee.",
+  "department": "Pharmacy",
+  "status": "approved",
+  "version": "v2.0",
+  "effective_date": "2024-03-01",
+  "review_due_date": "2026-03-01",
+  "owner": "Chief Pharmacist",
+  "visible_to_roles": [
+    "Pharmacy",
+    "Operations Management",
+    "Quality & Accreditation"
+  ],
+  "category": "pharmacy"
+}

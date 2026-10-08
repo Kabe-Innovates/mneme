@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-RAD-006",
+  "title": "CT Scan Scheduling and Intravenous Contrast Protocol",
+  "content": "CT scans requiring intravenous (IV) contrast must be preceded by a serum creatinine test to assess renal function; patients with creatinine above 1.5 mg/dL require Radiology Physician sign-off before contrast administration. Scheduling must be done through the HIS Radiology Module by the requesting department, with at least 2 hours' notice for routine scans and immediate priority for emergency cases. Patients must be nil-by-mouth (NPO) for 4 hours prior to contrast CT; nursing staff must verify and document NPO compliance before sending the patient to Radiology. The Radiology Technologist must confirm allergy history (especially iodine/shellfish) and obtain written consent for contrast use. Any adverse contrast reactions must be reported immediately to the Radiology Attending and documented in the patient's HIS record.",
+  "department": "Radiology Operations",
+  "status": "approved",
+  "version": "v2.0",
+  "effective_date": "2024-02-15",
+  "review_due_date": "2026-02-15",
+  "owner": "Head of Radiology",
+  "visible_to_roles": [
+    "Radiology Operations",
+    "Front Office",
+    "Case Management",
+    "Nursing"
+  ],
+  "category": "radiology"
+}

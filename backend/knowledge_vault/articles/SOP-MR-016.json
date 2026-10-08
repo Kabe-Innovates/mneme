@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-MR-016",
+  "title": "Patient Consent Form Requirements",
+  "content": "Informed consent must be obtained for all surgical procedures, invasive diagnostic tests, administration of blood products, and participation in clinical research, using the department-specific consent forms in the HIS Forms Library. Consent must be obtained by the treating physician in the patient's preferred language; an interpreter must be arranged if needed. The signed consent form must be scanned and uploaded to the patient's HIS record before the procedure begins. Emergency procedures may proceed without prior written consent if the patient is incapacitated and no legal representative is reachable, but verbal consent from the available family must be documented by two witnesses. Consent may be withdrawn by the patient at any time; withdrawal must be documented and the treating physician notified immediately.",
+  "department": "Medical Records",
+  "status": "approved",
+  "version": "v1.7",
+  "effective_date": "2024-01-30",
+  "review_due_date": "2026-01-30",
+  "owner": "Medical Records Supervisor",
+  "visible_to_roles": [
+    "Medical Records",
+    "Nursing",
+    "Case Management",
+    "Operations Management"
+  ],
+  "category": "consent"
+}

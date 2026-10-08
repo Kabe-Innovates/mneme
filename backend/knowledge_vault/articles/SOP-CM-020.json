@@ -1,0 +1,18 @@
+{
+  "article_id": "SOP-CM-020",
+  "title": "Discharge Planning and Multidisciplinary Case Review",
+  "content": "Discharge planning must commence at admission for all inpatients expected to stay more than 48 hours, led by the Case Manager assigned to the patient. The Case Manager coordinates a multidisciplinary care conference within 24 hours of admission for complex cases involving multiple specialties, social issues, or anticipated long-stay. Anticipated discharge date must be entered in HIS at admission and updated daily. Social work referral must be initiated within 24 hours for patients with identified social risk factors (homelessness, domestic abuse, caregiver absence, financial hardship). The discharge plan must address: post-discharge care setting, follow-up appointments, equipment needs, medication supply for 30 days, and community health services if required. Patients at high readmission risk (LACE score \u226510) must receive a telephonic follow-up call within 72 hours of discharge.",
+  "department": "Case Management",
+  "status": "approved",
+  "version": "v2.0",
+  "effective_date": "2024-03-10",
+  "review_due_date": "2026-03-10",
+  "owner": "Case Management Supervisor",
+  "visible_to_roles": [
+    "Case Management",
+    "Nursing",
+    "Discharge Operations",
+    "Operations Management"
+  ],
+  "category": "discharge_planning"
+}
