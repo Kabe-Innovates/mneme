@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv(dotenv_path="../.env")
 
-from app.models import ChatRequest, OrchestratorResponse, HOSPITAL_ROLES
+from app.models import ChatRequest, OrchestratorResponse, HOSPITAL_ROLES, WorkflowFieldSubmit, WorkflowFieldResponse
 from app import orchestrator, audit, data_loader, router as routing_module, workflow_engine
 
 app = FastAPI(title="Mneme — Healthcare Operations Assistant", version="1.0.0")
@@ -52,11 +52,55 @@ async def get_recent_audit():
     return {"entries": entries}
 
 
+@app.post("/api/workflow/submit", response_model=WorkflowFieldResponse)
+async def workflow_submit(request: WorkflowFieldSubmit):
+    result = workflow_engine.submit_field(
+        request.session_id, request.workflow_id, request.field_name, request.field_value
+    )
+    return WorkflowFieldResponse(**result)
+
+
+@app.get("/api/tickets")
+async def get_tickets():
+    tickets = audit.get_open_tickets(limit=50)
+    return {"tickets": tickets}
+
+
+@app.post("/api/tickets/{ticket_id}/resolve")
+async def resolve_ticket(ticket_id: str, notes: str = ""):
+    success = audit.resolve_ticket(ticket_id, notes)
+    if not success:
+        raise HTTPException(status_code=404, detail="Ticket not found")
+    return {"success": True}
+
+
+@app.get("/api/graph/stats")
+async def graph_stats():
+    from app import knowledge_graph
+    stats = knowledge_graph.get_stats()
+    stats["loaded"] = knowledge_graph.is_loaded()
+    return stats
+
+
+@app.post("/api/system/llm-toggle")
+async def llm_toggle(enabled: bool = True):
+    from app import llm as llm_module
+    llm_module.set_llm_available(enabled)
+    return {"llm_available": enabled}
+
+
 @app.get("/api/health")
 async def health():
     from app.vector_store import collection_count
+    from app import knowledge_graph
+    graph_s = knowledge_graph.get_stats()
     return {
         "status": "ok",
         "service": "Mneme Healthcare Operations Assistant",
         "documents_indexed": collection_count(),
+        "knowledge_graph": {
+            "loaded": knowledge_graph.is_loaded(),
+            "nodes": graph_s["total_nodes"],
+            "edges": graph_s["total_edges"],
+        },
     }

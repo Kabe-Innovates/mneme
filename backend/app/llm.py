@@ -90,12 +90,59 @@ def classify_intent(query: str, role: str) -> dict:
     }
 
 
+_LLM_AVAILABLE: bool = True  # toggled via /system/llm-toggle or on repeated failure
+
+
+def llm_available() -> bool:
+    return _LLM_AVAILABLE
+
+
+def set_llm_available(state: bool) -> None:
+    global _LLM_AVAILABLE
+    _LLM_AVAILABLE = state
+    print(f"[LLM] Mode switched to {'LLM' if state else 'TEMPLATE'}")
+
+
+def _template_answer(context_docs: list[dict]) -> dict:
+    """Serve verified SOP excerpts directly when the LLM is unavailable."""
+    if not context_docs:
+        return {
+            "text": "No relevant documentation found. Please contact the appropriate team for assistance.",
+            "citations": [],
+            "mode": "template",
+            "banner": "LLM offline — showing verified SOP excerpts only.",
+        }
+    article_docs = [d for d in context_docs if d.get("node_type") == "article" or d.get("source_id", "").startswith("SOP")]
+    docs_to_show = article_docs[:2] or context_docs[:2]
+    parts = []
+    citations = []
+    for doc in docs_to_show:
+        sid = doc["source_id"]
+        title = doc["title"]
+        content = doc["content"][:600].strip()
+        parts.append(f"**{title}** [{sid}]\n{content}")
+        citations.append({"source_id": sid, "title": title, "department": doc.get("department", "")})
+    text = "\n\n".join(parts)
+    if len(context_docs[0]["content"]) > 600:
+        text += "\n\n*(Excerpt — refer to the full document for complete details.)*"
+    return {
+        "text": text,
+        "citations": citations,
+        "mode": "template",
+        "banner": "LLM offline — showing verified SOP excerpts only.",
+    }
+
+
 def generate_answer(query: str, context_docs: list[dict], role: str) -> dict:
     if not context_docs:
         return {
             "text": "I don't have sufficient information in the approved knowledge base to answer this question. Please contact the relevant department or refer to the latest SOPs.",
             "citations": [],
+            "mode": "llm",
         }
+
+    if not _LLM_AVAILABLE:
+        return _template_answer(context_docs)
 
     context_str = "\n\n---\n\n".join(
         f"[{doc['source_id']}] {doc['title']}\n{doc['content']}"
@@ -111,7 +158,6 @@ Provide a helpful, grounded answer with inline citations."""
 
     try:
         text = invoke_claude(GENERATOR_SYSTEM, user_msg, max_tokens=1024)
-        # Extract cited source IDs
         import re
         cited = list(set(re.findall(r"\[([A-Z][A-Z0-9\-]+)\]", text)))
         citations = [
@@ -119,7 +165,8 @@ Provide a helpful, grounded answer with inline citations."""
             for doc in context_docs
             if doc["source_id"] in cited
         ]
-        return {"text": text, "citations": citations}
+        return {"text": text, "citations": citations, "mode": "llm"}
     except Exception as e:
-        print(f"[LLM] generate_answer error: {e}")
-        return {"text": "Unable to generate response. Please try again.", "citations": []}
+        print(f"[LLM] generate_answer error: {e} — falling back to template mode")
+        set_llm_available(False)
+        return _template_answer(context_docs)

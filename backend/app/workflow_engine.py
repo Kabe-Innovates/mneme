@@ -118,3 +118,68 @@ def get_workflow_for_response(workflow: dict, session_id: str) -> dict:
         "steps": workflow.get("steps", []),
         "missing_fields": [],
     }
+
+
+def submit_field(session_id: str, workflow_id: str, field_name: str, field_value: str) -> dict:
+    """Validate and save a field value, then advance step if all required fields are collected."""
+    session = _sessions.get(session_id)
+    if not session or session.get("workflow_id") != workflow_id:
+        # Auto-create session if not found (user arrived via GUIDE without explicit start)
+        _sessions[session_id] = {
+            "workflow_id": workflow_id,
+            "current_step": 1,
+            "collected_fields": {},
+        }
+        session = _sessions[session_id]
+
+    fd = _field_defs.get(field_name, {})
+
+    # Validate allowed_values
+    allowed = fd.get("allowed_values")
+    if allowed and field_value not in allowed:
+        return {"success": False, "error": f"'{field_value}' is not allowed. Options: {', '.join(allowed)}"}
+
+    # Validate regex
+    import re as _re
+    regex = fd.get("validation_regex")
+    if regex and not _re.match(regex, field_value):
+        return {"success": False, "error": f"Value doesn't match expected format for {fd.get('label', field_name)}"}
+
+    session["collected_fields"][field_name] = field_value
+
+    workflow = _workflows.get(workflow_id, {})
+    steps = sorted(workflow.get("steps", []), key=lambda s: s["step_number"])
+    current_step_num = session["current_step"]
+
+    current_step = next((s for s in steps if s["step_number"] == current_step_num), None)
+    if not current_step:
+        return {"success": True, "current_step": current_step_num, "step_advanced": False, "approval_gate_reached": False, "missing_fields": []}
+
+    missing = _get_missing_fields(current_step.get("required_fields", []), session["collected_fields"])
+    step_advanced = False
+    approval_gate_reached = False
+
+    if not missing:
+        # All fields for current step collected — advance to next
+        next_steps = [s for s in steps if s["step_number"] > current_step_num]
+        if next_steps:
+            next_step = next_steps[0]
+            session["current_step"] = next_step["step_number"]
+            step_advanced = True
+            approval_gate_reached = next_step.get("is_approval_gate", False)
+            missing = _get_missing_fields(next_step.get("required_fields", []), session["collected_fields"])
+        else:
+            step_advanced = True  # Workflow complete
+
+    return {
+        "success": True,
+        "current_step": session["current_step"],
+        "step_advanced": step_advanced,
+        "approval_gate_reached": approval_gate_reached,
+        "missing_fields": missing,
+    }
+
+
+def get_session_step(session_id: str) -> int:
+    session = _sessions.get(session_id)
+    return session["current_step"] if session else 1

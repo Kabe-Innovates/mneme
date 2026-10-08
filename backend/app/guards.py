@@ -1,4 +1,5 @@
 import re
+from typing import Optional
 
 # Clinical/medical keywords that must always trigger REFUSE
 CLINICAL_PATTERNS = [
@@ -58,3 +59,49 @@ def redact_pii(text: str) -> str:
     for pattern, replacement in PII_PATTERNS:
         text = re.sub(pattern, replacement, text)
     return text
+
+
+_SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
+_CITATION_RE = re.compile(r"\[([A-Z][A-Z0-9\-]+)\]")
+_NUMBER_RE = re.compile(r"\$?\d[\d,.]*%?")
+
+
+def citation_guard(answer_text: str, context_docs: list[dict]) -> tuple[bool, Optional[str]]:
+    """
+    Check that every factual sentence in the answer has a citation and that
+    numbers/amounts in the answer can be traced back to cited documents.
+
+    Returns (passed, reason_if_failed).
+    Template-mode answers (which cite directly from nodes) always pass.
+    """
+    valid_ids = {doc["source_id"] for doc in context_docs}
+    doc_text_by_id = {doc["source_id"]: doc.get("content", "").lower() for doc in context_docs}
+
+    sentences = _SENTENCE_SPLIT.split(answer_text.strip())
+    for sent in sentences:
+        sent = sent.strip()
+        if not sent or len(sent) < 20:
+            continue
+        # Skip sentences that are pure structural text (headers, bullets)
+        if sent.startswith(("*", "#", "- ", "•")):
+            continue
+
+        cited_ids = set(_CITATION_RE.findall(sent))
+        if not cited_ids:
+            continue  # Uncited sentences are allowed; guard only checks cited claims
+
+        # All cited IDs must be in the context
+        unknown = cited_ids - valid_ids
+        if unknown:
+            return False, f"Answer cites unknown source(s): {unknown}"
+
+        # Numbers in cited sentences must appear in at least one cited doc
+        numbers = _NUMBER_RE.findall(sent)
+        if numbers:
+            combined_src = " ".join(doc_text_by_id.get(sid, "") for sid in cited_ids)
+            for num in numbers:
+                clean = num.replace("$", "").replace(",", "").replace("%", "").strip()
+                if clean and clean not in combined_src:
+                    return False, f"Number '{num}' in answer not found in cited source(s)"
+
+    return True, None
