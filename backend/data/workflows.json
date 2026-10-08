@@ -1,0 +1,320 @@
+[
+  {
+    "workflow_id": "WF-TPA-MRI-AUTH-01",
+    "workflow_name": "MRI Pre-Authorization for Insured Patient",
+    "department": "Insurance & TPA",
+    "owner_team": "TPA Desk",
+    "escalation_team": "TPA Escalation Manager",
+    "governing_article": "SOP-TPA-014",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Verify that the patient's insurance policy is active and covers MRI diagnostics. Open the HIS Insurance Module, search by policy number, and confirm coverage status shows 'Active' and MRI is listed under covered procedures.",
+        "required_fields": ["patient_mrn", "insurance_provider", "policy_number"],
+        "system_used": "HIS Insurance Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "Obtain the exact procedure code and diagnosis code from the referring physician's order. The procedure code must match the TPA's approved code list; confirm the diagnosis code is ICD-10 formatted. Document the scheduled MRI date and the referring physician's ID.",
+        "required_fields": ["diagnosis_code", "procedure_code", "referring_physician_id", "scheduled_date"],
+        "system_used": "HIS Clinical Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "Submit the pre-authorization request through the insurer's TPA portal using all collected details. Attach the physician's referral note and any prior investigation reports. Note the portal submission reference number in the HIS.",
+        "required_fields": ["portal_status"],
+        "system_used": "TPA Portal",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 4,
+        "description": "Monitor the TPA portal for authorization status. Approval is expected within 2–4 hours. If rejected, immediately notify the TPA Escalation Manager and counsel the patient on out-of-pocket payment options before proceeding.",
+        "required_fields": ["portal_status"],
+        "system_used": "TPA Portal",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 5,
+        "description": "Once authorization is received, update the HIS record with the authorization number and notify the Radiology scheduling desk to confirm the MRI slot. File the written authorization in the patient's physical and electronic record.",
+        "required_fields": [],
+        "system_used": "HIS Radiology Module",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-DIS-DISCHARGE-01",
+    "workflow_name": "Patient Discharge Process",
+    "department": "Discharge Operations",
+    "owner_team": "Discharge Coordinator",
+    "escalation_team": "Operations Manager",
+    "governing_article": "SOP-DIS-007",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Confirm the treating physician has entered the discharge order in HIS and the discharge summary is complete (diagnoses coded, medications listed, follow-up instructions included). Flag incomplete summaries to the Medical Superintendent within 24 hours.",
+        "required_fields": ["patient_mrn", "discharge_date"],
+        "system_used": "HIS Clinical Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "Generate the final itemized bill through the HIS Billing Module. Verify all charges are accurate, apply any approved waivers or insurance adjustments, and present the final bill to the patient or guardian for review.",
+        "required_fields": ["billing_amount"],
+        "system_used": "HIS Billing Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "If the patient is insured, submit the discharge claim package to the TPA desk for processing. The TPA desk must confirm claim submission before the patient is cleared for discharge unless payment is settled out-of-pocket.",
+        "required_fields": ["insurance_provider", "policy_number"],
+        "system_used": "TPA Portal",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 4,
+        "description": "Collect payment (cash, card, or insurance clearance letter). Issue the official receipt from the HIS Cashier Module. Ensure zero balance before proceeding.",
+        "required_fields": [],
+        "system_used": "HIS Cashier Module",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 5,
+        "description": "Prepare the discharge package for the patient: printed discharge summary, medication list, follow-up appointment card, and diet/activity instructions. Provide digital copies via the patient portal if registered.",
+        "required_fields": [],
+        "system_used": "HIS Patient Portal",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 6,
+        "description": "Update the patient's bed status to 'Discharged' in the HIS Bed Management Module. Notify housekeeping to prepare the bed for the next patient. Archive the patient record and close the encounter in HIS.",
+        "required_fields": [],
+        "system_used": "HIS Bed Management Module",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-BILL-CORRECTION-01",
+    "workflow_name": "Billing Correction Request (>$500)",
+    "department": "Billing & Cash",
+    "owner_team": "Billing Supervisor",
+    "escalation_team": "Finance Controller",
+    "governing_article": "SOP-BILL-022",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "The billing staff must identify the incorrect charge and document the original charge code, the erroneous amount, and the correct amount. Collect supporting documentation such as the service order, physician note, or pharmacy dispensing record that justifies the correction.",
+        "required_fields": ["patient_mrn", "billing_amount", "reason_for_request"],
+        "system_used": "HIS Billing Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "Raise a Billing Correction Request in the HIS Billing Module, attaching all supporting documents. The request will be automatically routed to the Billing Supervisor for amounts between $500 and $1,999, or to the Finance Controller for amounts $2,000 and above.",
+        "required_fields": ["approver_id"],
+        "system_used": "HIS Billing Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "Billing Supervisor reviews the request within 4 business hours. If approved, the correction is applied in HIS. If rejected, the reason is documented and communicated to the requesting staff. Amounts over $2,000 require Finance Controller countersignature.",
+        "required_fields": [],
+        "system_used": "HIS Billing Module",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 4,
+        "description": "Once approved, apply the corrected charge in HIS and generate a revised bill for the patient. Notify the patient of the correction and issue a written explanation. Update the audit trail entry with the approver's employee ID.",
+        "required_fields": [],
+        "system_used": "HIS Billing Module",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-FRONT-BED-ALLOC-01",
+    "workflow_name": "Patient Bed Allocation Request",
+    "department": "Front Office",
+    "owner_team": "Admissions Desk",
+    "escalation_team": "Bed Manager",
+    "governing_article": "SOP-FRONT-008",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Verify the physician's bed request form in HIS, confirming the required bed type (General, Semi-Private, Private, ICU, ICCU, NICU, HDU) and clinical priority. Cross-check the patient's insurance coverage or payment category to confirm eligibility for the requested bed class.",
+        "required_fields": ["patient_mrn", "bed_type", "referring_physician_id"],
+        "system_used": "HIS Bed Management Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "Check real-time bed availability in the HIS Bed Management Module for the requested type. If the requested type is unavailable, offer the next available class or add the patient to the waitlist. Notify the patient or family of the wait time.",
+        "required_fields": ["ward_number"],
+        "system_used": "HIS Bed Management Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "Assign the bed in HIS, print the bed assignment slip, and escort or direct the patient to the ward. Update the bed status to 'Occupied' in HIS within 15 minutes of the patient reaching the ward. Notify the receiving ward nurse of the incoming patient.",
+        "required_fields": [],
+        "system_used": "HIS Bed Management Module",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-MR-RECORDS-REL-01",
+    "workflow_name": "Medical Records Release to Patient",
+    "department": "Medical Records",
+    "owner_team": "Medical Records Supervisor",
+    "escalation_team": "Legal & Compliance",
+    "governing_article": "SOP-MR-009",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Receive the patient's request either in person at the Medical Records counter or via the HIS Patient Portal. Verify the patient's identity using two forms of ID (government photo ID + hospital ID or appointment card). Check that Form MR-REQ-01 is fully completed.",
+        "required_fields": ["patient_mrn", "patient_name", "reason_for_request"],
+        "system_used": "HIS Medical Records Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "If the request is from an authorized representative (not the patient), verify the notarized authorization letter or legal power of attorney. For subpoenas or court orders, immediately escalate to the Legal & Compliance department before proceeding.",
+        "required_fields": [],
+        "system_used": "HIS Medical Records Module",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 3,
+        "description": "Retrieve the requested records from the HIS Archive. For urgent requests (24-hour turnaround), ensure HOD approval is documented in the system. Verify all requested documents are present and complete before packaging.",
+        "required_fields": [],
+        "system_used": "HIS Archive Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 4,
+        "description": "Prepare physical copies (printed, collated, sealed) or provide digital access via the patient portal. Collect the document processing fee as per the hospital's fee schedule before releasing records.",
+        "required_fields": [],
+        "system_used": "HIS Patient Portal",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 5,
+        "description": "Log the release in the Medical Records Disclosure Register: requestor name, ID, relationship to patient, purpose, date, documents provided, and processing staff's ID. Retain a copy of the patient's authorization form with the register entry.",
+        "required_fields": [],
+        "system_used": "HIS Medical Records Module",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-IT-ACCESS-01",
+    "workflow_name": "New Staff IT Access Provisioning",
+    "department": "IT & HIS Support",
+    "owner_team": "IT Help Desk",
+    "escalation_team": "IT Manager",
+    "governing_article": "SOP-IT-011",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Department HOD submits Form IT-ACC-01 via the HIS IT Request Module at least 48 hours before the new staff member's start date. The form must include: employee ID, role, department, required systems, and start date.",
+        "required_fields": ["staff_id", "department_code", "reason_for_request"],
+        "system_used": "HIS IT Request Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "IT Administration verifies the request against the RBAC access matrix for the employee's role. Confirm access levels are appropriate — no over-provisioning. If the role requires elevated privileges, IT Manager approval is required before proceeding.",
+        "required_fields": ["approver_id"],
+        "system_used": "IT RBAC System",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 3,
+        "description": "Provision HIS login credentials, hospital email account, and role-specific module access within 24 hours. Generate a temporary password and communicate it securely to the employee via their personal email or department HOD.",
+        "required_fields": [],
+        "system_used": "HIS Admin Console",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 4,
+        "description": "Confirm the employee has logged in and changed their temporary password within 48 hours. Log the provisioning event in the IT Audit System with timestamps. Notify IT Manager if password change is not completed within the deadline.",
+        "required_fields": [],
+        "system_used": "IT Audit System",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-TPA-CLAIM-01",
+    "workflow_name": "Insurance Claim Submission to TPA",
+    "department": "Insurance & TPA",
+    "owner_team": "TPA Desk",
+    "escalation_team": "TPA Escalation Manager",
+    "governing_article": "SOP-TPA-021",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Compile the complete claim package within 24 hours of patient discharge: discharge summary (physician-signed), itemized bill, all investigation reports, pre-authorization approval letter, and signed consent forms. Use the insurer-specific claim form from the HIS Forms Library.",
+        "required_fields": ["patient_mrn", "insurance_provider", "policy_number", "discharge_date"],
+        "system_used": "HIS Forms Library",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "Upload the complete claim package to the insurer's TPA portal and record the portal submission reference number in the HIS. Simultaneously send a physical copy by courier; retain the courier tracking number.",
+        "required_fields": [],
+        "system_used": "TPA Portal",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "Track claim status on the TPA portal daily. Respond to any queries from the TPA within 24 hours. Escalate to the TPA Escalation Manager if the claim is pending for more than 5 business days without resolution.",
+        "required_fields": ["portal_status"],
+        "system_used": "TPA Portal",
+        "is_approval_gate": true
+      },
+      {
+        "step_number": 4,
+        "description": "On receiving the settlement or rejection notice, update the HIS record. For partial approvals or rejections, notify the Billing Department within 2 hours and coordinate patient counselling on outstanding balances. Close the claim record in HIS.",
+        "required_fields": [],
+        "system_used": "HIS Billing Module",
+        "is_approval_gate": false
+      }
+    ]
+  },
+  {
+    "workflow_id": "WF-BIO-DOWNTIME-01",
+    "workflow_name": "Biomedical Equipment Downtime Report",
+    "department": "Biomedical Engineering",
+    "owner_team": "Biomedical Help Desk",
+    "escalation_team": "Chief Biomedical Engineer",
+    "governing_article": "SOP-BIO-002",
+    "steps": [
+      {
+        "step_number": 1,
+        "description": "Report the equipment failure immediately via the HIS Asset Management Module or call the Biomedical Help Desk (ext. 4400). Provide: equipment ID, physical location (ward and room number), nature of the fault, time of failure, and whether a patient was affected at the time.",
+        "required_fields": ["equipment_id", "ward_number", "reason_for_request"],
+        "system_used": "HIS Asset Management Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 2,
+        "description": "Biomedical Engineering acknowledges within 15 minutes and dispatches a technician. The reporting department must arrange a substitute device from the central equipment store while the primary device is under repair. Document the substitute device ID in the downtime log.",
+        "required_fields": [],
+        "system_used": "HIS Asset Management Module",
+        "is_approval_gate": false
+      },
+      {
+        "step_number": 3,
+        "description": "Once the device is repaired or replaced, the Biomedical technician closes the work order in HIS with the repair details, parts replaced, and test results confirming the device is safe for use. The ward head must sign off on the return-to-service form before the device is put back into clinical use.",
+        "required_fields": [],
+        "system_used": "HIS Asset Management Module",
+        "is_approval_gate": true
+      }
+    ]
+  }
+]

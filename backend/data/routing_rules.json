@@ -1,0 +1,137 @@
+[
+  {
+    "rule_id": "RR-001",
+    "issue_type": "clinical_advice",
+    "conditions": "any",
+    "target_team": "REFUSE_CLINICAL",
+    "priority": "CRITICAL",
+    "escalation_target": "Medical Staff",
+    "reason": "Clinical advice, diagnoses, and treatment recommendations must only be provided by qualified medical professionals. This assistant cannot and must not provide clinical guidance."
+  },
+  {
+    "rule_id": "RR-002",
+    "issue_type": "medical_advice",
+    "conditions": "any",
+    "target_team": "REFUSE_CLINICAL",
+    "priority": "CRITICAL",
+    "escalation_target": "Medical Staff",
+    "reason": "Medical advice requests including medication prescriptions, dosing, diagnosis interpretation, and treatment options are outside this system's scope and must be refused unconditionally."
+  },
+  {
+    "rule_id": "RR-003",
+    "issue_type": "billing_correction",
+    "conditions": "billing_amount > 500",
+    "target_team": "Billing Supervisor",
+    "priority": "URGENT",
+    "escalation_target": "Finance Controller",
+    "reason": "Per SOP-BILL-022, billing corrections above $500 require supervisor authorization before adjustment. Auto-routing ensures no large corrections bypass oversight."
+  },
+  {
+    "rule_id": "RR-004",
+    "issue_type": "billing_correction",
+    "conditions": "billing_amount <= 500",
+    "target_team": "Billing Desk",
+    "priority": "ROUTINE",
+    "escalation_target": "Billing Supervisor",
+    "reason": "Minor billing corrections under $500 can be handled by senior billing staff without escalation per SOP-BILL-022."
+  },
+  {
+    "rule_id": "RR-005",
+    "issue_type": "insurance_denial",
+    "conditions": "any",
+    "target_team": "TPA Escalation Manager",
+    "priority": "URGENT",
+    "escalation_target": "Finance Director",
+    "reason": "TPA claim denials require specialist negotiation with the insurer; the TPA Escalation Manager has authorization to dispute on the hospital's behalf."
+  },
+  {
+    "rule_id": "RR-006",
+    "issue_type": "it_access_escalation",
+    "conditions": "elevated_privileges = true",
+    "target_team": "IT Manager",
+    "priority": "URGENT",
+    "escalation_target": "CIO",
+    "reason": "Elevated privilege access requests require IT Manager approval to prevent unauthorized access to sensitive systems per the RBAC policy."
+  },
+  {
+    "rule_id": "RR-007",
+    "issue_type": "patient_complaint",
+    "conditions": "any",
+    "target_team": "Patient Relations",
+    "priority": "URGENT",
+    "escalation_target": "Patient Services Director",
+    "reason": "Patient complaints require a dedicated Patient Relations officer to manage sensitively and in accordance with the hospital's grievance redressal policy."
+  },
+  {
+    "rule_id": "RR-008",
+    "issue_type": "equipment_failure",
+    "conditions": "is_life_critical = true",
+    "target_team": "Biomedical Engineering",
+    "priority": "URGENT",
+    "escalation_target": "Chief Biomedical Engineer",
+    "reason": "Life-critical equipment failures require immediate Biomedical Engineering response per SOP-BIO-002 to ensure patient safety."
+  },
+  {
+    "rule_id": "RR-009",
+    "issue_type": "medical_records_subpoena",
+    "conditions": "any",
+    "target_team": "Legal & Compliance",
+    "priority": "CRITICAL",
+    "escalation_target": "CEO Office",
+    "reason": "Subpoenas and court orders for medical records must be handled exclusively by the Legal & Compliance department to protect patient rights and hospital liability."
+  },
+  {
+    "rule_id": "RR-010",
+    "issue_type": "patient_safety_incident",
+    "conditions": "any",
+    "target_team": "Quality & Patient Safety",
+    "priority": "CRITICAL",
+    "escalation_target": "Medical Superintendent",
+    "reason": "Patient safety incidents (falls, medication errors, sentinel events) require immediate Quality & Patient Safety officer involvement per SOP-QA-001."
+  },
+  {
+    "rule_id": "RR-011",
+    "issue_type": "financial_waiver_request",
+    "conditions": "waiver_percentage > 25",
+    "target_team": "Finance Director",
+    "priority": "URGENT",
+    "escalation_target": "CEO Office",
+    "reason": "Waiver requests exceeding 25% of the bill require Finance Director or CEO authorization per SOP-BILL-031."
+  },
+  {
+    "rule_id": "RR-012",
+    "issue_type": "his_downtime",
+    "conditions": "any",
+    "target_team": "IT Emergency Response",
+    "priority": "CRITICAL",
+    "escalation_target": "IT Manager",
+    "reason": "HIS downtime affects all hospital operations and patient safety; requires immediate IT Emergency Response team activation per SOP-IT-019."
+  },
+  {
+    "rule_id": "RR-013",
+    "issue_type": "transfer_request_icu",
+    "conditions": "transfer_from = ICU",
+    "target_team": "Medical Director",
+    "priority": "URGENT",
+    "escalation_target": "Medical Superintendent",
+    "reason": "ICU patient transfers require Medical Director sign-off to ensure clinical safety and appropriate receiving ward readiness per SOP-CM-013."
+  },
+  {
+    "rule_id": "RR-014",
+    "issue_type": "general_operational",
+    "conditions": "any",
+    "target_team": "Help Desk",
+    "priority": "ROUTINE",
+    "escalation_target": "Operations Manager",
+    "reason": "General operational queries that cannot be answered by the knowledge base are routed to the Help Desk for human assistance."
+  },
+  {
+    "rule_id": "RR-015",
+    "issue_type": "privacy_breach",
+    "conditions": "any",
+    "target_team": "Data Protection Officer",
+    "priority": "CRITICAL",
+    "escalation_target": "CEO Office",
+    "reason": "Suspected or confirmed PHI/PII privacy breaches require immediate Data Protection Officer involvement and may have legal/regulatory reporting obligations under HIPAA."
+  }
+]

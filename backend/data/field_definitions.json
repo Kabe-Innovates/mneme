@@ -1,0 +1,202 @@
+[
+  {
+    "field_name": "patient_mrn",
+    "label": "Patient MRN",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": "^MRN-\\d{6}$",
+    "is_required": true,
+    "is_sensitive": true,
+    "description": "Medical Record Number uniquely identifying the patient in the HIS. Format: MRN-XXXXXX (e.g., MRN-042817)."
+  },
+  {
+    "field_name": "insurance_provider",
+    "label": "Insurance Provider",
+    "field_type": "enum",
+    "allowed_values": ["Star Health", "HDFC Ergo", "Bajaj Allianz", "United India", "New India", "ICICI Lombard", "Max Bupa", "Care Health"],
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Name of the patient's health insurance provider from the list of empanelled insurers."
+  },
+  {
+    "field_name": "policy_number",
+    "label": "Insurance Policy Number",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": "^POL-[A-Z]{2}-\\d{8}$",
+    "is_required": true,
+    "is_sensitive": true,
+    "description": "Patient's insurance policy number. Format: POL-XX-XXXXXXXX (e.g., POL-SH-20241234)."
+  },
+  {
+    "field_name": "diagnosis_code",
+    "label": "Diagnosis Code (ICD-10)",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": "^[A-Z]\\d{2}\\.?\\d*$",
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "ICD-10 diagnosis code as specified by the treating physician (e.g., M54.5 for low back pain, G43.9 for migraine)."
+  },
+  {
+    "field_name": "procedure_code",
+    "label": "Procedure Code (CPT)",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": "^[A-Z]{1}\\d{4}$",
+    "is_required": false,
+    "is_sensitive": false,
+    "description": "CPT or hospital procedure code for the medical procedure being authorized or scheduled (e.g., T7220 for MRI Lumbar Spine without contrast)."
+  },
+  {
+    "field_name": "bed_type",
+    "label": "Bed Type",
+    "field_type": "enum",
+    "allowed_values": ["General", "Semi-Private", "Private", "ICU", "ICCU", "NICU", "HDU"],
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Category of bed requested for the patient, aligned with clinical need and insurance/payment category."
+  },
+  {
+    "field_name": "discharge_date",
+    "label": "Discharge Date",
+    "field_type": "date",
+    "allowed_values": null,
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Date the patient is discharged from the hospital. Must be on or after the admission date. Format: YYYY-MM-DD."
+  },
+  {
+    "field_name": "billing_amount",
+    "label": "Billing Amount (USD)",
+    "field_type": "currency",
+    "allowed_values": null,
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Total billing amount in USD relevant to the correction, waiver, or insurance claim being processed."
+  },
+  {
+    "field_name": "referring_physician_id",
+    "label": "Referring Physician ID",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": "^DOC-\\d{4}$",
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Hospital-assigned ID of the referring physician. Format: DOC-XXXX (e.g., DOC-0214)."
+  },
+  {
+    "field_name": "patient_name",
+    "label": "Patient Full Name",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": true,
+    "description": "Full legal name of the patient as recorded in the HIS registration record."
+  },
+  {
+    "field_name": "scheduled_date",
+    "label": "Scheduled Date",
+    "field_type": "date",
+    "allowed_values": null,
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Date on which the investigation, procedure, or appointment is scheduled. Format: YYYY-MM-DD."
+  },
+  {
+    "field_name": "portal_status",
+    "label": "TPA Portal Status",
+    "field_type": "enum",
+    "allowed_values": ["Pending", "Submitted", "Approved", "Rejected", "Under Review"],
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Current status of the pre-authorization or claim request as shown on the TPA portal."
+  },
+  {
+    "field_name": "department_code",
+    "label": "Department Code",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": "^DEPT-\\d{3}$",
+    "is_required": false,
+    "is_sensitive": false,
+    "description": "Hospital department code in the HIS. Format: DEPT-XXX (e.g., DEPT-014 for Radiology)."
+  },
+  {
+    "field_name": "staff_id",
+    "label": "Staff Employee ID",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": "^EMP-\\d{5}$",
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Hospital-assigned employee ID of the staff member. Format: EMP-XXXXX (e.g., EMP-00412)."
+  },
+  {
+    "field_name": "ward_number",
+    "label": "Ward / Room Number",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Ward name or room number where the patient is located or equipment is installed (e.g., Ward 3B, Room ICU-07)."
+  },
+  {
+    "field_name": "equipment_id",
+    "label": "Equipment Asset ID",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": "^EQ-\\d{5}$",
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Biomedical asset identifier from the hospital's equipment register. Format: EQ-XXXXX (e.g., EQ-00312 for Ventilator Unit 12)."
+  },
+  {
+    "field_name": "incident_severity",
+    "label": "Incident Severity",
+    "field_type": "enum",
+    "allowed_values": ["Minor", "Moderate", "Major", "Sentinel"],
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Severity classification of the reported incident or near-miss per Quality & Accreditation standards. Sentinel = unexpected patient death or serious harm."
+  },
+  {
+    "field_name": "waiver_percentage",
+    "label": "Waiver Percentage (%)",
+    "field_type": "integer",
+    "allowed_values": null,
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Percentage of the total bill being requested as a financial waiver. Must be between 0 and 100. Requests above 25% require escalated approval."
+  },
+  {
+    "field_name": "reason_for_request",
+    "label": "Reason for Request",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": null,
+    "is_required": true,
+    "is_sensitive": false,
+    "description": "Free-text justification for the operational request, correction, or escalation. Must be specific and reference relevant details."
+  },
+  {
+    "field_name": "approver_id",
+    "label": "Approver Employee ID",
+    "field_type": "string",
+    "allowed_values": null,
+    "validation_regex": "^EMP-\\d{5}$",
+    "is_required": false,
+    "is_sensitive": true,
+    "description": "Employee ID of the supervisor or manager approving the request. Required for billing corrections, waiver requests, and elevated access provisioning."
+  }
+]
