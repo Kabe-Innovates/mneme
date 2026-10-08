@@ -28,6 +28,23 @@ The **Healthcare Operations Assistant** decouples cognitive reasoning from polic
 
 ---
 
+## 1.1 LLM & Embedding Provider: AWS Bedrock
+
+The system uses **AWS Bedrock** as its inference backbone, selected for strict healthcare enterprise compliance and data protection:
+
+| Component | AWS Bedrock Model ID | Role in System | HIPAA Status |
+| :--- | :--- | :--- | :--- |
+| **Primary LLM** | `anthropic.claude-3-5-sonnet-20241022-v2:0` | Intent extraction (Step 2), Guided synthesis & Grounded answers (Step 6) | ✅ HIPAA-eligible under AWS BAA |
+| **Fast Guard Model** | `anthropic.claude-3-haiku-20240307-v1:0` | Edge-case clinical disambiguation fallback (Step 1) | ✅ HIPAA-eligible, sub-200ms latency |
+| **Embeddings** | `amazon.titan-embed-text-v2:0` | 1024-dimension dense vector indexing (Step 3) | ✅ HIPAA-eligible, zero data retention |
+
+### Why AWS Bedrock for Healthcare Enterprise Operations:
+1. **Zero Data Retention for Training**: Under the AWS Business Associate Addendum (BAA), no prompt or completion tokens are retained, cached across sessions, or utilized for foundation model retraining.
+2. **Virtual Private Cloud (VPC) Isolation**: Bedrock endpoints are accessed over **AWS PrivateLink**, keeping operational hospital traffic within private network boundaries without traversing the public internet.
+3. **Consolidated Governance & Telemetry**: Integrates natively with **AWS CloudTrail** and **Amazon CloudWatch**, ensuring every model invocation, timestamp, and token volume is logged for compliance audits.
+
+---
+
 ## 2. High-Level Architecture (C4 Container View)
 
 ```mermaid
@@ -101,6 +118,7 @@ class ExtractedEntities(BaseModel):
     insurer: Optional[str] = None
     system_name: Optional[str] = None
     urgency_flag: bool = False
+    sentiment: Optional[str] = None  # "neutral", "frustrated", "confused", "angry"
     raw_query: str
 ```
 
@@ -137,6 +155,19 @@ When multiple approved SOPs overlap:
 - **Tier 2 (Hospital-Wide Quality Manual)**: Overrides Tier 1.
 - **Tier 1 (Departmental SOPs)**: If two Tier 1 SOPs contradict each other, the system automatically sets $P_{\text{conflict}} = 1.0$ and triggers `ROUTE` to the Quality Committee.
 
+#### User-Facing Confidence Communication & Uncertainty UX
+
+The composite score $S_{\text{total}}$ maps directly to explicit user-facing confidence bands:
+
+| Band | Composite Score Range | UI Treatment | System Behavioral Contract & User Message |
+| :--- | :--- | :--- | :--- |
+| **High** | $S_{\text{total}} \ge 0.85$ | Green badge ✅ "Verified" | Direct answer citing exact approved SOP node IDs. Zero disclaimer required. |
+| **Medium** | $0.50 \le S_{\text{total}} < 0.85$ | Amber badge ⚠️ "Partial Evidence" | *"Based on SOP-TPA-014, the standard pre-auth steps are [X, Y]. However, I could not verify [specific parameter, e.g. insurer turnaround SLA]. I recommend checking with your supervisor. Would you like me to route this to [Insurance/TPA Desk]?"* |
+| **Low** | $S_{\text{total}} < 0.50$ | Red badge 🔴 "Insufficient Data" | *"I don't have enough approved documentation to answer this reliably. I am routing your request to [target department head] who can assist directly."* Automatically creates an escalation ticket. |
+
+When `sentiment == "frustrated"` or `"angry"`, the response is prepended with an empathetic operational acknowledgment:
+> *"I understand this is time-sensitive and frustrating. Let me help you resolve this with the priority queue right away."*
+
 ### Step 5: Deterministic Decision Engine (FSM)
 Evaluates computed metrics against rigid state transition boundaries:
 
@@ -162,12 +193,29 @@ def evaluate_decision(guard_passed: bool, S_total: float, conflict: bool, sessio
 2. **Post-Generation AST Citation Guard**: Programmatic AST parser scans generated text for citations.
    - If any cited `Doc_ID` is not in the retrieved evidence bundle $\implies$ Generation is aborted; fall back to `ROUTE`.
    - If factual assertions lack citations $\implies$ Downscaled to cautious guidance.
-3. **Trust Envelope Packaging**: Response is wrapped in a cryptographically signed payload.
+3. **Response Packaging**: Response is wrapped in a structured payload with node citations, confidence metrics, and audit UUID.
 
-### Step 7: Merkle-Chained Audit Trail
-Every system action is logged into an append-only store. Each record contains:
-$$\text{Hash}_i = \text{HMAC-SHA256}(\text{Query}_i + \text{Role}_i + \text{EvidenceIDs}_i + \text{Outcome}_i + \text{Hash}_{i-1})$$
-This guarantees tamper evidence, satisfying **NABH CQI.2** and **HIPAA § 164.312** compliance.
+### Step 7: Audit Trail (Append-Only Log)
+Every system action is logged into an append-only SQLite `audit_log` table:
+
+```sql
+CREATE TABLE audit_log (
+    id TEXT PRIMARY KEY,        -- UUID v4
+    timestamp TEXT NOT NULL,    -- ISO 8601 UTC
+    user_id TEXT,
+    user_role TEXT,
+    sanitized_query TEXT,       -- PII-redacted inquiry
+    intent TEXT,
+    retrieved_node_ids TEXT,    -- JSON array of node IDs used
+    decision_outcome TEXT,      -- ANSWER / GUIDE / ROUTE / REFUSE
+    confidence_score REAL,
+    response_summary TEXT,
+    escalation_ticket_id TEXT,  -- Populated if routed
+    escalation_reason TEXT
+);
+```
+
+> **Production Roadmap (Merkle Hash Chain)**: In enterprise production deployment, each audit row incorporates an `HMAC-SHA256` hash chaining with the previous row (`Hash_i = HMAC(Query_i + Evidence_i + Outcome_i + Hash_{i-1})`) to guarantee tamper-evident mathematical proof under **NABH CQI.2** and **HIPAA § 164.312(b)**. For the hackathon implementation, the append-only SQLite schema with UUID indexing provides clean, auditable tracking without unnecessary cryptographic overhead.
 
 ---
 

@@ -113,6 +113,17 @@ class WorkflowField(BaseModel):
   - Action: Generate Escalation Ticket `#TKT-8492`.
   - Assistant Output: *"Pre-authorization was rejected by Star Health due to clinical documentation. I have created escalation ticket #TKT-8492 and routed it to the In-House TPA Desk with high priority. A pre-authorization executive has been notified to attach clinical notes."*
 
+### Step 4: Uncertainty Path (Knowledge Gap Scenario)
+- **User Message**: *"What is the pre-authorization process for PQR Insurance? They are a new insurer we just signed up."*
+- **Engine State**:
+  - Hybrid search finds no `Article` or `Workflow` node matching "PQR Insurance".
+  - Knowledge Graph has zero insurer-specific routing rules or pre-auth thresholds for PQR.
+  - Calculated Verification Score: $S_{\text{total}} = 0.28$ (falls below $0.50$ Low-Confidence threshold).
+  - Outcome: `ROUTE`.
+  - Assistant Output: *"I don't have approved hospital documentation for PQR Insurance's pre-authorization requirements yet. Since this may be a newly empanelled insurer, I am routing your request to the Insurance/TPA Desk (Ticket #TKT-8495) so an executive can clarify and update our knowledge base. In the meantime, you can review the general pre-authorization checklist in SOP-TPA-014."*
+  - **Confidence Badge**: 🔴 Low (0.28) — Insufficient Approved Data.
+  - **Auto-Generated Ticket**: Includes reason `"MISSING_APPROVED_KNOWLEDGE"`, missing entity `"PQR Insurance"`, and suggested owner `"Insurance / TPA Desk"`.
+
 ---
 
 ## 5. Support Routing Engine & Escalation Tickets
@@ -168,3 +179,49 @@ def calculate_urgency(query: str, session: Session) -> str:
   "audit_ref": "c5f6a8e0-47b2-4d1a-96e8-23fbc0432190"
 }
 ```
+
+---
+
+## 6. Agent Dashboard Specification
+
+The Support Agent & Admin Dashboard provides operational supervisors with full visibility into the triage queue, escalated tickets, knowledge health, and compliance logs.
+
+### 6.1 Escalation Queue View (Primary Triage Screen)
+Displays active tickets prioritized by the deterministic urgency scoring engine:
+
+| Display Column | Data Source | Interaction & Behavior |
+| :--- | :--- | :--- |
+| **Urgency Badge** | `ticket.urgency` | 🔴 `CRITICAL` / 🟡 `URGENT` / 🔵 `ROUTINE` (Default sort: Descending) |
+| **Ticket ID** | `ticket.ticket_id` | Click to open Slide-Over Detail Drawer |
+| **Summary** | `ticket.summary` | High-level situation synopsis (auto-synthesized by Step 2) |
+| **Assigned Department**| `ticket.assigned_team` | Filter dropdown: *TPA Desk, Billing, IT, Nursing, Biomedical* |
+| **Initiator Role** | `ticket.initiator.role` | Staff persona seeking assistance (e.g., *Front Desk*) |
+| **Time in Queue** | `ticket.created_at` | Color warning when approaching SLA threshold (e.g., $> 20$ min) |
+| **Status** | `ticket.status` | State pills: `OPEN`, `IN_PROGRESS`, `RESOLVED` |
+
+**Quick Action Buttons**:
+- `Claim Ticket`: Assigns ticket to current logged-in agent and transitions status to `IN_PROGRESS`.
+- `Reassign`: Opens team picker to dispatch ticket to another department with a handoff note.
+- `Quick Resolve`: Closes ticket with resolution category and note.
+
+### 6.2 Ticket Detail Drawer (Slide-Over Panel)
+When an agent clicks an escalation ticket, an inspection drawer expands showing:
+1. **Context Summary**: Structured synopsis of what the employee asked and what the assistant already attempted.
+2. **Tried Steps**: Chronological list of steps executed before escalation occurred.
+3. **Evidence Cited**: Direct clickable badges to the governing SOPs and forms (`SOP-TPA-014`, `FORM-TPA-REQ-02`).
+4. **Escalation Justification**: Deterministic rule trigger that caused the handoff (e.g., `INSURER_REJECTION`, `THRESHOLD_EXCEEDED`, `LOW_CONFIDENCE`).
+5. **Redacted Chat Transcript**: Full multi-turn conversation between employee and assistant with PII masked.
+6. **Agent Resolution Box**: Form allowing the human agent to enter the official resolution note and select whether this incident requires a Knowledge Base update.
+
+### 6.3 Knowledge Graph Explorer View
+Interactive force-directed graph (Cytoscape / 2D Canvas) displaying hospital operational topology:
+- **Visual Node Clustering**: Grouped by type (Articles = Blue, Workflows = Teal, Forms = Yellow, Systems = Purple, Teams = Orange).
+- **Interactive Multi-Hop Inspection**: Click any node (e.g., `WF-RAD-MRI-AUTH-01`) to highlight all connected forms, systems, and owning teams.
+- **Change Impact Mode**: Select a node to compute backlinks and immediately highlight all downstream workflows and steps that depend on it.
+
+### 6.4 Compliance Audit Trail Viewer
+Searchable table querying the immutable `audit_log` records:
+- **Filters**: By User Role, Decision Outcome (`ANSWER`, `GUIDE`, `ROUTE`, `REFUSE`), Confidence Band, Date Range.
+- **Audit Detail Modal**: Inspect exact prompt payload, sanitized query, retrieved node IDs, and confidence score vector.
+- **Export Utility**: One-click CSV/JSON export for hospital accreditation (NABH / ISO 27799) reviews.
+

@@ -157,3 +157,39 @@ The system is strictly bounded by healthcare legal and ethical safeguards:
 - **Citation Validity**: $100\%$ of cited document references exist within the retrieved evidence bundle.
 - **Clinical Refusal Safety**: $100\%$ immediate deterministic deflection on medical queries with zero hallucinations.
 - **Operational Time Savings**: $\ge 60\%$ reduction in frontline search latency for multi-system procedures.
+
+---
+
+## 9. Synthetic Data Ethics Declaration
+
+> **This system uses exclusively synthetic (artificially generated) data.**
+>
+> In strict compliance with hackathon regulations and healthcare data governance principles:
+> - **Zero** real patient, member, provider, employee, production, or confidential client data is used at any stage — training, development, evaluation, or demonstration.
+> - All hospital names, physician identities, insurer titles, policy codes, and employee credentials in the dataset are fictional.
+> - The synthetic workbook replicates realistic healthcare operational schema distributions, field dependencies, and procedural complexity without containing any protected health information (PHI) or personally identifiable information (PII).
+> - All interactions with external hospital systems (HIS, LIS, RIS, PACS, TPA portals) are simulated through deterministic mock service stubs.
+
+---
+
+## 10. System Self-Disclosure: "What I Can and Cannot Do"
+
+To ensure responsible and safe AI deployment, the assistant presents an explicit capability boundary declaration upon user onboarding and via the `/help` command:
+
+> ### Healthcare Operations Assistant — Operational Scope
+>
+> **What I Can Do:**
+> - Retrieve current, approved hospital SOPs, policies, and guidelines with verifiable source citations.
+> - Guide staff step-by-step through routine operational procedures (e.g., MRI pre-authorizations, billing corrections, HIS access requests) without making unsupported assumptions.
+> - Identify missing mandatory fields and prompt for them incrementally.
+> - Route complex, sensitive, or exceptional requests to the correct operational department with an auto-generated context summary.
+> - Flag unapproved, expired, or superseded policies and alert users of operational risks.
+>
+> **What I Cannot Do:**
+> - **Provide medical advice, diagnostic interpretations, or medication dosing** — all clinical inquiries are immediately deflected to the on-duty medical officer.
+> - **Access or disclose confidential patient medical records** or sensitive financial credentials.
+> - **Authorize irreversible operational or financial actions** (e.g., fee waivers $> \$100$, credential escalation) without named human supervisor approval.
+> - **Bypass role-based access controls**, regardless of how an inquiry is framed.
+>
+> **Uncertainty Guarantee:** When information is incomplete or confidence is low, the assistant will explicitly state its limitations and offer a direct handoff to a human supervisor. Users may tap the **"Talk to a Human"** button at any time.
+

@@ -11,6 +11,7 @@
    - *Q1: Why aren't public cloud AI services used as the core architecture?*
    - *Q2: If cloud services are introduced, how could we architect them securely?*
    - *Q3: What are the latency, cost, and availability trade-offs of Edge vs. Cloud?*
+   - *Q16: Why AWS Bedrock instead of direct Anthropic/OpenAI APIs or self-hosted models?*
 2. [Knowledge Retrieval & Graph Topology](#2-knowledge-retrieval--graph-topology)
    - *Q4: Why not pure Vector RAG? Why build an explicit Knowledge Graph ("Second Brain")?*
    - *Q5: Why SQLite + NetworkX instead of a standalone Graph DB (Neo4j / Neptune)?*
@@ -224,3 +225,23 @@ Our defenses:
    - For `GUIDE` and `ROUTE` states: The state machine executes 100% deterministically using pre-compiled UI forms and templates without calling any LLM.
    - For `ANSWER` states: The system displays the raw approved excerpt from the governing SOP directly with citation badges.
    - Operational continuity is maintained at 100% for critical workflows even in a total hospital internet blackout.
+
+---
+
+### Q16: Why AWS Bedrock instead of direct Anthropic/OpenAI APIs or self-hosted models?
+**Answer:**
+Healthcare enterprises have three non-negotiable operational and compliance requirements that **AWS Bedrock** uniquely satisfies:
+
+1. **HIPAA Business Associate Addendum (BAA) Coverage**:
+   - AWS Bedrock is an officially designated **HIPAA-eligible service**. Under the AWS BAA, Anthropic Claude 3.5 Sonnet and Amazon Titan Text Embeddings V2 process data with strict legal guarantees.
+   - Crucially, AWS explicitly guarantees that customer prompt and completion tokens are **never retained, never cached across tenants, and never used to train foundation models**. Direct public consumer APIs do not offer these enforceable enterprise guarantees by default.
+2. **VPC Isolation & PrivateLink Networking**:
+   - In a production healthcare network, Protected Health Information (PHI) or internal operational documents must not traverse the public internet.
+   - AWS Bedrock endpoints can be bound directly to the hospital's private Virtual Private Cloud (VPC) via **AWS PrivateLink**. Traffic flows entirely over AWS internal backbone networks, fulfilling **HIPAA 45 CFR § 164.312(e)** encryption-in-transit and network segmentation standards.
+3. **Consolidated Enterprise Billing & CloudTrail Compliance Logging**:
+   - Hospital IT security boards reject multi-vendor SaaS fragmentation. Bedrock utilizes the hospital's existing AWS billing account and IAM governance.
+   - Every inference request, role assumption, token count, and timestamp is automatically captured by **AWS CloudTrail**, providing the immutable audit trail required during accreditation and medico-legal discovery.
+4. **Model Tiering & Cost Predictability**:
+   - Bedrock provides serverless, pay-per-token pricing with zero minimum commitments.
+   - We utilize a cost-effective tiered model strategy: **Claude 3.5 Sonnet** for nuanced extraction and grounded answering, paired with lightweight **Claude 3 Haiku** for fast sub-200ms edge classification, keeping operational expenses negligible (< \$5/day during active hackathon evaluation).
+

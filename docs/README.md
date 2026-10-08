@@ -17,6 +17,7 @@ This directory provides the complete System Development Life Cycle (SDLC) archit
 | **[03. Knowledge Graph & Ontology Specification](file:///home/kabe/Competions/BTC/docs/03_KNOWLEDGE_GRAPH_AND_ONTOLOGY.md)** | Formal graph schema (nodes, typed edges, attributes), DAG sequential precedence (`precedes`), cycle mitigation, supernode degree capping, and change-impact backlink traversals. |
 | **[04. Guided Workflows & Routing Engine](file:///home/kabe/Competions/BTC/docs/04_WORKFLOW_STATE_MACHINE_AND_ROUTING.md)** | State-machine specifications for routine operations, field definition schemas, validation rules, golden-path MRI pre-authorization walkthrough, and escalation ticket lifecycle. |
 | **[05. Architectural Decisions & FAQs ("Why Not This?")](file:///home/kabe/Competions/BTC/docs/05_ARCHITECTURAL_DECISIONS_AND_FAQS.md)** | Comprehensive architectural defense in Q&A format: Why GraphRAG vs Vector RAG, why local vs cloud, why pre-retrieval RBAC, why deterministic guards, cloud migration blueprints, and edge cases. |
+| **[06. Data Ingestion & Workbook Mapping](file:///home/kabe/Competions/BTC/docs/06_DATA_INGESTION_AND_WORKBOOK_MAPPING.md)** | Tabular workbook schema specifications for all 5 sheets, node/edge transformation pipeline, SQLite/Chroma ingestion logic, and contingency synthetic data generation. |
 
 ---
 
