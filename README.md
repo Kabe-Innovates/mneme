@@ -77,6 +77,7 @@ Complete engineering specifications are available in the [`docs/`](docs/) direct
 - [**04. Guided Workflows & Routing Engine**](docs/04_WORKFLOW_STATE_MACHINE_AND_ROUTING.md): State-machine specifications, field definitions, MRI pre-authorization walkthrough (happy path + uncertainty gap), and Agent Dashboard specifications.
 - [**05. Architectural Decisions & FAQs ("Why Not This?")**](docs/05_ARCHITECTURAL_DECISIONS_AND_FAQS.md): Detailed architectural defense in Q&A format covering Cloud vs. Edge, AWS Bedrock, GraphRAG vs. Vector RAG, Pre-Retrieval RBAC, and offline disaster recovery.
 - [**06. Data Ingestion & Workbook Mapping**](docs/06_DATA_INGESTION_AND_WORKBOOK_MAPPING.md): Tabular workbook schema specifications for all 5 sheets, node/edge transformation pipeline, SQLite/Chroma ingestion logic, and contingency synthetic data generation.
+- [**07. Data Lifecycle, Retention & Edge Cases**](docs/07_DATA_LIFECYCLE_RETENTION_AND_EDGE_CASES.md): 6-tier data lifecycle matrix, encounter-driven eviction (discharge edge case), mid-shift handovers, downtime procedure mode, and catalog of 15 enterprise operational edge cases.
 
 ---
 

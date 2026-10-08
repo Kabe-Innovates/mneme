@@ -245,3 +245,48 @@ Healthcare enterprises have three non-negotiable operational and compliance requ
    - Bedrock provides serverless, pay-per-token pricing with zero minimum commitments.
    - We utilize a cost-effective tiered model strategy: **Claude 3.5 Sonnet** for nuanced extraction and grounded answering, paired with lightweight **Claude 3 Haiku** for fast sub-200ms edge classification, keeping operational expenses negligible (< \$5/day during active hackathon evaluation).
 
+---
+
+### Q17: How long does patient-context data stay in the system, and what happens when a patient is discharged? (Mentor Core Feedback)
+**Answer:**
+A fundamental tenet of our architecture is that the **Assistant is an Operational Guide, NOT an Electronic Medical Record (EMR)**. The system never serves as a secondary storage or shadow database for patient health data.
+
+1. **Zero Long-Term PHI Retention**: No patient identifiers (MRN, Name, Phone, Aadhaar/SSN) are ever written to disk, stored in vector embeddings, or retained in session logs.
+2. **Ephemeral In-Flight Buffer**: During a guided workflow (e.g., MRI pre-authorization or bed allocation), temporary slot values (such as insurer code or approval status) exist solely in **transient server RAM** with a strict 30-minute inactivity TTL.
+3. **Deterministic Discharge Eviction Protocol**:
+   - When a patient is discharged, transferred, or their encounter is closed in the HIS, a webhook (`ENCOUNTER_CLOSED`) or encounter status check immediately purges all associated in-flight slots and active form buffers from memory.
+   - If an escalation ticket was dispatched prior to discharge, the ticket remains in the administrative queue as an operational work order (citing the procedural issue and tried steps), but temporary field buffers are zeroed out.
+   - The append-only audit trail records the event (`SESSION_EVICTED_ON_DISCHARGE`) with a one-way hashed encounter token, maintaining HIPAA compliance while completely scrubbing transient operational data.
+
+---
+
+### Q18: What is the complete data lifecycle across all 6 storage tiers?
+**Answer:**
+Operational hospital data lives on a tiered clock with distinct compliance requirements:
+
+1. **Tier 1 (In-Flight Pipeline)**: Request memory in FastAPI. TTL: $< 3$ seconds. Cleared immediately post-response. Zero disk write.
+2. **Tier 2 (Active Workflow Sessions)**: In-progress form slots. TTL: 30 minutes of inactivity or encounter discharge. Ephemeral server RAM.
+3. **Tier 3 (Escalation Tickets)**: Operational work orders (`escalation_tickets` table). Active for 90 days; cold archive for 1 year; then purged.
+4. **Tier 4 (Knowledge Graph & SOPs)**: Institutional intelligence. Active versions served; superseded versions marked `retired` and retained indefinitely in relational storage for retrospective legal/incident investigations.
+5. **Tier 5 (Dense Vector Index)**: ChromaDB embeddings. Synchronously tombstoned and evicted the moment an SOP is superseded or retired, preventing zombie retrieval.
+6. **Tier 6 (Governance & Audit Trail)**: SQLite `audit_log` with HMAC-SHA256 chaining. Retained for **7 years** (adults) or **Age of Majority + 7 years** (pediatric) under HIPAA § 164.312(b) and NABH CQI.2. Contains only sanitized queries, node IDs, confidence scores, and timestamps—never raw PHI.
+
+---
+
+### Q19: How does the system handle mid-shift handovers and shared computer terminals?
+**Answer:**
+Front desk, billing, and nursing stations in hospitals frequently operate on shared physical PCs across rotating 8-hour or 12-hour shifts.
+- **Shift Boundary Auto-Invalidation**: User authentication JWTs expire at scheduled shift boundaries (e.g., 07:00, 15:00, 23:00) requiring the incoming staff member to log in with their own credentials.
+- **Explicit "Handover Shift" Action**: Staff can click "Handover Shift", which either shelves the active workflow as an internal draft escalation ticket (so the incoming colleague can claim it) or clears the session state completely.
+- **Separation of Duties (SoD)**: Users acting in dual roles (e.g., senior billing executive acting as clerk during rush hours and supervisor later) cannot approve escalation tickets initiated under their own user ID, preventing self-approval fraud.
+
+---
+
+### Q20: What is the fallback when the hospital's central HIS crashes (Downtime Mode)?
+**Answer:**
+When an unexpected HIS/EMR outage occurs (Code Yellow / IT Downtime):
+1. **Downtime Procedure Mode**: The assistant detects `HIS_STATUS == "OFFLINE"` and automatically switches behavior.
+2. **Manual SOP & Form Surfacing**: Instead of guiding staff through electronic screens, it surfaces `SOP-IT-008: Manual Downtime Operations` and links printable downtime registration slips, manual deposit books, and emergency triplicate forms.
+3. **Deferred Ticket Queueing**: Escalations are marked with `OFFLINE_BUFFER` flags and held locally until connectivity is restored, ensuring operational continuity without loss of critical operational requests.
+
+
