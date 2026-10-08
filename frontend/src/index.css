@@ -4,7 +4,11 @@
 
 @layer base {
   body {
-    @apply bg-dark-bg text-dark-text antialiased;
+    @apply bg-dark-bg text-dark-text antialiased font-sans;
+  }
+
+  input, textarea, select, button {
+    font-family: inherit;
   }
 
   button {

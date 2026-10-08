@@ -77,7 +77,7 @@ export function ChatWindow({ username, role, sessionId, onViewQueue }: Props) {
 
   const CapsuleBar = ({ centered }: { centered?: boolean }) => (
     <div className={clsx(centered ? "w-full max-w-2xl" : "w-full max-w-3xl", "mx-auto")}>
-      <div className="flex items-end gap-3 rounded-full bg-dark-surface px-5 py-3 shadow-lg ring-1 ring-dark-border focus-within:ring-brand-600 transition-all">
+      <div className="flex items-center gap-3 rounded-full bg-dark-surface pl-6 pr-2.5 py-2 shadow-2xl ring-1 ring-dark-border focus-within:ring-2 focus-within:ring-brand-500/50 focus-within:border-brand-500/50 transition-all">
         <textarea
           ref={inputRef}
           rows={1}
@@ -85,18 +85,19 @@ export function ChatWindow({ username, role, sessionId, onViewQueue }: Props) {
           onChange={handleInput}
           onKeyDown={handleKeyDown}
           placeholder={`Ask anything as ${role}…`}
-          className="flex-1 resize-none bg-transparent text-sm text-dark-text placeholder-dark-muted focus:outline-none"
+          className="flex-1 resize-none bg-transparent py-1.5 font-sans text-sm md:text-base text-dark-text placeholder:font-sans placeholder:text-dark-muted/60 placeholder:font-normal focus:outline-none leading-normal"
           style={{ maxHeight: "120px", overflowY: "hidden" }}
         />
         <button
           onClick={() => handleSend()}
           disabled={!input.trim() || loading}
           className={clsx(
-            "shrink-0 rounded-full p-2 transition-colors",
+            "shrink-0 rounded-full p-2.5 transition-all flex items-center justify-center",
             input.trim() && !loading
-              ? "bg-brand-600 text-white hover:bg-brand-700"
-              : "bg-dark-hover text-dark-muted cursor-not-allowed"
+              ? "bg-brand-600 text-white hover:bg-brand-500 shadow-md shadow-brand-600/30"
+              : "bg-dark-hover text-dark-muted/40 cursor-not-allowed"
           )}
+          aria-label="Send query"
         >
           {loading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -110,18 +111,20 @@ export function ChatWindow({ username, role, sessionId, onViewQueue }: Props) {
 
   if (isLanding) {
     return (
-      <div className="flex h-full flex-col items-center justify-center gradient-aura px-4 font-sans">
-        {/* Greeting */}
-        <h1 className="font-display mb-3 text-center text-4xl sm:text-5xl font-semibold tracking-tight text-dark-text">
-          Hi <span className="bg-gradient-to-r from-brand-300 to-brand-500 bg-clip-text text-transparent">{username}</span>, how can I help?
-        </h1>
-        <p className="font-sans mb-10 text-center text-xs uppercase tracking-[0.22em] text-dark-muted font-medium">
-          Deterministic Second Brain for Hospital Operations
-        </p>
+      <div className="flex h-full w-full flex-col items-center justify-center gradient-aura px-4 font-sans">
+        <div className="w-full max-w-2xl mx-auto flex flex-col items-center text-center -mt-10">
+          {/* Greeting */}
+          <h1 className="font-display mb-3 text-center text-4xl sm:text-5xl font-semibold tracking-tight text-dark-text">
+            Hi <span className="bg-gradient-to-r from-brand-300 to-brand-500 bg-clip-text text-transparent">{username}</span>, how can I help?
+          </h1>
+          <p className="font-sans mb-10 text-center text-xs uppercase tracking-[0.22em] text-dark-muted font-medium">
+            Deterministic Second Brain for Hospital Operations
+          </p>
 
-        {/* Capsule prompt */}
-        <div className="w-full flex justify-center">
-          <CapsuleBar centered />
+          {/* Capsule prompt */}
+          <div className="w-full">
+            <CapsuleBar centered />
+          </div>
         </div>
       </div>
     );
