@@ -12,7 +12,7 @@ export function ConfidenceBadge({ confidence, band }: Props) {
   return (
     <span
       className={clsx(
-        "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium",
+        "font-mono inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-medium tracking-tight",
         level === "high" && "bg-green-500/15 text-green-400",
         level === "medium" && "bg-yellow-500/15 text-yellow-400",
         level === "low" && "bg-orange-500/15 text-orange-400"

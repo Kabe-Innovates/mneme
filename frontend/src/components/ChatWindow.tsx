@@ -5,12 +5,6 @@ import { MessageBubble } from "./MessageBubble";
 import type { Message } from "../types";
 import { clsx } from "clsx";
 
-const SUGGESTIONS = [
-  "What is the visitor policy for ICU patients?",
-  "Patient has MRI tomorrow, insurance authorization is pending",
-  "I need to process a billing correction of $2000",
-  "How do I request medical records release?",
-];
 
 interface Props {
   username: string;
@@ -116,29 +110,18 @@ export function ChatWindow({ username, role, sessionId, onViewQueue }: Props) {
 
   if (isLanding) {
     return (
-      <div className="flex h-full flex-col items-center justify-center gradient-aura px-4">
+      <div className="flex h-full flex-col items-center justify-center gradient-aura px-4 font-sans">
         {/* Greeting */}
-        <h1 className="mb-2 text-center text-5xl font-light tracking-tight text-dark-text">
-          Hi {username}, how can I help?
+        <h1 className="font-display mb-3 text-center text-4xl sm:text-5xl font-semibold tracking-tight text-dark-text">
+          Hi <span className="bg-gradient-to-r from-brand-300 to-brand-500 bg-clip-text text-transparent">{username}</span>, how can I help?
         </h1>
-        <p className="mb-10 text-sm leading-relaxed text-dark-muted">Mneme Healthcare Operations Assistant</p>
+        <p className="font-sans mb-10 text-center text-xs uppercase tracking-[0.22em] text-dark-muted font-medium">
+          Deterministic Second Brain for Hospital Operations
+        </p>
 
         {/* Capsule prompt */}
-        <div className="w-full">
+        <div className="w-full flex justify-center">
           <CapsuleBar centered />
-        </div>
-
-        {/* Suggestion chips */}
-        <div className="mt-5 flex flex-wrap justify-center gap-2">
-          {SUGGESTIONS.map((s) => (
-            <button
-              key={s}
-              onClick={() => handleSend(s)}
-              className="rounded-full border border-dark-border bg-dark-surface px-3.5 py-1.5 text-xs text-dark-muted hover:border-brand-500 hover:text-brand-400 transition-colors"
-            >
-              {s}
-            </button>
-          ))}
         </div>
       </div>
     );

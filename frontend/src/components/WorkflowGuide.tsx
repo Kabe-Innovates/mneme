@@ -109,15 +109,15 @@ export function WorkflowGuide({ workflow, sessionId }: Props) {
       {/* Header */}
       <div className="mb-3 flex items-start justify-between gap-2">
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-brand-400">
+          <p className="font-display text-[10px] font-semibold uppercase tracking-widest text-brand-400">
             Step-by-Step Workflow
           </p>
-          <h3 className="text-sm font-medium text-dark-text">{workflow.workflow_name}</h3>
-          <p className="text-xs text-dark-muted">
+          <h3 className="font-display text-sm font-semibold text-dark-text tracking-tight">{workflow.workflow_name}</h3>
+          <p className="font-sans text-xs text-dark-muted">
             {workflow.department} · Managed by {workflow.owner_team}
           </p>
         </div>
-        <span className="shrink-0 rounded bg-brand-500/15 px-2 py-0.5 text-xs font-medium text-brand-400">
+        <span className="font-mono shrink-0 rounded bg-brand-500/15 px-2 py-0.5 text-xs font-semibold text-brand-400">
           {workflow.steps.length} steps
         </span>
       </div>
@@ -156,11 +156,11 @@ export function WorkflowGuide({ workflow, sessionId }: Props) {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-semibold text-dark-muted">
+                  <span className="font-display text-xs font-semibold text-dark-muted">
                     Step {step.step_number}
                   </span>
                   {step.is_approval_gate && (
-                    <span className="rounded bg-orange-500/15 px-1.5 py-0.5 text-xs font-medium text-orange-400">
+                    <span className="font-display rounded bg-orange-500/15 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-orange-400">
                       Approval Required
                     </span>
                   )}

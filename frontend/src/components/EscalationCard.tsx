@@ -24,15 +24,15 @@ export function EscalationCard({ routingTarget, escalationReason, priority, tick
         <AlertTriangle className={clsx("mt-0.5 h-4 w-4 shrink-0", cfg.icon)} />
         <div className="flex-1 space-y-2">
           <div className="flex items-center justify-between gap-2">
-            <span className="text-sm font-medium text-dark-text">Escalated for Human Review</span>
-            <span className={clsx("rounded-full px-2 py-0.5 text-xs font-bold", cfg.badge)}>
+            <span className="font-display text-sm font-semibold tracking-tight text-dark-text">Escalated for Human Review</span>
+            <span className={clsx("font-display rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider", cfg.badge)}>
               {priority}
             </span>
           </div>
 
           <div className="flex items-center gap-1.5 text-sm text-dark-text">
             <Users className="h-3.5 w-3.5 text-dark-muted" />
-            <span className="font-medium">{routingTarget}</span>
+            <span className="font-display font-semibold">{routingTarget}</span>
           </div>
 
           <p className="text-xs text-dark-muted">{escalationReason}</p>

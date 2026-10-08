@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import {
   AlertTriangle, CheckCircle2, RefreshCw, ChevronDown, ChevronUp,
-  Clock, Brain, FileText, ListOrdered, BadgeCheck, FilePen,
+  Clock, Database, Inbox, BookOpen, FileText, ListOrdered, BadgeCheck, FilePen,
 } from "lucide-react";
 import { clsx } from "clsx";
 import type { EscalationTicket, KnowledgeItem } from "../types";
@@ -176,10 +176,10 @@ function KnowledgeVault() {
       {/* Sub-header */}
       <div className="flex items-center justify-between border-b border-dark-border bg-dark-surface px-6 py-3">
         <div className="flex items-center gap-2">
-          <Brain className="h-5 w-5 text-brand-400" />
+          <Database className="h-5 w-5 text-brand-400" />
           <div>
-            <h2 className="text-sm font-medium text-dark-text">Living Knowledge Vault</h2>
-            <p className="text-xs text-dark-muted">
+            <h2 className="font-display text-sm font-semibold tracking-tight text-dark-text">Living Knowledge Vault</h2>
+            <p className="font-sans text-xs text-dark-muted">
               {items.length} items · {draftCount} pending approval
             </p>
           </div>
@@ -251,9 +251,9 @@ function KnowledgeVault() {
         ) : (
           <div className="space-y-2">
             {items.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-20 text-dark-muted">
-                <Brain className="mb-3 h-10 w-10 text-dark-border" />
-                <p className="text-sm font-medium">No items found</p>
+              <div className="flex flex-col items-center justify-center py-20 text-dark-muted font-sans">
+                <Inbox className="mb-3 h-10 w-10 text-dark-border" />
+                <p className="font-display text-sm font-semibold text-dark-muted">No items found</p>
               </div>
             ) : (
               items.map((item) => (
@@ -380,19 +380,19 @@ export function SupervisorDashboard() {
         <button
           onClick={() => setInnerTab("knowledge")}
           className={clsx(
-            "flex items-center gap-1.5 rounded-t-lg border-b-2 px-3 py-2 text-xs font-medium transition-colors",
+            "flex items-center gap-1.5 rounded-t-lg border-b-2 px-3 py-2 text-xs font-medium transition-colors font-sans",
             innerTab === "knowledge"
               ? "border-brand-500 bg-brand-500/10 text-brand-400"
               : "border-transparent text-dark-muted hover:text-dark-text"
           )}
         >
-          <Brain className="h-3.5 w-3.5" />
+          <BookOpen className="h-3.5 w-3.5" />
           Knowledge Vault
         </button>
       </div>
 
       {/* Inner tab content */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden font-sans">
         {innerTab === "knowledge" ? (
           <KnowledgeVault />
         ) : (
@@ -402,8 +402,8 @@ export function SupervisorDashboard() {
               <div className="flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-orange-400" />
                 <div>
-                  <h2 className="text-sm font-medium text-dark-text">Operations Hub</h2>
-                  <p className="text-xs text-dark-muted">
+                  <h2 className="font-display text-sm font-semibold tracking-tight text-dark-text">Operations Hub</h2>
+                  <p className="font-sans text-xs text-dark-muted">
                     {openCount} open ticket{openCount !== 1 ? "s" : ""} · {tickets.length} total
                   </p>
                 </div>

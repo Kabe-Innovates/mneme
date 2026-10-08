@@ -22,7 +22,7 @@ function OutcomeBadge({ outcome }: { outcome: Outcome }) {
   return (
     <span
       className={clsx(
-        "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold",
+        "font-display inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider",
         bg,
         text
       )}
@@ -130,7 +130,7 @@ export function MessageBubble({ message, sessionId, onViewQueue }: Props) {
         )}
 
         {/* Timestamp */}
-        <p className="mt-2 text-right text-xs text-dark-muted/60">
+        <p className="font-mono mt-2 text-right text-[11px] text-dark-muted/50">
           {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
         </p>
       </div>

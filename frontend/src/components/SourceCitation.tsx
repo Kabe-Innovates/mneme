@@ -72,26 +72,26 @@ export function SourceCitation({ sources, graphContext = [] }: Props) {
           {/* Knowledge graph context */}
           {hasGraph && (
             <div>
-              <p className="mb-1.5 flex items-center gap-1 text-xs font-medium text-dark-muted">
-                <Network className="h-3 w-3" />
-                Knowledge Graph — connected entities
+              <p className="font-display mb-1.5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-dark-muted">
+                <Network className="h-3 w-3 text-brand-400" />
+                Knowledge Graph — Connected Entities
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {graphContext.map((node) => (
                   <div
                     key={node.node_id}
-                    className="flex items-center gap-1 rounded-full border border-dark-border bg-dark-surface px-2 py-0.5"
+                    className="flex items-center gap-1.5 rounded-full border border-dark-border bg-dark-surface px-2.5 py-0.5"
                     title={node.detail || node.node_id}
                   >
                     <span
                       className={clsx(
-                        "rounded-full px-1.5 py-0.5 text-xs font-semibold",
+                        "font-display rounded-full px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider",
                         nodeTypeColors[node.node_type] || "bg-dark-hover text-dark-muted"
                       )}
                     >
                       {node.node_type}
                     </span>
-                    <span className="text-xs text-dark-text">{node.title}</span>
+                    <span className="font-mono text-xs text-dark-text">{node.title}</span>
                   </div>
                 ))}
               </div>

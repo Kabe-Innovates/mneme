@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Brain, MessageSquare, LayoutDashboard, Settings, Zap, ZapOff, Shield, LogOut } from "lucide-react";
+import { Layers, MessageSquare, LayoutDashboard, Settings, Zap, ZapOff, Shield, LogOut } from "lucide-react";
 import { clsx } from "clsx";
 import { ChatWindow } from "./components/ChatWindow";
 import { SupervisorDashboard } from "./components/SupervisorDashboard";
@@ -34,12 +34,12 @@ export default function App() {
   const initial = user.name.charAt(0).toUpperCase();
 
   return (
-    <div className="flex h-screen overflow-hidden bg-dark-bg">
+    <div className="flex h-screen overflow-hidden bg-dark-bg font-sans">
       {/* Nav Rail */}
       <aside className="flex w-16 shrink-0 flex-col items-center border-r border-dark-border bg-dark-surface py-4">
         {/* Brand icon */}
-        <div className="mb-6 flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-sm">
-          <Brain className="h-5 w-5 text-white" />
+        <div className="mb-6 flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-md shadow-brand-500/20">
+          <Layers className="h-5 w-5 text-white" />
         </div>
 
         {/* Nav items */}

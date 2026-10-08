@@ -25,8 +25,8 @@ const ACTIONS = [
 
 export function RefuseGuidance() {
   return (
-    <div className="mt-3 space-y-2 rounded-lg border border-red-500/20 bg-red-500/10 p-3">
-      <div className="flex items-center gap-1.5 text-xs font-semibold text-red-400">
+    <div className="mt-3 space-y-2 rounded-lg border border-red-500/20 bg-red-500/10 p-3 font-sans">
+      <div className="font-display flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-red-400">
         <XCircle className="h-3.5 w-3.5" />
         Outside operational scope — suggested next steps
       </div>
