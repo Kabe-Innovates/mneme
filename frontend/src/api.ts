@@ -29,3 +29,43 @@ export async function getAuditLog(sessionId: string) {
   const res = await fetch(`${API_BASE}/api/audit/${sessionId}`);
   return res.json();
 }
+
+export async function submitWorkflowField(
+  sessionId: string,
+  workflowId: string,
+  fieldName: string,
+  fieldValue: string
+) {
+  const res = await fetch(`${API_BASE}/api/workflow/submit`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      session_id: sessionId,
+      workflow_id: workflowId,
+      field_name: fieldName,
+      field_value: fieldValue,
+    }),
+  });
+  if (!res.ok) throw new Error(`Submit failed: ${res.status}`);
+  return res.json();
+}
+
+export async function getTickets() {
+  const res = await fetch(`${API_BASE}/api/tickets`);
+  return res.json();
+}
+
+export async function resolveTicket(ticketId: string, notes: string = "") {
+  const res = await fetch(
+    `${API_BASE}/api/tickets/${ticketId}/resolve?notes=${encodeURIComponent(notes)}`,
+    { method: "POST" }
+  );
+  return res.json();
+}
+
+export async function toggleLlm(enabled: boolean) {
+  const res = await fetch(`${API_BASE}/api/system/llm-toggle?enabled=${enabled}`, {
+    method: "POST",
+  });
+  return res.json();
+}

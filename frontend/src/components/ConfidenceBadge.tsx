@@ -6,7 +6,7 @@ interface Props {
 
 export function ConfidenceBadge({ confidence }: Props) {
   const pct = Math.round(confidence * 100);
-  const level = pct >= 80 ? "high" : pct >= 50 ? "medium" : "low";
+  const level = pct >= 85 ? "high" : pct >= 50 ? "medium" : "low";
 
   return (
     <span

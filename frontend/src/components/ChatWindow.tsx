@@ -88,7 +88,7 @@ export function ChatWindow({ role, sessionId }: Props) {
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scrollbar-thin">
         {messages.map((msg) => (
-          <MessageBubble key={msg.id} message={msg} />
+          <MessageBubble key={msg.id} message={msg} sessionId={sessionId} />
         ))}
 
         {loading && (

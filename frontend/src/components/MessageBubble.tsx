@@ -41,9 +41,10 @@ function formatMessage(text: string) {
 
 interface Props {
   message: Message;
+  sessionId: string;
 }
 
-export function MessageBubble({ message }: Props) {
+export function MessageBubble({ message, sessionId }: Props) {
   const isUser = message.role === "user";
   const res = message.response;
 
@@ -57,9 +58,19 @@ export function MessageBubble({ message }: Props) {
     );
   }
 
+  const coverageKeys = ["WHAT", "WHERE", "NEXT", "WHO", "HOW"] as const;
+
   return (
     <div className="flex justify-start">
       <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-white px-4 py-3 shadow-sm ring-1 ring-slate-100">
+
+        {/* LLM offline banner */}
+        {res?.banner && (
+          <div className="mb-2 rounded bg-amber-50 border border-amber-200 px-2.5 py-1.5 text-xs text-amber-700 flex items-center gap-1.5">
+            <span className="font-semibold">⚠</span> {res.banner}
+          </div>
+        )}
+
         {/* Header */}
         {res && (
           <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -67,6 +78,26 @@ export function MessageBubble({ message }: Props) {
             {res.confidence > 0 && res.outcome !== "REFUSE" && (
               <ConfidenceBadge confidence={res.confidence} />
             )}
+          </div>
+        )}
+
+        {/* 5-question coverage chips (ANSWER only) */}
+        {res?.outcome === "ANSWER" && res.coverage && Object.keys(res.coverage).length > 0 && (
+          <div className="mb-2 flex flex-wrap gap-1">
+            {coverageKeys.map((k) => {
+              const val = res.coverage[k] ?? 0;
+              return (
+                <span
+                  key={k}
+                  className={`rounded-full px-1.5 py-0.5 text-xs font-semibold ${
+                    val ? "bg-green-100 text-green-700" : "bg-slate-100 text-slate-400"
+                  }`}
+                  title={`${k}: ${val ? "covered" : "not covered"}`}
+                >
+                  {k}
+                </span>
+              );
+            })}
           </div>
         )}
 
@@ -78,7 +109,7 @@ export function MessageBubble({ message }: Props) {
 
         {/* Outcome-specific components */}
         {res?.outcome === "GUIDE" && res.workflow && (
-          <WorkflowGuide workflow={res.workflow} />
+          <WorkflowGuide workflow={res.workflow} sessionId={sessionId} />
         )}
 
         {res?.outcome === "ROUTE" && res.routing_target && (
@@ -89,8 +120,8 @@ export function MessageBubble({ message }: Props) {
           />
         )}
 
-        {res?.outcome === "ANSWER" && res.sources.length > 0 && (
-          <SourceCitation sources={res.sources} />
+        {res?.outcome === "ANSWER" && (res.sources.length > 0 || res.graph_context?.length > 0) && (
+          <SourceCitation sources={res.sources} graphContext={res.graph_context} />
         )}
 
         {/* Timestamp */}
