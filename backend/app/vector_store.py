@@ -89,5 +89,15 @@ def search(query: str, role: str, n_results: int = 5) -> list[dict]:
     return docs
 
 
+def upsert_document(doc: dict) -> None:
+    """Insert or update a single document (Living Second Brain incremental indexing)."""
+    col = _get_collection()
+    col.upsert(
+        ids=[doc["id"]],
+        documents=[doc["text"]],
+        metadatas=[doc["metadata"]],
+    )
+
+
 def collection_count() -> int:
     return _get_collection().count()

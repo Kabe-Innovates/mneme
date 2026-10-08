@@ -342,7 +342,7 @@ def _log(session_id: str, role: str, query: str, response: OrchestratorResponse)
             response=response.model_dump(),
         )
         if response.outcome == "ROUTE" and response.routing_target:
-            audit.create_ticket(
+            ticket_id = audit.create_ticket(
                 session_id=session_id,
                 initiator_role=role,
                 target_team=response.routing_target,
@@ -350,5 +350,6 @@ def _log(session_id: str, role: str, query: str, response: OrchestratorResponse)
                 summary=redacted[:200],
                 escalation_reason=response.escalation_reason or "",
             )
+            response.ticket_id = ticket_id
     except Exception as e:
         print(f"[Orchestrator] Audit log error: {e}")

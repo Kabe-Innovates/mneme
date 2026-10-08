@@ -92,3 +92,4 @@ class OrchestratorResponse(BaseModel):
     coverage: dict[str, int] = {}   # {"WHAT":1,"WHERE":1,"NEXT":1,"WHO":1,"HOW":0}
     llm_mode: str = "llm"           # "llm" | "template"
     banner: Optional[str] = None    # shown in UI when LLM is offline
+    ticket_id: Optional[str] = None # populated for ROUTE outcomes

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path="../.env")
 
 from app.models import ChatRequest, OrchestratorResponse, HOSPITAL_ROLES, WorkflowFieldSubmit, WorkflowFieldResponse
-from app import orchestrator, audit, data_loader, router as routing_module, workflow_engine
+from app import orchestrator, audit, data_loader, router as routing_module, workflow_engine, knowledge_manager
 
 app = FastAPI(title="Mneme — Healthcare Operations Assistant", version="1.0.0")
 
@@ -87,6 +87,35 @@ async def llm_toggle(enabled: bool = True):
     from app import llm as llm_module
     llm_module.set_llm_available(enabled)
     return {"llm_available": enabled}
+
+
+@app.get("/api/knowledge/index")
+async def knowledge_index(status: str = None):
+    items = knowledge_manager.list_items(status_filter=status)
+    return {"items": items, "total": len(items)}
+
+
+@app.get("/api/knowledge/log")
+async def knowledge_log(lines: int = 100):
+    return {"log": knowledge_manager.get_log(lines=lines)}
+
+
+@app.post("/api/knowledge/articles")
+async def add_article(article: dict, submitted_by: str = "user"):
+    try:
+        result = knowledge_manager.add_article(article, submitted_by=submitted_by)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    return result
+
+
+@app.post("/api/knowledge/articles/{article_id}/approve")
+async def approve_article(article_id: str, approved_by: str = "supervisor"):
+    try:
+        result = knowledge_manager.approve_article(article_id, approved_by=approved_by)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    return result
 
 
 @app.get("/api/health")
