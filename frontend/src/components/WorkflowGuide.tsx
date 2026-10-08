@@ -37,20 +37,20 @@ function FieldInput({
 
   if (done) {
     return (
-      <div className="flex items-center gap-1.5 text-xs text-green-600">
+      <div className="flex items-center gap-1.5 text-xs text-green-400">
         <CheckCircle2 className="h-3.5 w-3.5" />
         <span className="font-medium">{field.label}</span>
-        <span className="text-slate-400">— saved</span>
+        <span className="text-dark-muted">— saved</span>
       </div>
     );
   }
 
   return (
     <div className="space-y-1">
-      <label className="flex items-center gap-1 text-xs font-medium text-slate-700">
+      <label className="flex items-center gap-1 text-xs font-medium text-dark-text">
         {field.label}
-        {field.is_required && <span className="text-red-500">*</span>}
-        {field.is_sensitive && <Lock className="h-3 w-3 text-orange-500" />}
+        {field.is_required && <span className="text-red-400">*</span>}
+        {field.is_sensitive && <Lock className="h-3 w-3 text-orange-400" />}
       </label>
 
       <div className="flex gap-2">
@@ -58,7 +58,7 @@ function FieldInput({
           <select
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            className="flex-1 rounded border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-700 focus:border-blue-400 focus:outline-none"
+            className="flex-1 rounded border border-dark-border bg-dark-bg px-2 py-1.5 text-xs text-dark-text focus:border-brand-500 focus:outline-none"
           >
             <option value="">Select…</option>
             {field.allowed_values.map((v) => (
@@ -71,19 +71,19 @@ function FieldInput({
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder={field.validation_regex ? `Format: ${field.validation_regex}` : `Enter ${field.label.toLowerCase()}`}
-            className="flex-1 rounded border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-700 placeholder-slate-300 focus:border-blue-400 focus:outline-none"
+            className="flex-1 rounded border border-dark-border bg-dark-bg px-2 py-1.5 text-xs text-dark-text placeholder-dark-muted focus:border-brand-500 focus:outline-none"
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
           />
         )}
         <button
           onClick={handleSubmit}
           disabled={submitting || !value}
-          className="rounded bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-700 disabled:opacity-40"
+          className="rounded bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 disabled:opacity-40"
         >
           {submitting ? "…" : "Save"}
         </button>
       </div>
-      {error && <p className="text-xs text-red-500">{error}</p>}
+      {error && <p className="text-xs text-red-400">{error}</p>}
     </div>
   );
 }
@@ -105,26 +105,26 @@ export function WorkflowGuide({ workflow, sessionId }: Props) {
   };
 
   return (
-    <div className="mt-3 rounded-lg border border-blue-100 bg-blue-50 p-3">
+    <div className="mt-3 rounded-lg border border-brand-500/20 bg-brand-500/10 p-3">
       {/* Header */}
       <div className="mb-3 flex items-start justify-between gap-2">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">
+          <p className="text-xs font-medium uppercase tracking-wide text-brand-400">
             Step-by-Step Workflow
           </p>
-          <h3 className="text-sm font-bold text-slate-800">{workflow.workflow_name}</h3>
-          <p className="text-xs text-slate-500">
+          <h3 className="text-sm font-medium text-dark-text">{workflow.workflow_name}</h3>
+          <p className="text-xs text-dark-muted">
             {workflow.department} · Managed by {workflow.owner_team}
           </p>
         </div>
-        <span className="shrink-0 rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">
+        <span className="shrink-0 rounded bg-brand-500/15 px-2 py-0.5 text-xs font-medium text-brand-400">
           {workflow.steps.length} steps
         </span>
       </div>
 
       {/* Approval gate banner */}
       {approvalReached && (
-        <div className="mb-3 rounded-md border border-orange-200 bg-orange-50 p-2 text-xs text-orange-700">
+        <div className="mb-3 rounded-md border border-orange-500/20 bg-orange-500/10 p-2 text-xs text-orange-400">
           <strong>Approval gate reached.</strong> This step requires supervisor sign-off before proceeding.
           An escalation ticket has been created.
         </div>
@@ -141,33 +141,33 @@ export function WorkflowGuide({ workflow, sessionId }: Props) {
               key={step.step_number}
               className={clsx(
                 "flex gap-2.5 rounded-md p-2",
-                isCurrent && "bg-white shadow-sm ring-1 ring-blue-200",
-                isDone && "opacity-60"
+                isCurrent && "bg-dark-surface ring-1 ring-brand-500/30",
+                isDone && "opacity-50"
               )}
             >
               <div className="shrink-0 pt-0.5">
                 {isDone ? (
-                  <CheckCircle2 className="h-4 w-4 text-green-500" />
+                  <CheckCircle2 className="h-4 w-4 text-green-400" />
                 ) : isCurrent ? (
-                  <ChevronRight className="h-4 w-4 text-blue-600" />
+                  <ChevronRight className="h-4 w-4 text-brand-400" />
                 ) : (
-                  <Circle className="h-4 w-4 text-slate-300" />
+                  <Circle className="h-4 w-4 text-dark-border" />
                 )}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-semibold text-slate-500">
+                  <span className="text-xs font-semibold text-dark-muted">
                     Step {step.step_number}
                   </span>
                   {step.is_approval_gate && (
-                    <span className="rounded bg-orange-100 px-1.5 py-0.5 text-xs font-medium text-orange-700">
+                    <span className="rounded bg-orange-500/15 px-1.5 py-0.5 text-xs font-medium text-orange-400">
                       Approval Required
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-slate-700">{step.description}</p>
+                <p className="text-sm text-dark-text">{step.description}</p>
                 {step.system_used && (
-                  <p className="mt-0.5 text-xs text-slate-500">
+                  <p className="mt-0.5 text-xs text-dark-muted">
                     System: <span className="font-medium">{step.system_used}</span>
                   </p>
                 )}
@@ -176,7 +176,7 @@ export function WorkflowGuide({ workflow, sessionId }: Props) {
                     {step.required_fields.map((f) => (
                       <span
                         key={f}
-                        className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-xs text-slate-600"
+                        className="rounded bg-dark-hover px-1.5 py-0.5 font-mono text-xs text-dark-muted"
                       >
                         {f}
                       </span>
@@ -191,21 +191,21 @@ export function WorkflowGuide({ workflow, sessionId }: Props) {
 
       {/* Interactive missing fields form */}
       {missingFields.length > 0 && (
-        <div className="mt-3 rounded-md border border-amber-200 bg-amber-50 p-3">
+        <div className="mt-3 rounded-md border border-amber-500/20 bg-amber-500/10 p-3">
           <button
             onClick={() => setShowFields(!showFields)}
-            className="flex w-full items-center justify-between gap-1.5 mb-1"
+            className="mb-1 flex w-full items-center justify-between gap-1.5"
           >
             <div className="flex items-center gap-1.5">
-              <AlertCircle className="h-3.5 w-3.5 text-amber-600" />
-              <span className="text-xs font-semibold text-amber-700">
+              <AlertCircle className="h-3.5 w-3.5 text-amber-400" />
+              <span className="text-xs font-semibold text-amber-400">
                 Required Information ({missingFields.length} field{missingFields.length !== 1 ? "s" : ""})
               </span>
             </div>
             {showFields ? (
-              <ChevronUp className="h-3.5 w-3.5 text-amber-500" />
+              <ChevronUp className="h-3.5 w-3.5 text-amber-400" />
             ) : (
-              <ChevronDown className="h-3.5 w-3.5 text-amber-500" />
+              <ChevronDown className="h-3.5 w-3.5 text-amber-400" />
             )}
           </button>
           {showFields && (
@@ -220,7 +220,7 @@ export function WorkflowGuide({ workflow, sessionId }: Props) {
 
       {/* All fields done */}
       {missingFields.length === 0 && currentStep > 1 && !approvalReached && (
-        <div className="mt-3 rounded-md border border-green-200 bg-green-50 p-2 text-xs text-green-700">
+        <div className="mt-3 rounded-md border border-green-500/20 bg-green-500/10 p-2 text-xs text-green-400">
           <CheckCircle2 className="mr-1.5 inline h-3.5 w-3.5" />
           All required fields collected. Proceed to the next step in the system.
         </div>
@@ -228,7 +228,7 @@ export function WorkflowGuide({ workflow, sessionId }: Props) {
 
       {/* Escalation info */}
       {workflow.escalation_team && (
-        <p className="mt-2 text-xs text-slate-500">
+        <p className="mt-2 text-xs text-dark-muted">
           Escalation support: <span className="font-medium">{workflow.escalation_team}</span>
         </p>
       )}

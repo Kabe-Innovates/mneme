@@ -1,26 +1,29 @@
 import { useState } from "react";
-import { Activity, Shield, Brain, MessageSquare, ClipboardList, AlertTriangle, Zap, ZapOff } from "lucide-react";
+import { Brain, MessageSquare, LayoutDashboard, Settings, Zap, ZapOff, Shield, LogOut } from "lucide-react";
 import { clsx } from "clsx";
-import { RoleSelector } from "./components/RoleSelector";
 import { ChatWindow } from "./components/ChatWindow";
 import { SupervisorDashboard } from "./components/SupervisorDashboard";
+import { LoginScreen } from "./components/LoginScreen";
 import { toggleLlm } from "./api";
 
 const SESSION_ID = crypto.randomUUID();
 
-const STATS = [
-  { label: "Outcomes", value: "4", desc: "ANSWER · GUIDE · ROUTE · REFUSE", icon: Brain },
-  { label: "Compliance", value: "HIPAA", desc: "AWS Bedrock · NABH 5th", icon: Shield },
-  { label: "Documents", value: "27", desc: "Articles + Workflows indexed", icon: ClipboardList },
-  { label: "Roles", value: "15", desc: "Hospital operational roles", icon: Activity },
-];
+type View = "chat" | "ops-hub";
 
-type Tab = "chat" | "supervisor";
+interface User {
+  name: string;
+  role: string;
+}
 
 export default function App() {
-  const [role, setRole] = useState("Front Office");
-  const [tab, setTab] = useState<Tab>("chat");
+  const [user, setUser] = useState<User | null>(null);
+  const [view, setView] = useState<View>("chat");
   const [llmOn, setLlmOn] = useState(true);
+  const [profileOpen, setProfileOpen] = useState(false);
+
+  if (!user) {
+    return <LoginScreen onLogin={(name, role) => setUser({ name, role })} />;
+  }
 
   const handleLlmToggle = async () => {
     const next = !llmOn;
@@ -28,129 +31,131 @@ export default function App() {
     await toggleLlm(next).catch(() => setLlmOn(llmOn));
   };
 
+  const initial = user.name.charAt(0).toUpperCase();
+
   return (
-    <div className="flex h-screen overflow-hidden bg-slate-50">
-      {/* Sidebar */}
-      <aside className="flex w-64 shrink-0 flex-col border-r border-slate-200 bg-white shadow-sm">
-        {/* Logo */}
-        <div className="border-b border-slate-100 px-4 py-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
-              <Brain className="h-5 w-5 text-white" />
-            </div>
-            <div>
-              <h1 className="text-base font-bold text-slate-800">Mneme</h1>
-              <p className="text-xs text-slate-400">Healthcare Operations AI</p>
-            </div>
-          </div>
+    <div className="flex h-screen overflow-hidden bg-dark-bg">
+      {/* Nav Rail */}
+      <aside className="flex w-16 shrink-0 flex-col items-center border-r border-dark-border bg-dark-surface py-4">
+        {/* Brand icon */}
+        <div className="mb-6 flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-sm">
+          <Brain className="h-5 w-5 text-white" />
         </div>
 
-        {/* Role selector */}
-        <div className="border-b border-slate-100 py-3">
-          <RoleSelector role={role} onChange={setRole} />
-        </div>
-
-        {/* Nav tabs */}
-        <div className="border-b border-slate-100 p-2 space-y-1">
+        {/* Nav items */}
+        <div className="flex flex-1 flex-col items-center gap-2">
           <button
-            onClick={() => setTab("chat")}
+            onClick={() => setView("chat")}
+            title="Operations Assistant"
             className={clsx(
-              "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
-              tab === "chat"
-                ? "bg-blue-50 text-blue-700"
-                : "text-slate-500 hover:bg-slate-50 hover:text-slate-700"
+              "flex h-10 w-10 items-center justify-center rounded-xl transition-colors",
+              view === "chat"
+                ? "bg-dark-hover text-brand-400"
+                : "text-dark-muted hover:bg-dark-hover hover:text-dark-text"
             )}
           >
-            <MessageSquare className="h-3.5 w-3.5" />
-            Operations Assistant
+            <MessageSquare className="h-5 w-5" />
           </button>
           <button
-            onClick={() => setTab("supervisor")}
+            onClick={() => setView("ops-hub")}
+            title="Operations Hub"
             className={clsx(
-              "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
-              tab === "supervisor"
-                ? "bg-orange-50 text-orange-700"
-                : "text-slate-500 hover:bg-slate-50 hover:text-slate-700"
+              "flex h-10 w-10 items-center justify-center rounded-xl transition-colors",
+              view === "ops-hub"
+                ? "bg-dark-hover text-orange-400"
+                : "text-dark-muted hover:bg-dark-hover hover:text-dark-text"
             )}
           >
-            <AlertTriangle className="h-3.5 w-3.5" />
-            Supervisor Queue
+            <LayoutDashboard className="h-5 w-5" />
           </button>
         </div>
 
-        {/* Stats */}
-        <div className="flex-1 overflow-y-auto p-3 space-y-2">
-          <p className="px-1 text-xs font-semibold uppercase tracking-wide text-slate-400">
-            System Status
-          </p>
-          {STATS.map(({ label, value, desc, icon: Icon }) => (
-            <div
-              key={label}
-              className="flex items-center gap-2.5 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2"
-            >
-              <Icon className="h-4 w-4 shrink-0 text-blue-500" />
-              <div className="min-w-0">
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-sm font-bold text-slate-800">{value}</span>
-                  <span className="text-xs text-slate-500">{label}</span>
-                </div>
-                <p className="truncate text-xs text-slate-400">{desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Footer */}
-        <div className="border-t border-slate-100 px-4 py-3">
-          <div className="flex items-center gap-1.5 text-xs text-slate-400">
-            <Shield className="h-3 w-3" />
-            <span>Powered by AWS Bedrock</span>
-          </div>
-          <p className="mt-0.5 text-xs text-slate-300">Claude 3.5 Sonnet · Titan Embed V2</p>
+        {/* Bottom items */}
+        <div className="mt-auto flex flex-col items-center gap-3">
+          <button
+            title="Settings"
+            className="flex h-10 w-10 items-center justify-center rounded-xl text-dark-muted hover:bg-dark-hover hover:text-dark-text transition-colors"
+          >
+            <Settings className="h-5 w-5" />
+          </button>
+          <button
+            onClick={() => setProfileOpen(!profileOpen)}
+            title={user.name}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-700 text-sm font-semibold text-white hover:bg-brand-600 transition-colors"
+          >
+            {initial}
+          </button>
         </div>
       </aside>
 
       {/* Main content */}
       <main className="flex flex-1 flex-col overflow-hidden">
-        {tab === "chat" ? (
-          <>
-            <header className="flex items-center justify-between border-b border-slate-100 bg-white px-6 py-3 shadow-sm">
-              <div className="flex items-center gap-3">
-                <MessageSquare className="h-5 w-5 text-blue-500" />
-                <div>
-                  <h2 className="text-sm font-semibold text-slate-800">Operations Assistant</h2>
-                  <p className="text-xs text-slate-400">
-                    Session · Role: <span className="font-medium text-slate-600">{role}</span>
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={handleLlmToggle}
-                  title={llmOn ? "Click to disable LLM (demo template mode)" : "Click to re-enable LLM"}
-                  className={clsx(
-                    "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition-colors",
-                    llmOn
-                      ? "bg-green-100 text-green-700 hover:bg-green-200"
-                      : "bg-amber-100 text-amber-700 hover:bg-amber-200"
-                  )}
-                >
-                  {llmOn ? <Zap className="h-3 w-3" /> : <ZapOff className="h-3 w-3" />}
-                  {llmOn ? "LLM Live" : "Template Mode"}
-                </button>
-                <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-600">
-                  HIPAA Compliant
-                </span>
-              </div>
-            </header>
-            <div className="flex-1 overflow-hidden">
-              <ChatWindow role={role} sessionId={SESSION_ID} />
-            </div>
-          </>
+        {view === "chat" ? (
+          <ChatWindow
+            username={user.name}
+            role={user.role}
+            sessionId={SESSION_ID}
+            onViewQueue={() => setView("ops-hub")}
+          />
         ) : (
           <SupervisorDashboard />
         )}
       </main>
+
+      {/* Profile panel */}
+      {profileOpen && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setProfileOpen(false)} />
+          <div className="fixed bottom-4 left-16 z-50 w-72 space-y-3 rounded-xl bg-dark-surface p-4 shadow-2xl ring-1 ring-dark-border">
+            {/* User info */}
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-700 text-sm font-semibold text-white">
+                {initial}
+              </div>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold text-dark-text">{user.name}</p>
+                <p className="truncate text-xs text-dark-muted">{user.role}</p>
+              </div>
+            </div>
+
+            <div className="border-t border-dark-border" />
+
+            {/* LLM toggle */}
+            <button
+              onClick={handleLlmToggle}
+              className={clsx(
+                "flex w-full items-center gap-2 rounded-lg border px-3 py-2 text-xs font-medium transition-colors",
+                llmOn
+                  ? "border-green-800 bg-green-900/40 text-green-400 hover:bg-green-900/60"
+                  : "border-amber-800 bg-amber-900/40 text-amber-400 hover:bg-amber-900/60"
+              )}
+            >
+              {llmOn ? <Zap className="h-3.5 w-3.5" /> : <ZapOff className="h-3.5 w-3.5" />}
+              {llmOn ? "LLM Live — click to use template mode" : "Template Mode — click to enable LLM"}
+            </button>
+
+            {/* HIPAA badge */}
+            <div className="flex items-center gap-2 rounded-lg border border-brand-500/20 bg-brand-500/10 px-3 py-2">
+              <Shield className="h-3.5 w-3.5 text-brand-400" />
+              <span className="text-xs font-medium text-brand-400">HIPAA Compliant Session</span>
+            </div>
+
+            <div className="border-t border-dark-border" />
+
+            {/* Sign out */}
+            <button
+              onClick={() => {
+                setProfileOpen(false);
+                setUser(null);
+              }}
+              className="flex w-full items-center gap-2 px-1 py-1 text-xs text-dark-muted hover:text-red-400 transition-colors"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+              Sign out
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

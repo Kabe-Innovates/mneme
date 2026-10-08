@@ -63,6 +63,27 @@ export async function resolveTicket(ticketId: string, notes: string = "") {
   return res.json();
 }
 
+export async function getKnowledgeIndex(status?: string) {
+  const url = status
+    ? `${API_BASE}/api/knowledge/index?status=${status}`
+    : `${API_BASE}/api/knowledge/index`;
+  const res = await fetch(url);
+  return res.json();
+}
+
+export async function getIngestionLog(lines = 100) {
+  const res = await fetch(`${API_BASE}/api/knowledge/log?lines=${lines}`);
+  return res.json();
+}
+
+export async function approveKnowledgeArticle(articleId: string) {
+  const res = await fetch(
+    `${API_BASE}/api/knowledge/articles/${articleId}/approve`,
+    { method: "POST" }
+  );
+  return res.json();
+}
+
 export async function toggleLlm(enabled: boolean) {
   const res = await fetch(`${API_BASE}/api/system/llm-toggle?enabled=${enabled}`, {
     method: "POST",

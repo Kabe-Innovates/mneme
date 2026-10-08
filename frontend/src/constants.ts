@@ -1,0 +1,17 @@
+export const ROLES = [
+  "Front Office",
+  "Admission Desk",
+  "Discharge Operations",
+  "Billing & Cash Operations",
+  "Insurance & TPA",
+  "Medical Records",
+  "Case Management",
+  "Quality & Accreditation",
+  "Operations Management",
+  "IT & HIS Support",
+  "Facility & Maintenance",
+  "Biomedical Engineering",
+  "Pharmacy",
+  "Laboratory",
+  "Radiology Operations",
+] as const;

@@ -3,14 +3,29 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+      },
       colors: {
         brand: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          900: "#1e3a8a",
+          50:  "#f0fdfa",
+          100: "#ccfbf1",
+          200: "#99f6e4",
+          300: "#5eead4",
+          400: "#2dd4bf",
+          500: "#14b8a6",
+          600: "#0d9488",
+          700: "#0f766e",
+          800: "#115e59",
+          900: "#134e4a",
+        },
+        dark: {
+          bg:      "#000000",
+          surface: "#0d0d0d",
+          hover:   "#1a1a1a",
+          border:  "#262626",
+          muted:   "#9ca3af",
+          text:    "#f0f0f0",
         },
       },
     },

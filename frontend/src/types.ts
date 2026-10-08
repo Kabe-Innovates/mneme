@@ -58,6 +58,7 @@ export interface AssistantResponse {
   coverage: { WHAT?: number; WHERE?: number; NEXT?: number; WHO?: number; HOW?: number };
   llm_mode: "llm" | "template";
   banner: string | null;
+  ticket_id: string | null;
 }
 
 export interface EscalationTicket {
@@ -88,6 +89,18 @@ export interface WorkflowFieldResult {
     is_sensitive: boolean;
     validation_regex: string | null;
   }>;
+}
+
+export interface KnowledgeItem {
+  id: string;
+  file: string;
+  type: "article" | "workflow";
+  status: "approved" | "draft";
+  version: string;
+  content_hash: string;
+  indexed_at: string | null;
+  department: string;
+  title: string;
 }
 
 export interface Message {

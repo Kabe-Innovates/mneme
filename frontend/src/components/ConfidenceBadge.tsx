@@ -2,21 +2,22 @@ import { clsx } from "clsx";
 
 interface Props {
   confidence: number;
+  band?: string;
 }
 
-export function ConfidenceBadge({ confidence }: Props) {
+export function ConfidenceBadge({ confidence, band }: Props) {
   const pct = Math.round(confidence * 100);
-  const level = pct >= 85 ? "high" : pct >= 50 ? "medium" : "low";
+  const level = band?.toLowerCase() || (pct >= 85 ? "high" : pct >= 50 ? "medium" : "low");
 
   return (
     <span
       className={clsx(
         "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium",
-        level === "high" && "bg-green-100 text-green-700",
-        level === "medium" && "bg-yellow-100 text-yellow-700",
-        level === "low" && "bg-orange-100 text-orange-700"
+        level === "high" && "bg-green-500/15 text-green-400",
+        level === "medium" && "bg-yellow-500/15 text-yellow-400",
+        level === "low" && "bg-orange-500/15 text-orange-400"
       )}
-      title="Confidence score"
+      title={`Confidence: ${pct}% (${level})`}
     >
       <span
         className={clsx(
@@ -26,7 +27,7 @@ export function ConfidenceBadge({ confidence }: Props) {
           level === "low" && "bg-orange-500"
         )}
       />
-      {pct}% confidence
+      {pct}% · {level.toUpperCase()}
     </span>
   );
 }

@@ -4,20 +4,48 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply bg-dark-bg text-dark-text antialiased;
+  }
+
+  button {
+    @apply transition-all duration-150;
   }
 }
 
 @layer utilities {
   .scrollbar-thin {
     scrollbar-width: thin;
-    scrollbar-color: #cbd5e1 transparent;
+    scrollbar-color: #262626 transparent;
   }
   .scrollbar-thin::-webkit-scrollbar {
     width: 4px;
   }
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background-color: #cbd5e1;
+    background-color: #262626;
     border-radius: 2px;
+  }
+
+  .animate-message-in {
+    animation: messageIn 0.22s ease-out;
+  }
+
+  .chat-bg {
+    background-image: radial-gradient(circle, #0d0d0d 0.75px, transparent 0.75px);
+    background-size: 20px 20px;
+  }
+
+  .gradient-aura {
+    background: radial-gradient(ellipse 600px 400px at 50% 40%, rgba(20, 184, 166, 0.06), transparent);
+  }
+}
+
+@keyframes messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

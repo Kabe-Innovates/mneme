@@ -5,18 +5,6 @@ import { MessageBubble } from "./MessageBubble";
 import type { Message } from "../types";
 import { clsx } from "clsx";
 
-const WELCOME_MESSAGE: Message = {
-  id: "welcome",
-  role: "assistant",
-  content:
-    "Hello! I'm **Mneme**, your healthcare operations assistant. I can help you:\n\n" +
-    "• Answer questions about hospital policies and procedures\n" +
-    "• Guide you through step-by-step operational workflows\n" +
-    "• Route requests that require human review to the right team\n\n" +
-    "Select your role in the sidebar and ask me anything about hospital operations.",
-  timestamp: new Date(),
-};
-
 const SUGGESTIONS = [
   "What is the visitor policy for ICU patients?",
   "Patient has MRI tomorrow, insurance authorization is pending",
@@ -25,27 +13,38 @@ const SUGGESTIONS = [
 ];
 
 interface Props {
+  username: string;
   role: string;
   sessionId: string;
+  onViewQueue?: () => void;
 }
 
-export function ChatWindow({ role, sessionId }: Props) {
-  const [messages, setMessages] = useState<Message[]>([WELCOME_MESSAGE]);
+export function ChatWindow({ username, role, sessionId, onViewQueue }: Props) {
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
+  const isLanding = messages.length === 0 && !loading;
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInput(e.target.value);
+    e.target.style.height = "auto";
+    e.target.style.height = Math.min(e.target.scrollHeight, 120) + "px";
+  };
 
   const handleSend = async (text?: string) => {
     const query = (text || input).trim();
     if (!query || loading) return;
 
     setInput("");
+    if (inputRef.current) inputRef.current.style.height = "auto";
     setError(null);
 
     const userMsg: Message = {
@@ -59,7 +58,6 @@ export function ChatWindow({ role, sessionId }: Props) {
 
     try {
       const res = await sendMessage(query, role, sessionId);
-
       const assistantMsg: Message = {
         id: crypto.randomUUID(),
         role: "assistant",
@@ -83,81 +81,105 @@ export function ChatWindow({ role, sessionId }: Props) {
     }
   };
 
+  const CapsuleBar = ({ centered }: { centered?: boolean }) => (
+    <div className={clsx(centered ? "w-full max-w-2xl" : "w-full max-w-3xl", "mx-auto")}>
+      <div className="flex items-end gap-3 rounded-full bg-dark-surface px-5 py-3 shadow-lg ring-1 ring-dark-border focus-within:ring-brand-600 transition-all">
+        <textarea
+          ref={inputRef}
+          rows={1}
+          value={input}
+          onChange={handleInput}
+          onKeyDown={handleKeyDown}
+          placeholder={`Ask anything as ${role}…`}
+          className="flex-1 resize-none bg-transparent text-sm text-dark-text placeholder-dark-muted focus:outline-none"
+          style={{ maxHeight: "120px", overflowY: "hidden" }}
+        />
+        <button
+          onClick={() => handleSend()}
+          disabled={!input.trim() || loading}
+          className={clsx(
+            "shrink-0 rounded-full p-2 transition-colors",
+            input.trim() && !loading
+              ? "bg-brand-600 text-white hover:bg-brand-700"
+              : "bg-dark-hover text-dark-muted cursor-not-allowed"
+          )}
+        >
+          {loading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <Send className="h-4 w-4" />
+          )}
+        </button>
+      </div>
+    </div>
+  );
+
+  if (isLanding) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center gradient-aura px-4">
+        {/* Greeting */}
+        <h1 className="mb-2 text-center text-5xl font-light tracking-tight text-dark-text">
+          Hi {username}, how can I help?
+        </h1>
+        <p className="mb-10 text-sm leading-relaxed text-dark-muted">Mneme Healthcare Operations Assistant</p>
+
+        {/* Capsule prompt */}
+        <div className="w-full">
+          <CapsuleBar centered />
+        </div>
+
+        {/* Suggestion chips */}
+        <div className="mt-5 flex flex-wrap justify-center gap-2">
+          {SUGGESTIONS.map((s) => (
+            <button
+              key={s}
+              onClick={() => handleSend(s)}
+              className="rounded-full border border-dark-border bg-dark-surface px-3.5 py-1.5 text-xs text-dark-muted hover:border-brand-500 hover:text-brand-400 transition-colors"
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-full flex-col">
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scrollbar-thin">
-        {messages.map((msg) => (
-          <MessageBubble key={msg.id} message={msg} sessionId={sessionId} />
-        ))}
+      <div className="chat-bg flex-1 overflow-y-auto scrollbar-thin">
+        <div className="mx-auto max-w-3xl space-y-4 px-4 py-4">
+          {messages.map((msg) => (
+            <MessageBubble key={msg.id} message={msg} sessionId={sessionId} onViewQueue={onViewQueue} />
+          ))}
 
-        {loading && (
-          <div className="flex justify-start">
-            <div className="flex items-center gap-2 rounded-2xl rounded-tl-sm bg-white px-4 py-3 shadow-sm ring-1 ring-slate-100">
-              <Loader2 className="h-4 w-4 animate-spin text-blue-500" />
-              <span className="text-sm text-slate-500">Mneme is thinking...</span>
+          {loading && (
+            <div className="flex animate-message-in justify-start">
+              <div className="max-w-[60%] space-y-2 rounded-2xl rounded-tl-sm bg-dark-surface px-4 py-3 ring-1 ring-dark-border">
+                <div className="h-2.5 w-3/4 animate-pulse rounded-full bg-dark-hover" />
+                <div className="h-2.5 w-1/2 animate-pulse rounded-full bg-dark-hover" />
+                <div className="flex items-center gap-2 pt-1">
+                  <Loader2 className="h-3.5 w-3.5 animate-spin text-brand-500" />
+                  <span className="text-xs text-dark-muted">Analyzing your request…</span>
+                </div>
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {error && (
-          <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
-            {error}
-          </div>
-        )}
+          {error && (
+            <div className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+              {error}
+            </div>
+          )}
 
-        <div ref={bottomRef} />
+          <div ref={bottomRef} />
+        </div>
       </div>
 
-      {/* Suggestions (show only at start) */}
-      {messages.length === 1 && !loading && (
-        <div className="px-4 pb-3">
-          <p className="mb-2 text-xs font-medium text-slate-400">Try asking:</p>
-          <div className="flex flex-wrap gap-2">
-            {SUGGESTIONS.map((s) => (
-              <button
-                key={s}
-                onClick={() => handleSend(s)}
-                className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 transition-colors"
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Input */}
-      <div className="border-t border-slate-100 bg-white px-4 py-3">
-        <div className="flex items-end gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 focus-within:border-blue-400 focus-within:ring-1 focus-within:ring-blue-400">
-          <textarea
-            ref={inputRef}
-            rows={1}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder={`Ask a question as ${role}...`}
-            className="flex-1 resize-none bg-transparent text-sm text-slate-700 placeholder-slate-400 focus:outline-none"
-            style={{ maxHeight: "120px" }}
-          />
-          <button
-            onClick={() => handleSend()}
-            disabled={!input.trim() || loading}
-            className={clsx(
-              "shrink-0 rounded-lg p-1.5 transition-colors",
-              input.trim() && !loading
-                ? "bg-blue-600 text-white hover:bg-blue-700"
-                : "bg-slate-200 text-slate-400 cursor-not-allowed"
-            )}
-          >
-            {loading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <Send className="h-4 w-4" />
-            )}
-          </button>
-        </div>
-        <p className="mt-1 text-center text-xs text-slate-400">
+      {/* Bottom capsule bar */}
+      <div className="border-t border-dark-border bg-dark-bg px-4 py-3">
+        <CapsuleBar />
+        <p className="mt-2 text-center text-xs text-dark-muted/60">
           Mneme provides operational guidance only. Not a substitute for medical judgment.
         </p>
       </div>
