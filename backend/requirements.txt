@@ -4,3 +4,4 @@ boto3>=1.35.0
 chromadb==0.5.23
 pydantic==2.9.2
 python-dotenv==1.0.1
+networkx>=3.0

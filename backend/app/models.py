@@ -54,6 +54,29 @@ class WorkflowInfo(BaseModel):
     missing_fields: list[dict] = []
 
 
+class GraphNode(BaseModel):
+    node_id: str
+    node_type: str
+    title: str
+    detail: str = ""
+
+
+class WorkflowFieldSubmit(BaseModel):
+    session_id: str
+    workflow_id: str
+    field_name: str
+    field_value: str
+
+
+class WorkflowFieldResponse(BaseModel):
+    success: bool
+    error: Optional[str] = None
+    current_step: int = 1
+    step_advanced: bool = False
+    approval_gate_reached: bool = False
+    missing_fields: list[dict] = []
+
+
 class OrchestratorResponse(BaseModel):
     outcome: str  # ANSWER | GUIDE | ROUTE | REFUSE
     message: str
@@ -64,3 +87,8 @@ class OrchestratorResponse(BaseModel):
     escalation_reason: Optional[str] = None
     priority: Optional[str] = None
     session_id: str = ""
+    graph_context: list[GraphNode] = []  # connected subgraph entities
+    confidence_band: str = "medium"  # high | medium | low
+    coverage: dict[str, int] = {}   # {"WHAT":1,"WHERE":1,"NEXT":1,"WHO":1,"HOW":0}
+    llm_mode: str = "llm"           # "llm" | "template"
+    banner: Optional[str] = None    # shown in UI when LLM is offline
