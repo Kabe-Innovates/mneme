@@ -1,0 +1,130 @@
+[
+  {
+    "user_id": "USR-001",
+    "username": "front_office",
+    "name": "Front Office Staff",
+    "role": "Front Office",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-002",
+    "username": "admission_desk",
+    "name": "Admission Desk Staff",
+    "role": "Admission Desk",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-003",
+    "username": "discharge_operations",
+    "name": "Discharge Operations Staff",
+    "role": "Discharge Operations",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-004",
+    "username": "billing_cash_operations",
+    "name": "Billing & Cash Operations Staff",
+    "role": "Billing & Cash Operations",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-005",
+    "username": "insurance_tpa",
+    "name": "Insurance & TPA Staff",
+    "role": "Insurance & TPA",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-006",
+    "username": "medical_records",
+    "name": "Medical Records Staff",
+    "role": "Medical Records",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-007",
+    "username": "case_management",
+    "name": "Case Management Staff",
+    "role": "Case Management",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-008",
+    "username": "quality_accreditation",
+    "name": "Quality & Accreditation Staff",
+    "role": "Quality & Accreditation",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-009",
+    "username": "operations_management",
+    "name": "Operations Management Staff",
+    "role": "Operations Management",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-010",
+    "username": "it_his_support",
+    "name": "IT & HIS Support Staff",
+    "role": "IT & HIS Support",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-011",
+    "username": "facility_maintenance",
+    "name": "Facility & Maintenance Staff",
+    "role": "Facility & Maintenance",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-012",
+    "username": "biomedical_engineering",
+    "name": "Biomedical Engineering Staff",
+    "role": "Biomedical Engineering",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-013",
+    "username": "pharmacy",
+    "name": "Pharmacy Staff",
+    "role": "Pharmacy",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-014",
+    "username": "laboratory",
+    "name": "Laboratory Staff",
+    "role": "Laboratory",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-015",
+    "username": "radiology_operations",
+    "name": "Radiology Operations Staff",
+    "role": "Radiology Operations",
+    "password_hash": "ecfa83cbfe6c8f1a9c19cebcbfae07b2bb7cbf587604f6426056e3d87871a467",
+    "active": true
+  },
+  {
+    "user_id": "USR-ADM",
+    "username": "supervisor",
+    "name": "Operations Supervisor",
+    "role": "Operations Management",
+    "password_hash": "b8b8eb83374c0bf3b1c3224159f6119dbfff1b7ed6dfecdd80d4e8a895790a34",
+    "active": true
+  }
+]

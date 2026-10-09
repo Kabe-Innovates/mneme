@@ -3,6 +3,26 @@ from typing import Optional
 import uuid
 
 
+# ---------------------------------------------------------------------------
+# Authentication Models
+# ---------------------------------------------------------------------------
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+
+class LoginResponse(BaseModel):
+    token: str
+    user_id: str
+    name: str
+    role: str
+
+
+# ---------------------------------------------------------------------------
+# Hospital Roles
+# ---------------------------------------------------------------------------
+
 HOSPITAL_ROLES = [
     "Front Office",
     "Admission Desk",
