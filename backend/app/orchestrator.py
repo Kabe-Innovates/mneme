@@ -1,27 +1,32 @@
 """
-Mneme Orchestrator — 4-Step Pipeline with Second Brain Hybrid Retrieval
-
-Step 1: GUARD      — Deterministic clinical/PII safety gate (no LLM)
+Mneme Orchestrator — 5-Step Pipeline with 3-Layer Guard System
+==============================================================
+Step 1: GUARD      — 3-layer safety gate: input scan (clinical, injection, PII vault)
 Step 2: CLASSIFY   — LLM intent classification via Bedrock Claude
 Step 3: DECIDE     — Routing: ROUTE / GUIDE / ANSWER determination
 Step 4: GENERATE   — Hybrid retrieval (Vector + Graph) → grounded LLM answer
+Step 5: VERIFY     — Output guard (PII leakage check) + citation guard
 
-The Second Brain upgrade (Step 4):
-  Vector search finds semantic entry points →
-  Knowledge Graph traversal expands connected context (teams, systems, fields, steps) →
-  Trust scoring computes composite confidence →
-  LLM generates grounded answer from enriched context bundle
+Upgrades from original:
+  - 3-layer guard system (input / retrieval / output) — from Divathiru
+  - PII vault pattern (extract → replace → verify) — from Divathiru
+  - Knowledge gap capture on low-confidence routes — from Divathiru
+  - Conversation history support — lightweight multi-turn
 """
 
 from app import guards, llm, vector_store, router, workflow_engine, audit, knowledge_graph
+from app.decide import decide, DecisionContext
 from app.models import (
     OrchestratorResponse, Source, WorkflowInfo, WorkflowStep, GraphNode
 )
 
 
-# Confidence band thresholds (from architecture spec)
+# Confidence band thresholds
 HIGH_THRESHOLD = 0.85
 LOW_THRESHOLD = 0.50
+
+# In-memory conversation history (lightweight multi-turn)
+_session_history: dict[str, list[dict]] = {}
 
 
 def _confidence_band(score: float) -> str:
@@ -34,185 +39,139 @@ def _confidence_band(score: float) -> str:
 
 def process_query(query: str, role: str, session_id: str) -> OrchestratorResponse:
 
-    # Sanitize PII before any LLM call — raw query retained only for audit log
-    sanitized_query = guards.redact_pii(query)
+    # ----------------------------------------------------------------
+    # STEP 1: 3-LAYER INPUT GUARD — deterministic, no LLM
+    # ----------------------------------------------------------------
+    scan = guards.scan_input(query)
+
+    # Use sanitized query (PII replaced with placeholders) for all LLM calls
+    sanitized_query = scan.sanitized
+    pii_vault = scan.pii_vault
 
     # ----------------------------------------------------------------
-    # STEP 1: SAFETY GUARD — 100% deterministic, no LLM
+    # STEP 2: INTENT CLASSIFICATION — LLM call (skip if guard failed)
     # ----------------------------------------------------------------
-    is_clinical, refuse_msg = guards.is_clinical_query(query)
-    if is_clinical:
+    if scan.safe:
+        intent = llm.classify_intent(sanitized_query, role)
+        llm_confidence = float(intent.get("confidence", 0.0))
+        issue_type = intent.get("issue_type", "unclear")
+        entities = intent.get("entities", {})
+        mandatory_route = router.find_route(issue_type, entities)
+        has_workflow = (
+            intent.get("intent") == "workflow_request"
+            and workflow_engine.find_workflow_for_intent(intent) is not None
+        )
+    else:
+        intent = {}
+        llm_confidence = 0.0
+        issue_type = "unclear"
+        entities = {}
+        mandatory_route = None
+        has_workflow = False
+
+    # ----------------------------------------------------------------
+    # STEP 3: PRE-RETRIEVAL DECISION — pure deterministic
+    # ----------------------------------------------------------------
+    pre_decision = decide(DecisionContext(
+        guard_safe=scan.safe,
+        guard_reason=scan.reason,
+        llm_confidence=llm_confidence,
+        intent=intent.get("intent", "unclear"),
+        issue_type=issue_type,
+        route=mandatory_route,
+        has_workflow=has_workflow,
+        has_vector_hits=True,
+        retrieval_safe=True,
+        retrieval_reason="",
+        composite_confidence=1.0,
+    ))
+
+    if pre_decision.outcome == "REFUSE":
         response = OrchestratorResponse(
             outcome="REFUSE",
-            message=refuse_msg,
+            message=pre_decision.reason,
             confidence=1.0,
             confidence_band="high",
             session_id=session_id,
         )
-        _log(session_id, role, query, response)
+        _log(session_id, role, query, response, sanitized_query, is_gap=pre_decision.is_gap)
         return response
 
-    # ----------------------------------------------------------------
-    # STEP 2: INTENT CLASSIFICATION — LLM call
-    # ----------------------------------------------------------------
-    intent = llm.classify_intent(sanitized_query, role)
-    llm_confidence = float(intent.get("confidence", 0.0))
-    issue_type = intent.get("issue_type", "unclear")
-    entities = intent.get("entities", {})
-
-    # ----------------------------------------------------------------
-    # STEP 3: ROUTING DECISION — deterministic
-    # ----------------------------------------------------------------
-    # Low confidence or explicitly unclear → route to human
-    if llm_confidence < 0.4 or intent.get("intent") == "unclear":
-        route = router.find_route("general_operational", entities)
+    if pre_decision.outcome == "ROUTE":
         response = OrchestratorResponse(
             outcome="ROUTE",
-            message=(
-                "I'm not confident I understand your request well enough to assist reliably. "
-                "To ensure you get accurate help, I'm routing this to the appropriate team."
-            ),
+            message=_build_route_message(mandatory_route, issue_type, entities) if mandatory_route else pre_decision.reason,
             confidence=llm_confidence,
             confidence_band=_confidence_band(llm_confidence),
-            routing_target=route["target_team"] if route else "Operations Help Desk",
-            escalation_reason="Low classification confidence — human review required",
-            priority=route["priority"] if route else "ROUTINE",
+            routing_target=pre_decision.routing_target,
+            escalation_reason=pre_decision.reason,
+            priority=pre_decision.priority or "ROUTINE",
             session_id=session_id,
         )
-        _log(session_id, role, query, response)
+        _log(session_id, role, query, response, sanitized_query, is_gap=pre_decision.is_gap)
         return response
 
-    # Check for hard clinical routing rule
-    mandatory_route = router.find_route(issue_type, entities)
-    if mandatory_route and mandatory_route.get("target_team") == "REFUSE_CLINICAL":
-        response = OrchestratorResponse(
-            outcome="REFUSE",
-            message=(
-                "This type of request requires clinical judgment and cannot be handled by Mneme. "
-                "Please consult a qualified medical professional immediately."
-            ),
-            confidence=1.0,
-            confidence_band="high",
-            session_id=session_id,
-        )
-        _log(session_id, role, query, response)
-        return response
-
-    # Mandatory human escalation (routing_needed intent)
-    if intent.get("intent") == "routing_needed" and mandatory_route:
-        response = OrchestratorResponse(
-            outcome="ROUTE",
-            message=_build_route_message(mandatory_route, issue_type, entities),
-            confidence=llm_confidence,
-            confidence_band=_confidence_band(llm_confidence),
-            routing_target=mandatory_route["target_team"],
-            escalation_reason=mandatory_route.get(
-                "reason", f"Issue type '{issue_type}' requires human handling"
-            ),
-            priority=mandatory_route.get("priority", "ROUTINE"),
-            session_id=session_id,
-        )
-        _log(session_id, role, query, response)
-        return response
-
-    # Approval gate precedence: financial/privilege thresholds escalate even
-    # if LLM classified as workflow_request — supervisory rules are non-optional
-    if mandatory_route and mandatory_route.get("priority") in ("URGENT", "CRITICAL"):
-        response = OrchestratorResponse(
-            outcome="ROUTE",
-            message=_build_route_message(mandatory_route, issue_type, entities),
-            confidence=llm_confidence,
-            confidence_band=_confidence_band(llm_confidence),
-            routing_target=mandatory_route["target_team"],
-            escalation_reason=mandatory_route.get(
-                "reason", f"Issue type '{issue_type}' requires supervisory approval"
-            ),
-            priority=mandatory_route.get("priority", "URGENT"),
-            session_id=session_id,
-        )
-        _log(session_id, role, query, response)
-        return response
-
-    # Workflow guidance
-    if intent.get("intent") == "workflow_request":
+    if pre_decision.outcome == "GUIDE":
         workflow = workflow_engine.find_workflow_for_intent(intent)
-        if workflow:
-            wf_info = workflow_engine.start_workflow(workflow["workflow_id"], session_id)
-            wf_steps = [
-                WorkflowStep(
-                    step_number=s["step_number"],
-                    description=s["description"],
-                    required_fields=s.get("required_fields", []),
-                    system_used=s.get("system_used", ""),
-                    is_approval_gate=s.get("is_approval_gate", False),
-                )
-                for s in wf_info.get("steps", [])
-            ]
-            response = OrchestratorResponse(
-                outcome="GUIDE",
-                message=_build_guide_intro(workflow, role),
-                confidence=llm_confidence,
-                confidence_band=_confidence_band(llm_confidence),
-                workflow=WorkflowInfo(
-                    workflow_id=wf_info["workflow_id"],
-                    workflow_name=wf_info["workflow_name"],
-                    department=wf_info["department"],
-                    owner_team=wf_info["owner_team"],
-                    escalation_team=wf_info.get("escalation_team", ""),
-                    current_step=1,
-                    steps=wf_steps,
-                    missing_fields=wf_info.get("missing_fields", []),
-                ),
-                session_id=session_id,
+        wf_info = workflow_engine.start_workflow(workflow["workflow_id"], session_id)
+        wf_steps = [
+            WorkflowStep(
+                step_number=s["step_number"],
+                description=s["description"],
+                required_fields=s.get("required_fields", []),
+                system_used=s.get("system_used", ""),
+                is_approval_gate=s.get("is_approval_gate", False),
             )
-            _log(session_id, role, query, response)
-            return response
+            for s in wf_info.get("steps", [])
+        ]
+        response = OrchestratorResponse(
+            outcome="GUIDE",
+            message=_build_guide_intro(workflow, role),
+            confidence=llm_confidence,
+            confidence_band=_confidence_band(llm_confidence),
+            workflow=WorkflowInfo(
+                workflow_id=wf_info["workflow_id"],
+                workflow_name=wf_info["workflow_name"],
+                department=wf_info["department"],
+                owner_team=wf_info["owner_team"],
+                escalation_team=wf_info.get("escalation_team", ""),
+                current_step=1,
+                steps=wf_steps,
+                missing_fields=wf_info.get("missing_fields", []),
+            ),
+            session_id=session_id,
+        )
+        _log(session_id, role, query, response, sanitized_query)
+        return response
 
     # ----------------------------------------------------------------
-    # STEP 4: SECOND BRAIN HYBRID RETRIEVAL
+    # STEP 4: HYBRID RETRIEVAL + GENERATION
     # ----------------------------------------------------------------
 
     # Phase A: Vector semantic search
     vector_hits = vector_store.search(query, role, n_results=5)
 
-    if not vector_hits:
-        route = router.find_route("general_operational", entities)
-        response = OrchestratorResponse(
-            outcome="ROUTE",
-            message=(
-                "I couldn't find relevant information in the approved knowledge base. "
-                "I'm routing this to the appropriate team for assistance."
-            ),
-            confidence=llm_confidence * 0.5,
-            confidence_band="low",
-            routing_target=route["target_team"] if route else "Operations Help Desk",
-            escalation_reason="Query not covered in available knowledge base",
-            priority="ROUTINE",
-            session_id=session_id,
-        )
-        _log(session_id, role, query, response)
-        return response
+    # Layer 2: RETRIEVAL GUARD — check retrieved docs for injection
+    retrieval_safe, retrieval_reason = guards.scan_retrieval(vector_hits) if vector_hits else (True, "")
 
     top_similarity = vector_hits[0]["relevance"] if vector_hits else 0.0
 
-    # Phase B: Knowledge Graph expansion (Second Brain)
+    # Phase B: Knowledge Graph expansion
     graph_nodes_response: list[GraphNode] = []
     graph_context_docs: list[dict] = []
     coverage: dict = {}
 
-    if knowledge_graph.is_loaded():
+    if vector_hits and retrieval_safe and knowledge_graph.is_loaded():
         entry_ids = [hit["source_id"] for hit in vector_hits]
         subgraph = knowledge_graph.traverse_subgraph(
             entry_ids, role, max_hops=3, max_nodes=25
         )
         graph_context_docs = knowledge_graph.build_context_bundle(subgraph)
 
-        # Phase C: Trust scoring — returns (score, coverage_breakdown)
         composite_confidence, coverage = knowledge_graph.compute_trust_score(
             subgraph, top_similarity
         )
 
-        # Build GraphNode list for response (supporting entities only — not Articles already in sources)
         source_ids = {hit["source_id"] for hit in vector_hits}
         for node in subgraph["nodes"]:
             if node["node_id"] not in source_ids and node["node_type"] not in ("Article",):
@@ -223,45 +182,70 @@ def process_query(query: str, role: str, session_id: str) -> OrchestratorRespons
                     detail=_node_detail(node),
                 ))
     else:
-        # Graph not loaded — fall back to vector similarity only
-        composite_confidence = min(llm_confidence, top_similarity + 0.2)
+        composite_confidence = min(llm_confidence, top_similarity + 0.2) if vector_hits else 0.0
 
-    # Low final confidence → route to human
-    if composite_confidence < LOW_THRESHOLD:
-        route = router.find_route("general_operational", entities)
+    # ----------------------------------------------------------------
+    # POST-RETRIEVAL DECISION — pure deterministic
+    # ----------------------------------------------------------------
+    post_decision = decide(DecisionContext(
+        guard_safe=True,
+        guard_reason="",
+        llm_confidence=llm_confidence,
+        intent=intent.get("intent", ""),
+        issue_type=issue_type,
+        route=mandatory_route,
+        has_workflow=False,
+        has_vector_hits=bool(vector_hits),
+        retrieval_safe=retrieval_safe,
+        retrieval_reason=retrieval_reason,
+        composite_confidence=composite_confidence,
+    ))
+
+    if post_decision.outcome != "ANSWER":
+        if not retrieval_safe:
+            print(f"[Orchestrator] Retrieval guard triggered: {retrieval_reason}")
         response = OrchestratorResponse(
             outcome="ROUTE",
-            message=(
-                "The available documentation doesn't fully cover your question with high confidence. "
-                "I'm routing this to the appropriate team to ensure accuracy."
-            ),
-            confidence=composite_confidence,
+            message=post_decision.reason,
+            confidence=composite_confidence if vector_hits else llm_confidence * 0.5,
             confidence_band="low",
-            routing_target=route["target_team"] if route else "Operations Help Desk",
-            escalation_reason=f"Low trust score ({composite_confidence:.0%}) — knowledge gap or conflicting sources",
-            priority="ROUTINE",
+            routing_target=post_decision.routing_target,
+            escalation_reason=post_decision.reason,
+            priority=post_decision.priority or "ROUTINE",
             session_id=session_id,
         )
-        _log(session_id, role, query, response)
+        _log(session_id, role, query, response, sanitized_query, is_gap=post_decision.is_gap)
         return response
 
-    # Phase D: Enriched LLM generation
-    # Merge vector docs + graph context (graph context appended after vector docs)
+    # Phase C: Enriched LLM generation
     all_context = list(vector_hits) + [
         doc for doc in graph_context_docs
         if doc["source_id"] not in {h["source_id"] for h in vector_hits}
     ]
 
-    answer = llm.generate_answer(sanitized_query, all_context, role)
+    # Get conversation history for multi-turn context
+    history = _session_history.get(session_id, [])
 
-    # Sentence-level citation guard — log failures but don't block (template fallback handles it)
+    answer = llm.generate_answer(sanitized_query, all_context, role,
+                                  conversation_history=history)
+
+    # ----------------------------------------------------------------
+    # STEP 5: OUTPUT VERIFICATION
+    # ----------------------------------------------------------------
+
+    # Layer 3: OUTPUT GUARD — check for PII leakage
+    output_safe, output_reason = guards.scan_output(answer["text"], pii_vault)
+    if not output_safe:
+        print(f"[Orchestrator] Output guard triggered: {output_reason}")
+        answer = llm._template_answer(all_context)
+
+    # Citation guard
     guard_passed, guard_reason = guards.citation_guard(answer["text"], all_context)
     if not guard_passed:
         print(f"[Orchestrator] Citation guard failed: {guard_reason}")
-        # Escalate to template mode on citation guard failure to prevent hallucinated claims
         answer = llm._template_answer(all_context)
 
-    # Build sources list from cited docs
+    # Build sources list
     cited_ids = {c["source_id"] for c in (answer.get("citations") or [])}
     sources = [
         Source(
@@ -286,7 +270,17 @@ def process_query(query: str, role: str, session_id: str) -> OrchestratorRespons
         banner=answer.get("banner"),
         session_id=session_id,
     )
-    _log(session_id, role, query, response)
+    _log(session_id, role, query, response, sanitized_query)
+
+    # Save to conversation history for multi-turn
+    _session_history.setdefault(session_id, []).append({
+        "query": sanitized_query,
+        "summary": answer["text"][:200],
+    })
+    # Cap history at 5 turns per session
+    if len(_session_history[session_id]) > 5:
+        _session_history[session_id] = _session_history[session_id][-5:]
+
     return response
 
 
@@ -331,9 +325,10 @@ def _node_detail(node: dict) -> str:
     return ""
 
 
-def _log(session_id: str, role: str, query: str, response: OrchestratorResponse):
+def _log(session_id: str, role: str, query: str, response: OrchestratorResponse,
+         sanitized_query: str = "", is_gap: bool = False):
     try:
-        redacted = guards.redact_pii(query)
+        redacted = sanitized_query or guards.redact_pii(query)
         audit.log_interaction(
             session_id=session_id,
             role=role,
@@ -349,6 +344,7 @@ def _log(session_id: str, role: str, query: str, response: OrchestratorResponse)
                 priority=response.priority or "ROUTINE",
                 summary=redacted[:200],
                 escalation_reason=response.escalation_reason or "",
+                is_gap=is_gap,
             )
             response.ticket_id = ticket_id
     except Exception as e:
