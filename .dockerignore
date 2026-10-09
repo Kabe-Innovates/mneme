@@ -1,0 +1,13 @@
+**/.git
+**/__pycache__
+**/.venv
+**/venv
+**/node_modules
+**/.next
+**/dist
+**/*.pyc
+**/.env
+backend/chroma_db
+backend/mneme_audit.db
+.claude
+docs
