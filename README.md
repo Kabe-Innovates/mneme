@@ -1,89 +1,196 @@
-# Mneme — Healthcare Operations Assistant
+<div align="center">
 
-> **Enterprise Neuro-Symbolic "Second Brain" for Hospital & Healthcare Operations**  
-> **Standards Alignment:** NABH 5th Edition (CQI.1 & CQI.2), HIPAA Security & Privacy (45 CFR § 164.312 / 164.502), ISO 27799  
-> **Core Tenet:** *LLM Reasons, Rules Decide.*
+# Mneme <sub>(ம்னீமி)</sub>
 
----
+**/nee-mee/** · *noun* · Greek
 
-## ⚠️ Synthetic Data Only Declaration
+### Deterministic Second Brain for Hospital Operations
 
-> **All data in this system is strictly synthetic.**
-> No real patient, member, provider, employee, production, or confidential client data is used at any stage. All hospital names, insurer entities, policy codes, and operational scenarios are fictional and generated purely for demonstration and evaluation purposes.
+Turn fragmented hospital procedures into grounded, verifiable answers,
+interactive workflows, and context-rich escalations — so staff find
+what they need before patients feel the delay.
 
----
+<sub>Built for the **BTC "Build to Care" Healthcare Hackathon**</sub>
 
-## 🏛️ Executive Overview
+</div>
 
-A hospital employee needing to authorize an MRI, correct a billing code, or request system access must navigate fragmented procedures across 15 operational personas and heterogeneous software silos (HIS, EMR, LIS, RIS, PACS, ERP). 
-
-**Mneme** is not a chatbot; it is a **Deterministic Second Brain** that links procedures, forms, workflow systems, teams, and escalation paths into a navigable Knowledge Graph. It resolves every operational request into one of four deterministic outcomes:
-1. **ANSWER**: Grounded, verifiable answers with exact source citations and confidence metrics.
-2. **GUIDE**: Interactive state-machine workflows for routine operational tasks (e.g., MRI pre-authorization), prompting only for missing required fields without making assumptions.
-3. **ROUTE**: Context-rich escalation tickets dispatched to the correct department queue with urgency ratings, tried steps, and reasons.
-4. **REFUSE / ESCALATE SAFELY**: Immediate deterministic deflection of clinical advice requests, access violations, or prompt injections.
+> *"LLM Reasons, Rules Decide."* — The system's core tenet. Every response
+> traces back to approved SOPs, never to model imagination.
 
 ---
 
-## 🤖 Cloud Backbone: AWS Bedrock
+## Overview
 
-The system utilizes **AWS Bedrock** for enterprise-grade, HIPAA-eligible foundation model inference:
+Hospital staff across 15 operational roles navigate fragmented procedures,
+forms, and software silos daily. Mneme links all of it — procedures, teams,
+systems, escalation paths — into a navigable Knowledge Graph backed by
+AWS Bedrock, and resolves every request into one of four deterministic outcomes:
 
-| Component | Model ID | Operational Function | Compliance Status |
-| :--- | :--- | :--- | :--- |
-| **Primary LLM** | `anthropic.claude-3-5-sonnet-20241022-v2:0` | Structured intent extraction (Step 2) & Grounded answer generation (Step 6) | ✅ HIPAA-eligible under AWS BAA |
-| **Fast Guard Model** | `anthropic.claude-3-haiku-20240307-v1:0` | Sub-200ms edge-case clinical disambiguation fallback (Step 1) | ✅ HIPAA-eligible, low latency |
-| **Vector Embeddings** | `amazon.titan-embed-text-v2:0` | 1024-dimension dense vector indexing for hybrid retrieval (Step 3) | ✅ HIPAA-eligible, zero retention |
+| Outcome | What Happens |
+|---|---|
+| **ANSWER** | Grounded response with exact SOP citations and confidence score |
+| **GUIDE** | Interactive step-by-step workflow, prompting only for missing fields |
+| **ROUTE** | Escalation ticket to the correct department with priority and context |
+| **REFUSE** | Immediate deflection of clinical, injection, or out-of-scope requests |
 
----
-
-## 🔒 System Boundaries & Operational Scope
-
-| System Can Do | System Cannot Do |
-| :--- | :--- |
-| ✅ Find current, approved procedures with source citations | ❌ **Provide medical advice, diagnosis, or drug dosing** |
-| ✅ Guide routine multi-step operational workflows | ❌ Access confidential patient records or financial credentials |
-| ✅ Incrementally collect missing required parameters | ❌ Authorize irreversible actions without supervisor approval |
-| ✅ Route complex exceptions to correct human departments | ❌ Bypass role-based security controls under any framing |
-| ✅ Explicitly communicate uncertainty & knowledge gaps | ❌ Generate answers from expired or unapproved SOPs |
+All data in this system is **strictly synthetic**. No real patient, provider,
+or confidential data is used at any stage.
 
 ---
 
-## 🏗️ 3-Layer Architecture
+## Architecture
 
 ```
-┌───────────────────────────────────────────────────────────────┐
-│  3. DECISION LAYER  — "what should I do with this?"           │
-│     ANSWER · GUIDE · ROUTE · REFUSE   (+ Audit Trail)         │
-├───────────────────────────────────────────────────────────────┤
-│  2. KNOWLEDGE GRAPH — "how does everything connect?"          │
-│     procedures · documents · forms · systems · teams · roles  │
-├───────────────────────────────────────────────────────────────┤
-│  1. SOURCE DATA  — "what do we know, and is it trusted?"      │
-│     synthetic workbook (requests, articles, workflows,        │
-│     routing rules, field definitions) with trust metadata     │
-└───────────────────────────────────────────────────────────────┘
+                         ┌─────────────────────────────────────────────┐
+                         │            React + Vite Frontend            │
+                         │  Chat · Workflows · Operations Hub (5 tabs) │
+                         └──────────────────┬──────────────────────────┘
+                                            │ JWT + Bearer
+                         ┌──────────────────▼──────────────────────────┐
+                         │           FastAPI Backend (v2.0)            │
+                         │  Rate Limiter · CORS · Auth Middleware      │
+                         └──────┬────────┬────────┬────────┬──────────┘
+                                │        │        │        │
+                    ┌───────────▼──┐  ┌──▼─────┐  │  ┌─────▼─────────┐
+                    │  3-Layer     │  │ Pure   │  │  │  HMAC-Chained │
+                    │  Guard       │  │decide()│  │  │  Audit Trail  │
+                    │  System      │  │ Engine │  │  │  (SHA-256)    │
+                    └──────────────┘  └────────┘  │  └───────────────┘
+                                                  │
+              ┌───────────────────────────────────┼───────────────────┐
+              │                                   │                   │
+     ┌────────▼────────┐               ┌─────────▼──────┐   ┌───────▼───────┐
+     │   ChromaDB       │               │  NetworkX       │   │ AWS Bedrock   │
+     │   Vector Store   │               │  Knowledge      │   │ Claude 3.5    │
+     │   (Titan embed)  │               │  Graph          │   │ Sonnet        │
+     └─────────────────┘               └────────────────┘   └───────────────┘
 ```
 
 ---
 
-## 📚 SDLC Architectural Documentation
+## Security Model
 
-Complete engineering specifications are available in the [`docs/`](docs/) directory:
-
-- [**01. Problem & Requirements Specification**](docs/01_PROBLEM_REQUIREMENTS_SPECIFICATION.md): Deep-dive into the 15 hospital operational roles, the 5 core operational questions (What, Where, What Next, Who, How), trust hierarchy, synthetic data declaration, and system self-disclosure.
-- [**02. System Architecture & Engineering Design**](docs/02_SYSTEM_ARCHITECTURE_DESIGN.md): 3-Layer mental model, C4 container diagram, 7-step orchestrator pipeline, AWS Bedrock configuration, sentiment detection, uncertainty UX bands, and append-only audit trail.
-- [**03. Knowledge Graph & Ontology Specification**](docs/03_KNOWLEDGE_GRAPH_AND_ONTOLOGY.md): Extended 12-node, 11-edge ontology, DAG sequential precedence (`precedes`), supernode degree capping, and change-impact backlink analysis.
-- [**04. Guided Workflows & Routing Engine**](docs/04_WORKFLOW_STATE_MACHINE_AND_ROUTING.md): State-machine specifications, field definitions, MRI pre-authorization walkthrough (happy path + uncertainty gap), and Agent Dashboard specifications.
-- [**05. Architectural Decisions & FAQs ("Why Not This?")**](docs/05_ARCHITECTURAL_DECISIONS_AND_FAQS.md): Detailed architectural defense in Q&A format covering Cloud vs. Edge, AWS Bedrock, GraphRAG vs. Vector RAG, Pre-Retrieval RBAC, and offline disaster recovery.
-- [**06. Data Ingestion & Workbook Mapping**](docs/06_DATA_INGESTION_AND_WORKBOOK_MAPPING.md): Tabular workbook schema specifications for all 5 sheets, node/edge transformation pipeline, SQLite/Chroma ingestion logic, and contingency synthetic data generation.
-- [**07. Data Lifecycle, Retention & Edge Cases**](docs/07_DATA_LIFECYCLE_RETENTION_AND_EDGE_CASES.md): 6-tier data lifecycle matrix, encounter-driven eviction (discharge edge case), mid-shift handovers, downtime procedure mode, and catalog of 15 enterprise operational edge cases.
+| Layer | Mechanism |
+|---|---|
+| **Input Guard** | 25 clinical patterns, 15 injection patterns, Unicode confusable normalization, PII vault extraction |
+| **Retrieval Guard** | Scans retrieved KB documents for indirect prompt injection |
+| **Output Guard** | Verifies no extracted PII leaks into generated responses |
+| **Authentication** | JWT (HS256) with 8-hour shift-based expiry, 16 synthetic hospital roles |
+| **Audit Trail** | HMAC-SHA256 chained log — tamper on any entry breaks the chain |
+| **Rate Limiting** | 30 req/min chat, 10 req/min login via slowapi |
+| **Circuit Breaker** | Self-healing LLM degradation (5 failures / 30s recovery) with template fallback |
+| **Decision Engine** | Pure deterministic `decide()` — no I/O, no LLM, 100% testable (65 tests) |
 
 ---
 
-## 🛡️ Healthcare Governance & Compliance
+## Tech Stack
 
-- **Pre-Retrieval RBAC**: Access boundaries enforced at the database query level (`WHERE role IN node.visible_to`) before vector matching or graph expansion to prevent unauthorized context leakage.
-- **Controlled Document Triad (NABH CQI.1)**: Every procedure requires controlled ID, semantic version, effective date, review due date, and approved status.
-- **Append-Only Audit Trail (HIPAA § 164.312)**: Every interaction writes to an immutable SQLite audit log with UUID tracking (with Merkle-chain hashing specified for production).
-- **Deterministic Clinical Boundary**: 100% regex and rule-based deflection of clinical diagnostic and medication queries.
+| Layer | Technologies |
+|---|---|
+| **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, Lucide Icons |
+| **Backend** | Python 3.12, FastAPI, PyJWT, slowapi, SQLite |
+| **AI / ML** | AWS Bedrock (Claude 3.5 Sonnet, Titan Embeddings v2) |
+| **Retrieval** | ChromaDB (vector), NetworkX (knowledge graph with trust scoring) |
+| **Infrastructure** | Docker Compose, nginx |
+
+---
+
+## Quick Start
+
+### Local Development
+
+```bash
+# Backend
+cd backend
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env          # add your AWS + JWT keys
+uvicorn app.main:app --reload # http://localhost:8000
+
+# Frontend (separate terminal)
+cd frontend
+npm install
+npm run dev                   # http://localhost:5173
+```
+
+### Docker
+
+```bash
+docker compose up --build
+# API → http://localhost:8000  |  UI → http://localhost:80
+```
+
+### Run Tests
+
+```bash
+cd backend
+python -m pytest tests/ -v    # 65 tests, ~0.1s
+```
+
+Demo credentials: `front_office` / `mneme2024`
+
+---
+
+## Operations Hub
+
+The supervisor dashboard exposes five tabs:
+
+- **Escalation Queue** — Live tickets with priority, SLA tracking, and resolution notes
+- **Knowledge Vault** — Versioned SOP index with draft/approved status and ingestion log
+- **Audit Trail** — HMAC chain verification with integrity badge and violation details
+- **Knowledge Gaps** — Queries the system couldn't answer, surfaced for KB improvement
+- **Demo Scenarios** — One-click injection of realistic hospital events (Code Blue, MRI failure, billing dispute)
+
+---
+
+## Repository Structure
+
+```
+.
+├── frontend/                  # React + Vite UI
+│   ├── src/components/        # Chat, workflows, dashboard, login
+│   ├── src/api.ts             # JWT-authenticated API layer
+│   └── src/types.ts           # Shared TypeScript interfaces
+├── backend/
+│   ├── app/                   # FastAPI application
+│   │   ├── orchestrator.py    # 5-step pipeline (Guard → Classify → Decide → Generate → Verify)
+│   │   ├── decide.py          # Pure deterministic decision engine
+│   │   ├── guards.py          # 3-layer guard system with PII vault
+│   │   ├── audit.py           # HMAC-chained audit trail
+│   │   ├── auth.py            # JWT authentication
+│   │   ├── llm.py             # Bedrock client with circuit breaker
+│   │   ├── knowledge_graph.py # NetworkX graph with trust scoring
+│   │   ├── vector_store.py    # ChromaDB hybrid retrieval
+│   │   └── scenarios.py       # Demo scenario injection
+│   ├── data/                  # 48 articles, 15 workflows, 23 routing rules
+│   ├── knowledge_vault/       # Versioned SOP store (63 documents)
+│   └── tests/                 # 65 deterministic tests
+├── docs/                      # 7 SDLC architecture documents
+├── docker-compose.yml
+└── Dockerfile.backend / Dockerfile.frontend
+```
+
+---
+
+## Compliance Alignment
+
+| Standard | Implementation |
+|---|---|
+| **HIPAA § 164.312** | HMAC-chained audit, in-memory token storage (no localStorage), PII vault redaction |
+| **HIPAA § 164.502** | Pre-retrieval RBAC, role-scoped vector queries, no PHI in logs |
+| **NABH CQI.1** | Controlled document triad (ID, version, effective date) on all SOPs |
+| **ISO 27799** | Fail-closed guards, rate limiting, circuit breaker, JWT expiry |
+
+---
+
+## Team
+
+- **Kabelan** · Frontend, Knowledge Graph, Orchestrator
+- **Divathiru** · Security Architecture, Evaluation Harness
+- **Jaiyantan** · Data Engineering, Hospital Simulation
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE).
