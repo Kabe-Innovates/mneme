@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layers, MessageSquare, LayoutDashboard, Settings, Zap, ZapOff, Shield, LogOut } from "lucide-react";
 import { clsx } from "clsx";
 import { ChatWindow } from "./components/ChatWindow";
 import { SupervisorDashboard } from "./components/SupervisorDashboard";
 import { LoginScreen } from "./components/LoginScreen";
-import { toggleLlm } from "./api";
+import { toggleLlm, setToken } from "./api";
 
 const SESSION_ID = crypto.randomUUID();
 
@@ -20,6 +20,16 @@ export default function App() {
   const [view, setView] = useState<View>("chat");
   const [llmOn, setLlmOn] = useState(true);
   const [profileOpen, setProfileOpen] = useState(false);
+
+  // Listen for auth expiry events from the API layer
+  useEffect(() => {
+    const handleLogout = () => {
+      setUser(null);
+      setToken(null);
+    };
+    window.addEventListener("mneme:logout", handleLogout);
+    return () => window.removeEventListener("mneme:logout", handleLogout);
+  }, []);
 
   if (!user) {
     return <LoginScreen onLogin={(name, role) => setUser({ name, role })} />;
@@ -147,6 +157,7 @@ export default function App() {
               onClick={() => {
                 setProfileOpen(false);
                 setUser(null);
+                setToken(null);
               }}
               className="flex w-full items-center gap-2 px-1 py-1 text-xs text-dark-muted hover:text-red-400 transition-colors"
             >
