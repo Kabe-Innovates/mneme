@@ -184,10 +184,10 @@ The supervisor dashboard exposes five tabs:
 ---
 
 ## Team
-
-- **Kabelan** · Frontend, Knowledge Graph, Orchestrator
-- **Divathiru** · Security Architecture, Evaluation Harness
-- **Jaiyantan** · Data Engineering, Hospital Simulation
+- Ranen Joseph Solomon
+- Thirumurugan K
+- Jaiyantan S
+- Kabelan G K
 
 ---
 
